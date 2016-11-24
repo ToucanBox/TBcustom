@@ -53,6 +53,9 @@ var renderer = PIXI.autoDetectRenderer(600, 720, { transparent: true, antialias:
 canvas.appendChild(renderer.view);
 renderer.view.setAttribute('class', 'canvas-class');
 
+var cWidth = renderer.width;
+var cHeight = renderer.height;
+
 // create the root of the scene graph
 var stage = new PIXI.Container();
 
@@ -60,7 +63,7 @@ var stage = new PIXI.Container();
 
 // Load spritesheet
 PIXI.loader
-    .add('spritesheet', 'img/canvas/base-arms.json') // Texture packer seems to order differently for CSS(LESS) and JSON grr
+    .add('spritesheet', 'img/canvas/base-arms.json')
     .on("progress", loadProgressHandler)
     .load(onAssetsLoaded);
 
@@ -72,47 +75,34 @@ function onAssetsLoaded() {
 
   // Remove loader overlay
 
-  var spriteNames = [];
-  var frames = [];
+  //test frame
+  var viewport = new PIXI.Container();
+  viewport.pivot.x = cWidth/2;
+  viewport.pivot.y = cHeight/2;
 
-  // 'Magically works' 4 is number of sprites, Pixi 'knows' cached the sprite names and what they relate to
-  // Might need to support multiple sprite sheets
+  viewport.position.x = cWidth/2;
+  viewport.position.y = cHeight/2;
 
-  for (var i = 1; i < 8; i++) {
-    spriteNames.push('b' + i + '.png');
-    console.log(spriteNames[i]);
-    frames.push(PIXI.Texture.fromFrame('b' + i + '.png'));
-  }
+  stage.addChild(viewport);
 
-  // Add all icons to tray
+  var graphics = new PIXI.Graphics();
+  graphics.lineStyle(1, 0xffd900, 1);
 
-  var icons = document.getElementById('icons');
+  graphics.moveTo(0,0);
+  graphics.lineTo(600, 0);
+  graphics.lineTo(600, 720);
+  graphics.lineTo(0, 720);
+  graphics.lineTo(0, 0);
 
-  for (var i = 0; i < spriteNames.length; i++) {
-    var node = document.createElement("li");
-    node.className = 'js_slide spritesheet sprite' + i;
-    node.id = i;
-    node.addEventListener('click',onClick,false);
-    icons.appendChild(node);
-  }
+  viewport.addChild(graphics);
 
-  // Add slider
-
-  var multiSlides = document.querySelector('.js_slider');
-
-  lory(multiSlides, {
-      infinite: 0,
-      slidesToScroll: 1,
-      rewind: true
-  });
-
-  // TEST SPRITES
-  for (var i = 0; i < items.length; i++) {
-    stage.addChild(items[i]);
-  }
-
-  makeRope();
-  makeG();
+  var texture = PIXI.Texture.fromFrame('b2.png');
+  var sprite = new PIXI.Sprite(texture);
+  sprite.anchor.x = 0.5;
+  sprite.anchor.y = 0.5;
+  sprite.position.x = cWidth/2;
+  sprite.position.y = cHeight/2;
+  viewport.addChild(sprite);
 
   // start animating
   animate();
