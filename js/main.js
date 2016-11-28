@@ -34,13 +34,15 @@ Toucanoo wearing pyjamas, nightcap
 
 */
 
-
-
+//Libraries
 var lory = require('swipr');
 var PIXI = require('pixi.js');
 var anime = require('animejs');
 
 document.addEventListener("DOMContentLoaded", function(event) {
+
+//Screen events
+var canvasSizer = require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
 
 var count = 0;
 var othercount = 0;
