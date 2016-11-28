@@ -2,8 +2,6 @@
 
 /*
 
-Refactor and Browserify
-
 Need a constructor for arms
 
 Update item constructor to make new items from list items
@@ -40,7 +38,7 @@ var anime = require('animejs');
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
-//Screen events
+//Screen size event
 require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
 
 //Init
@@ -69,86 +67,6 @@ function loadProgressHandler(loader, loadedResource) {
 
 function onAssetsLoaded() {
 
-  var itemTextures = [];
-  var armsTextures = [];
-  var bodyTextures = [];
-
-  function loadTextures() {
-  var i;
-
-  for (i = 1; i <= 61; i++)
-    {
-       var texture = PIXI.Texture.fromFrame( i + '.png' );
-       itemTextures.push(texture);
-    }
-
-  for (i = 1; i <= 5; i++)
-    {
-      var textureBody = PIXI.Texture.fromFrame( 'a' + i + '.png' );
-      armsTextures.push(textureBody);
-    }
-
-  for (i = 1; i <= 8; i++)
-    {
-      var textureArm = PIXI.Texture.fromFrame( 'b' + i + '.png' );
-      bodyTextures.push(textureArm);
-    }
-
-  }
-
-  loadTextures();
-
-  // add elements to palette
-
-  var icons = document.getElementById('icons');
-
-  for (var i = 1; i <= 61; i++) {
-    var node = document.createElement("li");
-    node.className = 'js_slide sprite-icons icons-' + i;
-    node.id = i;
-    node.addEventListener( 'click' , onClick , false );
-    icons.appendChild( node );
-  }
-
-  // Add slider
-
-  var multiSlides = document.querySelector('.slider');
-
-  lory(multiSlides, {
-      infinite: 0,
-      slidesToScroll: 3,
-      rewind: true
-  });
-
-  // Click to add items
-
-  function onClick(event) {
-    var id = event.target.id;
-    console.log(id);
-    addItem(id);
-  }
-
-  // ADD ITEM
-
-    function addItem(id) {
-      // var image = frames[id];
-      // var add = new item(id, image);
-      // add.anchor.set(0.5);
-      // stage.addChild(add);
-      // console.log(add);
-    }
-
-
-  //Item constructor
-  var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
-
-  // Remove loader overlay
-  var loader = document.getElementById('busy');
-  loader.style.display = 'none';
-
-  animate();
-
-  //test frame
   var viewport = new PIXI.Container();
   viewport.pivot.x = cWidth/2;
   viewport.pivot.y = cHeight/2;
@@ -157,6 +75,34 @@ function onAssetsLoaded() {
   viewport.position.y = cHeight/2;
 
   stage.addChild(viewport);
+
+
+
+  //Item constructor
+  var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
+
+  var node = document.getElementById('test');
+  node.addEventListener( 'click' , testClick , false );
+  function testClick() {
+    var test3 = new item(40, init.itemTextures[40]);
+    test3.position.x = 500;
+    viewport.addChild(test3);
+  }
+
+  //Initialiser object (module exports new init)
+  var init = require('/Users/anthonymoles/Documents/TBcustom/js/init.js');
+
+  init.loadTextures();
+  init.populatePalette();
+  init.initSlider();
+
+  // Remove loader overlay
+  var loader = document.getElementById('busy');
+  loader.style.display = 'none';
+
+  animate();
+
+  //TESTING frame
 
   var graphics = new PIXI.Graphics();
   graphics.lineStyle(1, 0xffd900, 1);
@@ -177,12 +123,15 @@ function onAssetsLoaded() {
   sprite.position.y = cHeight/2;
   viewport.addChild(sprite);
 
-  var test = new item(0 , itemTextures[0]);
-  viewport.addChild(test);
+  // TESTING
 
-  var test2 = new item(60, itemTextures[60]);
+  var test2 = new item(60, init.itemTextures[60]);
   test2.position.x = 300;
   viewport.addChild(test2);
+
+  var test = new item(0 , init.itemTextures[0]);
+  viewport.addChild(test);
+
 
   // ANIMATE
 

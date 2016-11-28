@@ -1,4 +1,84 @@
 
+//NEW
+
+var itemTextures = [];
+var armsTextures = [];
+var bodyTextures = [];
+
+function loadTextures() {
+var i;
+
+for (i = 1; i <= 61; i++)
+  {
+     var texture = PIXI.Texture.fromFrame( i + '.png' );
+     itemTextures.push(texture);
+  }
+
+for (i = 1; i <= 5; i++)
+  {
+    var textureBody = PIXI.Texture.fromFrame( 'a' + i + '.png' );
+    armsTextures.push(textureBody);
+  }
+
+for (i = 1; i <= 8; i++)
+  {
+    var textureArm = PIXI.Texture.fromFrame( 'b' + i + '.png' );
+    bodyTextures.push(textureArm);
+  }
+
+}
+
+loadTextures();
+
+// add elements to palette
+
+var icons = document.getElementById('icons');
+
+for (var i = 1; i <= 61; i++) {
+  var node = document.createElement("li");
+  node.className = 'js_slide sprite-icons icons-' + i;
+  node.id = i;
+  node.addEventListener( 'click' , onClick , false );
+  icons.appendChild( node );
+}
+
+// Add slider
+
+var multiSlides = document.querySelector('.slider');
+
+lory(multiSlides, {
+    infinite: 0,
+    slidesToScroll: 3,
+    rewind: true
+});
+
+// Click to add items
+
+function onClick(event) {
+  var id = event.target.id;
+  console.log(id);
+  addItem(id);
+}
+
+// ADD ITEM
+
+  function addItem(id) {
+    // var image = frames[id];
+    // var add = new item(id, image);
+    // add.anchor.set(0.5);
+    // stage.addChild(add);
+    // console.log(add);
+  }
+
+
+
+
+
+
+
+// OLD
+
+
 // original vars
 
 var count = 0;

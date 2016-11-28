@@ -3,7 +3,6 @@
 var item = function (id, image) {
     this.id = id;
     console.log('new item added ID:' + this.id);
-    console.log(image);
     PIXI.Sprite.call(this, image);
     this.image = image;
     this.interactive = true;
@@ -35,28 +34,39 @@ var item = function (id, image) {
       // store a reference to the data
       // the reason for this is because of multitouch
       // we want to track the movement of this particular touch
+      if (!this.dragging) {
       this.data = event.data;
       this.alpha = 0.5;
       this.dragging = true;
-      // if not added to body container, (remove from stage and) add to body container
+      this.scale.x *= 1.1;
+      this.scale.y *= 1.1;
+      this.dragPoint = event.data.getLocalPosition(this.parent);
+      this.dragPoint.x -= this.position.x;
+      this.dragPoint.y -= this.position.y;
+      var parent = this.parent;
+      parent.removeChild(this);
+      parent.addChild(this);
+    }
   };
 
   item.prototype.onDragEnd = function(event) {
-
+    if (this.dragging) {
       this.alpha = 1;
-
       this.dragging = false;
-
+      this.scale.x /= 1.1;
+      this.scale.y /= 1.1;
       // set the interaction data to null
       this.data = null;
+
+    }
   };
 
   item.prototype.onDragMove = function(event) {
       if (this.dragging)
       {
           var newPosition = this.data.getLocalPosition(this.parent);
-          this.position.x = newPosition.x;
-          this.position.y = newPosition.y;
+          this.position.x = newPosition.x - this.dragPoint.x;
+          this.position.y = newPosition.y - this.dragPoint.y;
       }
   };
 
