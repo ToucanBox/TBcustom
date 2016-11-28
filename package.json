@@ -9,8 +9,7 @@
   "main": "index.html",
   "dependencies": {
     "animejs": "^1.1.1",
-    "pixi.js": "^4.2.2",
-    "swipr": "^2.0.2"
+    "pixi.js": "^4.2.2"
   },
   "devDependencies": {
   },

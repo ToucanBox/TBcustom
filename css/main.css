@@ -6,6 +6,7 @@ html, body {
   margin: 0px;
   background-color: #f1f1f1;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .browserupgrade {
@@ -23,6 +24,50 @@ header {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
+   #busy {
+    background-color: rgba(255,255,255,.75);
+    position: fixed;
+    display: block;
+    z-index: 99999;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+   }
+
+   #spinner {
+     -webkit-animation: spinner 1.2s linear infinite;
+    -moz-animation: spinner 1.2s linear infinite;
+    -o-animation: spinner 1.2s linear infinite;
+    -ms-animation: spinner 1.2s linear infinite;
+    animation: spinner 1.2s linear infinite;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../img/web/loader.png);
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    background-size: 100%;
+    margin-left: -90px;
+    margin-top: -90px;
+    position: absolute;
+    height: 180px;
+    width: 180px;
+    left: 50%;
+    top: 50%;
+   }
+
+   @keyframes spinner {
+
+     100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+      }
+
+   }
 
    #content {
     height: 100%;
@@ -46,7 +91,6 @@ header {
      max-width: 600px;
      max-height: 720px;
      margin: 0 auto;
-     background-color: white;
      transform-origin: 50% bottom;
    }
 
@@ -146,195 +190,74 @@ header {
      transform: rotate(5deg);
    }
 
-   /* ==========================================================================
-      Spritesheet
-      Inline:     <i class="yourspritesname"></i>
-      Responsive: <div class="yourspritesname"></div>
-      ========================================================================== */
+   .sprite-night { display:inline-block; overflow: hidden; background-repeat: no-repeat; background-image: url('../img/web/night.png'); }
 
-   .1 {max-width:100px; max-height:100px; }
-   .1::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 0.0823045267489712%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.1::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .10 {max-width:100px; max-height:100px; }
-   .10::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 8.395061728395062%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.10::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .11 {max-width:100px; max-height:100px; }
-   .11::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 16.707818930041153%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.11::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .12 {max-width:100px; max-height:100px; }
-   .12::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 16.707818930041153%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.12::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .13 {max-width:100px; max-height:100px; }
-   .13::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 16.707818930041153%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.13::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .14 {max-width:100px; max-height:100px; }
-   .14::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 16.707818930041153%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.14::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .15 {max-width:100px; max-height:100px; }
-   .15::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 16.707818930041153%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.15::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .16 {max-width:100px; max-height:100px; }
-   .16::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 25.020576131687243%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.16::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .17 {max-width:100px; max-height:100px; }
-   .17::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 25.020576131687243%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.17::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .18 {max-width:100px; max-height:100px; }
-   .18::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 25.020576131687243%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.18::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .19 {max-width:100px; max-height:100px; }
-   .19::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 25.020576131687243%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.19::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .2 {max-width:100px; max-height:100px; }
-   .2::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 0.0823045267489712%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.2::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .20 {max-width:100px; max-height:100px; }
-   .20::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 25.020576131687243%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.20::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .21 {max-width:100px; max-height:100px; }
-   .21::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 33.333333333333336%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.21::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .22 {max-width:100px; max-height:100px; }
-   .22::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 33.333333333333336%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.22::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .23 {max-width:100px; max-height:100px; }
-   .23::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 33.333333333333336%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.23::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .24 {max-width:100px; max-height:100px; }
-   .24::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 33.333333333333336%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.24::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .25 {max-width:100px; max-height:100px; }
-   .25::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 33.333333333333336%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.25::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .26 {max-width:100px; max-height:100px; }
-   .26::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 41.64609053497942%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.26::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .27 {max-width:100px; max-height:100px; }
-   .27::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 41.64609053497942%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.27::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .28 {max-width:100px; max-height:100px; }
-   .28::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 41.64609053497942%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.28::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .29 {max-width:100px; max-height:100px; }
-   .29::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 41.64609053497942%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.29::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .3 {max-width:100px; max-height:100px; }
-   .3::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 0.0823045267489712%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.3::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .30 {max-width:100px; max-height:100px; }
-   .30::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 41.64609053497942%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.30::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .31 {max-width:100px; max-height:100px; }
-   .31::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 49.958847736625515%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.31::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .32 {max-width:100px; max-height:100px; }
-   .32::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 49.958847736625515%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.32::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .33 {max-width:100px; max-height:100px; }
-   .33::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 49.958847736625515%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.33::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .34 {max-width:100px; max-height:100px; }
-   .34::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 49.958847736625515%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.34::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .35 {max-width:100px; max-height:100px; }
-   .35::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 49.958847736625515%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.35::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .36 {max-width:100px; max-height:100px; }
-   .36::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 58.27160493827161%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.36::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .37 {max-width:100px; max-height:100px; }
-   .37::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 58.27160493827161%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.37::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .38 {max-width:100px; max-height:100px; }
-   .38::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 58.27160493827161%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.38::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .39 {max-width:100px; max-height:100px; }
-   .39::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 58.27160493827161%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.39::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .4 {max-width:100px; max-height:100px; }
-   .4::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 0.0823045267489712%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.4::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .40 {max-width:100px; max-height:100px; }
-   .40::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 58.27160493827161%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.40::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .41 {max-width:100px; max-height:100px; }
-   .41::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 66.5843621399177%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.41::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .42 {max-width:101px; max-height:101px; }
-   .42::after {content: ' ';display: inline-block; width:101px; height:101px; background-position: 25.185185185185187% 66.63920922570017%;background-size: 500.990099009901% 1301.980198019802%;background-image: url(icons.png);padding: 0; }
-   div.42::after {max-width:101px; width:100%;height:0;padding: 0 0 100% 0;}
-   .43 {max-width:100px; max-height:100px; }
-   .43::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50.24630541871921% 66.5843621399177%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.43::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .44 {max-width:100px; max-height:100px; }
-   .44::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 75.1231527093596% 66.5843621399177%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.44::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .45 {max-width:100px; max-height:100px; }
-   .45::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 74.97942386831275%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.45::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .46 {max-width:100px; max-height:100px; }
-   .46::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 74.97942386831275%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.46::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .47 {max-width:100px; max-height:100px; }
-   .47::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 74.97942386831275%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.47::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .48 {max-width:100px; max-height:100px; }
-   .48::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 74.97942386831275%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.48::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .49 {max-width:100px; max-height:100px; }
-   .49::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 74.97942386831275%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.49::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .5 {max-width:100px; max-height:100px; }
-   .5::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 0.0823045267489712%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.5::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .50 {max-width:100px; max-height:100px; }
-   .50::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 83.29218106995884%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.50::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .51 {max-width:100px; max-height:100px; }
-   .51::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 83.29218106995884%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.51::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .52 {max-width:100px; max-height:100px; }
-   .52::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 83.29218106995884%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.52::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .53 {max-width:100px; max-height:100px; }
-   .53::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 83.29218106995884%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.53::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .54 {max-width:100px; max-height:100px; }
-   .54::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 83.29218106995884%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.54::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .55 {max-width:100px; max-height:100px; }
-   .55::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 91.60493827160494%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.55::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .56 {max-width:100px; max-height:100px; }
-   .56::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 91.60493827160494%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.56::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .57 {max-width:100px; max-height:100px; }
-   .57::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 91.60493827160494%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.57::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .58 {max-width:100px; max-height:100px; }
-   .58::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 91.60493827160494%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.58::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .59 {max-width:100px; max-height:100px; }
-   .59::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 99.75369458128078% 91.60493827160494%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.59::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .6 {max-width:100px; max-height:100px; }
-   .6::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 8.395061728395062%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.6::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .60 {max-width:100px; max-height:100px; }
-   .60::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 0.24630541871921183% 99.91769547325103%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.60::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .61 {max-width:100px; max-height:100px; }
-   .61::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 99.91769547325103%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.61::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .7 {max-width:100px; max-height:100px; }
-   .7::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 25.123152709359605% 8.395061728395062%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.7::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .8 {max-width:100px; max-height:100px; }
-   .8::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 50% 8.395061728395062%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.8::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
-   .9 {max-width:100px; max-height:100px; }
-   .9::after {content: ' ';display: inline-block; width:100px; height:100px; background-position: 74.8768472906404% 8.395061728395062%;background-size: 506% 1315%;background-image: url(icons.png);padding: 0; }
-   div.9::after {max-width:100px; width:100%;height:0;padding: 0 0 100% 0;}
+   .night-moon { width: 93px; height: 134px; background-position: -1px -1px; }
+   .night-star { width: 31px; height: 34px; background-position: -1px -135px; }
+
+   .sprite-icons { display:inline-block; overflow: hidden; background-repeat: no-repeat; background-image: url('../img/web/icons.png'); }
+
+   .icons-42 { width: 101px; height: 101px; background-position: -1px -1px; }
+   .icons-1 { width: 100px; height: 100px; background-position: -104px -1px; }
+   .icons-10 { width: 100px; height: 100px; background-position: -206px -1px; }
+   .icons-11 { width: 100px; height: 100px; background-position: -308px -1px; }
+   .icons-12 { width: 100px; height: 100px; background-position: -104px -103px; }
+   .icons-13 { width: 100px; height: 100px; background-position: -1px -104px; }
+   .icons-14 { width: 100px; height: 100px; background-position: -206px -103px; }
+   .icons-15 { width: 100px; height: 100px; background-position: -308px -103px; }
+   .icons-16 { width: 100px; height: 100px; background-position: -103px -205px; }
+   .icons-17 { width: 100px; height: 100px; background-position: -1px -206px; }
+   .icons-18 { width: 100px; height: 100px; background-position: -205px -205px; }
+   .icons-19 { width: 100px; height: 100px; background-position: -307px -205px; }
+   .icons-2 { width: 100px; height: 100px; background-position: -409px -205px; }
+   .icons-20 { width: 100px; height: 100px; background-position: -103px -307px; }
+   .icons-21 { width: 100px; height: 100px; background-position: -1px -308px; }
+   .icons-22 { width: 100px; height: 100px; background-position: -205px -307px; }
+   .icons-23 { width: 100px; height: 100px; background-position: -307px -307px; }
+   .icons-24 { width: 100px; height: 100px; background-position: -409px -307px; }
+   .icons-25 { width: 100px; height: 100px; background-position: -103px -409px; }
+   .icons-26 { width: 100px; height: 100px; background-position: -1px -410px; }
+   .icons-27 { width: 100px; height: 100px; background-position: -205px -409px; }
+   .icons-28 { width: 100px; height: 100px; background-position: -307px -409px; }
+   .icons-29 { width: 100px; height: 100px; background-position: -409px -409px; }
+   .icons-3 { width: 100px; height: 100px; background-position: -103px -511px; }
+   .icons-30 { width: 100px; height: 100px; background-position: -1px -512px; }
+   .icons-31 { width: 100px; height: 100px; background-position: -205px -511px; }
+   .icons-32 { width: 100px; height: 100px; background-position: -307px -511px; }
+   .icons-33 { width: 100px; height: 100px; background-position: -409px -511px; }
+   .icons-34 { width: 100px; height: 100px; background-position: -103px -613px; }
+   .icons-35 { width: 100px; height: 100px; background-position: -1px -614px; }
+   .icons-36 { width: 100px; height: 100px; background-position: -205px -613px; }
+   .icons-37 { width: 100px; height: 100px; background-position: -307px -613px; }
+   .icons-38 { width: 100px; height: 100px; background-position: -409px -613px; }
+   .icons-39 { width: 100px; height: 100px; background-position: -103px -715px; }
+   .icons-4 { width: 100px; height: 100px; background-position: -1px -716px; }
+   .icons-40 { width: 100px; height: 100px; background-position: -205px -715px; }
+   .icons-41 { width: 100px; height: 100px; background-position: -307px -715px; }
+   .icons-43 { width: 100px; height: 100px; background-position: -409px -715px; }
+   .icons-44 { width: 100px; height: 100px; background-position: -103px -817px; }
+   .icons-45 { width: 100px; height: 100px; background-position: -1px -818px; }
+   .icons-46 { width: 100px; height: 100px; background-position: -205px -817px; }
+   .icons-47 { width: 100px; height: 100px; background-position: -307px -817px; }
+   .icons-48 { width: 100px; height: 100px; background-position: -409px -817px; }
+   .icons-49 { width: 100px; height: 100px; background-position: -1px -920px; }
+   .icons-5 { width: 100px; height: 100px; background-position: -1px -1022px; }
+   .icons-50 { width: 100px; height: 100px; background-position: -1px -1124px; }
+   .icons-51 { width: 100px; height: 100px; background-position: -103px -919px; }
+   .icons-52 { width: 100px; height: 100px; background-position: -103px -1021px; }
+   .icons-53 { width: 100px; height: 100px; background-position: -103px -1123px; }
+   .icons-54 { width: 100px; height: 100px; background-position: -103px -1225px; }
+   .icons-55 { width: 100px; height: 100px; background-position: -205px -919px; }
+   .icons-56 { width: 100px; height: 100px; background-position: -307px -919px; }
+   .icons-57 { width: 100px; height: 100px; background-position: -409px -919px; }
+   .icons-58 { width: 100px; height: 100px; background-position: -205px -1021px; }
+   .icons-59 { width: 100px; height: 100px; background-position: -205px -1123px; }
+   .icons-6 { width: 100px; height: 100px; background-position: -205px -1225px; }
+   .icons-60 { width: 100px; height: 100px; background-position: -307px -1021px; }
+   .icons-61 { width: 100px; height: 100px; background-position: -409px -1021px; }
+   .icons-7 { width: 100px; height: 100px; background-position: -307px -1123px; }
+   .icons-8 { width: 100px; height: 100px; background-position: -307px -1225px; }
+   .icons-9 { width: 100px; height: 100px; background-position: -409px -1123px; }
 
 
 /* ==========================================================================

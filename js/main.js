@@ -35,47 +35,119 @@ Toucanoo wearing pyjamas, nightcap
 */
 
 //Libraries
-var lory = require('swipr');
 var PIXI = require('pixi.js');
 var anime = require('animejs');
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
 //Screen events
-var canvasSizer = require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
+require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
 
-var count = 0;
-var othercount = 0;
-var dir = {a:1,b:1,c:1,d:0};
-var points = [];
-var g, ropeLength, strip, items;
-
-var canvas = document.getElementById('Pcanvas')
+//Init
+var canvas = document.getElementById('Pcanvas');
 var renderer = PIXI.autoDetectRenderer(600, 720, { transparent: true, antialias: true });
 canvas.appendChild(renderer.view);
 renderer.view.setAttribute('class', 'canvas-class');
 
+//canvas dimensions
 var cWidth = renderer.width;
 var cHeight = renderer.height;
 
 // create the root of the scene graph
 var stage = new PIXI.Container();
 
-// ADD loading animation and overlay
-
-// Load spritesheet
+// Load Assets
 PIXI.loader
     .add('spritesheet', 'img/canvas/base-arms.json')
+    .add('items', 'img/canvas/items.json')
     .on("progress", loadProgressHandler)
     .load(onAssetsLoaded);
 
 function loadProgressHandler(loader, loadedResource) {
   console.log('Progress:', loader.progress + '%');
-};
+}
 
 function onAssetsLoaded() {
 
+  var itemTextures = [];
+  var armsTextures = [];
+  var bodyTextures = [];
+
+  function loadTextures() {
+  var i;
+
+  for (i = 1; i < 61; i++)
+    {
+       var texture = PIXI.Texture.fromFrame( i + '.png' );
+       itemTextures.push(texture);
+    }
+
+  for (i = 1; i < 5; i++)
+    {
+      var textureBody = PIXI.Texture.fromFrame( 'a' + i + '.png' );
+      armsTextures.push(textureBody);
+    }
+
+  for (i = 1; i < 8; i++)
+    {
+      var textureArm = PIXI.Texture.fromFrame( 'b' + i + '.png' );
+      bodyTextures.push(textureArm);
+    }
+
+  }
+
+  loadTextures();
+
+  // add elements to palette
+
+  var icons = document.getElementById('icons');
+
+  for (var i = 1; i <= 61; i++) {
+    var node = document.createElement("li");
+    node.className = 'js_slide sprite-icons icons-' + i;
+    node.id = i;
+    node.addEventListener( 'click' , onClick , false );
+    icons.appendChild( node );
+  }
+
+  // Add slider
+
+  var multiSlides = document.querySelector('.slider');
+
+  lory(multiSlides, {
+      infinite: 0,
+      slidesToScroll: 3,
+      rewind: true
+  });
+
+  // Click to add items
+
+  function onClick(event) {
+    var id = event.target.id;
+    console.log(id);
+    addItem(id);
+  }
+
+  // ADD ITEM
+
+    function addItem(id) {
+      // var image = frames[id];
+      // var add = new item(id, image);
+      // add.anchor.set(0.5);
+      // stage.addChild(add);
+      // console.log(add);
+    }
+
+
+  //Item constructor
+  var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
+
+
   // Remove loader overlay
+  var loader = document.getElementById('busy');
+  loader.style.display = 'none';
+
+  animate();
 
   //test frame
   var viewport = new PIXI.Container();
@@ -106,207 +178,18 @@ function onAssetsLoaded() {
   sprite.position.y = cHeight/2;
   viewport.addChild(sprite);
 
-  // start animating
-  animate();
-
-// Make items
-
-  function item(id, image) {
-    PIXI.Sprite.call(this, image);
-    this.image = image;
-    this.interactive = true;
-    this.buttonMode = true;
-    this.position.x = 200;
-    this.position.y = 200;
-
-    this
-  // events for drag start
-    .on('mousedown', onDragStart)
-    .on('touchstart', onDragStart)
-    // events for drag end
-    .on('mouseup', onDragEnd)
-    .on('mouseupoutside', onDragEnd)
-    .on('touchend', onDragEnd)
-    .on('touchendoutside', onDragEnd)
-    // events for drag move
-    .on('mousemove', onDragMove)
-    .on('touchmove', onDragMove);
-    // var item = new PIXI.Sprite(frames[i]);
-  }
-
-  item.prototype = Object.create(PIXI.Sprite.prototype);
-  item.prototype.constructor = item;
-
-  // Click to add items
-
-  function onClick(event) {
-    console.log(event.target.id);
-    var id = event.target.id;
-    var image = frames[id];
-    var add = new item(id, image);
-    add.anchor.set(0.5);
-    stage.addChild(add);
-    console.log(add);
-  }
-
+  var test = new item(1 , itemTextures[1]);
+  console.log(test);
+  viewport.addChild(test);
 
   // ANIMATE
 
   function animate() {
 
-      count += 0.01;
-    	othercount += Math.PI / 100;
-
       // render the stage
       renderer.render(stage);
 
-      //visual points
-      renderPoints();
-      //Arm sin loop
-      animateArm2(count);
-
       requestAnimationFrame(animate);
-  }
-
-  function makeRope() {
-    // build a rope!
-    ropeLength = 918 / 22;
-
-    for (var i = 0; i < 20; i++)
-    {
-        points.push(new PIXI.Point(i * ropeLength, null));
-    }
-
-    strip = new PIXI.mesh.Rope(PIXI.Texture.fromImage('img/Path_1.png'), points);
-
-    // Makeinitial bend
-    for (var i = 0; i < points.length; i++) {
-
-          points[i].y = Math.pow( i, 2);
-    }
-
-    strip.position.x = 10;
-    strip.position.y = 200;
-
-    strip.interactive = true;
-    strip.on('mousedown', animatePoints);
-    strip.on('touchstart', animatePoints);
-
-    stage.addChild(strip);
-  }
-
-  function makeG() {
-
-    g = new PIXI.Graphics();
-
-    g.x = strip.x;
-    g.y = strip.y;
-    stage.addChild(g);
-
-  }
-
-  function animateArm(count) {
-    for (var i = 1; i < points.length; i++) {
-
-        points[0].y = 0;
-        points[0].x = 0;
-
-        points[i].y = Math.pow( i, 2 ) + Math.sin((i * 0.05) + count) * (i * 2);
-        points[i].x = i * ropeLength - Math.pow( i, 2 * Math.sin(count));
-
-         // points[i].x = (ropeLength * i) - i * (ropeLength/2);
-        // points[i].x = i * ropeLength + Math.cos((i * 0.3) + count) * 20;
-    }
-  }
-
-  function animateArm2(count) {
-    for (var i = 1; i < points.length; i++) {
-
-        points[0].y = 0;
-        points[0].x = 0;
-
-        points[i].y = dir.a * Math.pow( i, dir.c * 2 ) - Math.sin((i * 0.05) + count) * (i * 2);
-        points[i].x = i * ropeLength - Math.pow( i, 2.1 * dir.b) - dir.d * Math.pow( i , 2 );
-
-    }
-  }
-
-  function renderPoints() {
-
-      g.clear();
-
-      g.lineStyle(2,0xff0022);
-      g.moveTo(points[0].x,points[0].y);
-
-      for (var i = 1; i < points.length; i++) {
-          g.lineTo(points[i].x,points[i].y);
-      };
-
-      for (var i = 1; i < points.length; i++) {
-          g.beginFill(0xff0022);
-          g.drawCircle(points[i].x,points[i].y,10);
-          g.endFill();
-      };
-  }
-
-
-  function animatePoints() {
-
-    var animePointsA = anime({
-    targets: dir,
-    a: -1,
-    b: -1,
-    d: 1,
-    autoplay: false,
-    duration: 2000,
-    complete: function() {
-      var animePointsB = anime({
-      targets: dir,
-      a: 1,
-      b: 1,
-      d: 0,
-      duration: 500,
-      delay: 200,
-      easing: 'easeOutQuint'
-      });
-    }
-  });
-
-    animePointsA.play();
-
-  }
-
-  // Need to include touch control - handle multitouch
-
-  function onDragStart(event)
-  {
-      // store a reference to the data
-      // the reason for this is because of multitouch
-      // we want to track the movement of this particular touch
-      this.data = event.data;
-      this.alpha = 0.5;
-      this.dragging = true;
-      // if not added to body container, (remove from stage and) add to body container
-  }
-
-  function onDragEnd()
-  {
-      this.alpha = 1;
-
-      this.dragging = false;
-
-      // set the interaction data to null
-      this.data = null;
-  }
-
-  function onDragMove()
-  {
-      if (this.dragging)
-      {
-          var newPosition = this.data.getLocalPosition(this.parent);
-          this.position.x = newPosition.x;
-          this.position.y = newPosition.y;
-      }
   }
 
   } //end load init ------------------------------------------------------
