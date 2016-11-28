@@ -3,12 +3,15 @@
 var item = function (id, image) {
     this.id = id;
     console.log('new item added ID:' + this.id);
+    console.log(image);
     PIXI.Sprite.call(this, image);
     this.image = image;
     this.interactive = true;
     this.buttonMode = true;
-    this.position.x = 0;
-    this.position.y = 0;
+    this.anchor.x = 0.5;
+    this.anchor.y = 0.5;
+    this.position.x = 200;
+    this.position.y = 400;
 
     this
   // events for drag start
@@ -28,7 +31,7 @@ var item = function (id, image) {
   item.prototype.constructor = item;
 
   // Need to include touch control - handle multitouch
-  item.prototype.onDragStart = function() {
+  item.prototype.onDragStart = function(event) {
       // store a reference to the data
       // the reason for this is because of multitouch
       // we want to track the movement of this particular touch
@@ -38,7 +41,7 @@ var item = function (id, image) {
       // if not added to body container, (remove from stage and) add to body container
   };
 
-  item.prototype.onDragEnd = function() {
+  item.prototype.onDragEnd = function(event) {
 
       this.alpha = 1;
 
@@ -48,7 +51,7 @@ var item = function (id, image) {
       this.data = null;
   };
 
-  item.prototype.onDragMove = function() {
+  item.prototype.onDragMove = function(event) {
       if (this.dragging)
       {
           var newPosition = this.data.getLocalPosition(this.parent);

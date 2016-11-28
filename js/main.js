@@ -76,19 +76,19 @@ function onAssetsLoaded() {
   function loadTextures() {
   var i;
 
-  for (i = 1; i < 61; i++)
+  for (i = 1; i <= 61; i++)
     {
        var texture = PIXI.Texture.fromFrame( i + '.png' );
        itemTextures.push(texture);
     }
 
-  for (i = 1; i < 5; i++)
+  for (i = 1; i <= 5; i++)
     {
       var textureBody = PIXI.Texture.fromFrame( 'a' + i + '.png' );
       armsTextures.push(textureBody);
     }
 
-  for (i = 1; i < 8; i++)
+  for (i = 1; i <= 8; i++)
     {
       var textureArm = PIXI.Texture.fromFrame( 'b' + i + '.png' );
       bodyTextures.push(textureArm);
@@ -142,7 +142,6 @@ function onAssetsLoaded() {
   //Item constructor
   var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
 
-
   // Remove loader overlay
   var loader = document.getElementById('busy');
   loader.style.display = 'none';
@@ -178,9 +177,12 @@ function onAssetsLoaded() {
   sprite.position.y = cHeight/2;
   viewport.addChild(sprite);
 
-  var test = new item(1 , itemTextures[1]);
-  console.log(test);
+  var test = new item(0 , itemTextures[0]);
   viewport.addChild(test);
+
+  var test2 = new item(60, itemTextures[60]);
+  test2.position.x = 300;
+  viewport.addChild(test2);
 
   // ANIMATE
 
