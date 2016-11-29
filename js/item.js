@@ -12,8 +12,10 @@ var item = function (id, image) {
     this.position.x = 200;
     this.position.y = 400;
 
+    // if clothes or shoes then static, appears in place, removes other clothes, shoes
+    // hair is draggable but removes other hair
     this
-  // events for drag start
+    // events for drag start
     .on('mousedown', this.onDragStart.bind(this))
     .on('touchstart', this.onDragStart.bind(this))
     // events for drag end
@@ -24,6 +26,8 @@ var item = function (id, image) {
     // events for drag move
     .on('mousemove', this.onDragMove.bind(this))
     .on('touchmove', this.onDragMove.bind(this));
+
+    requestAnimationFrame(this.animate.bind(this));
   };
 
   item.prototype = Object.create(PIXI.Sprite.prototype);
@@ -69,5 +73,17 @@ var item = function (id, image) {
           this.position.y = newPosition.y - this.dragPoint.y;
       }
   };
+
+  item.prototype.animate = function(event) {
+      if (this.dragging)
+      {
+          //announce with pop
+          //wiggling until first drag and release, maybe text 'put me somewhere'
+      }
+
+      requestAnimationFrame(this.animate.bind(this));
+  };
+
+
 
 module.exports = item;

@@ -1,79 +1,16 @@
+// using texture cache instead of arrays - seem to populate too late for building the body and arms
 
-//NEW
+  for (i = 1; i <= 5; i++)
+    {
+      var textureBody = PIXI.Texture.fromFrame( 'a' + i + '.png' );
+      this.armsTextures.push(textureBody);
+    }
 
-var itemTextures = [];
-var armsTextures = [];
-var bodyTextures = [];
-
-function loadTextures() {
-var i;
-
-for (i = 1; i <= 61; i++)
-  {
-     var texture = PIXI.Texture.fromFrame( i + '.png' );
-     itemTextures.push(texture);
-  }
-
-for (i = 1; i <= 5; i++)
-  {
-    var textureBody = PIXI.Texture.fromFrame( 'a' + i + '.png' );
-    armsTextures.push(textureBody);
-  }
-
-for (i = 1; i <= 8; i++)
-  {
-    var textureArm = PIXI.Texture.fromFrame( 'b' + i + '.png' );
-    bodyTextures.push(textureArm);
-  }
-
-}
-
-loadTextures();
-
-// add elements to palette
-
-var icons = document.getElementById('icons');
-
-for (var i = 1; i <= 61; i++) {
-  var node = document.createElement("li");
-  node.className = 'js_slide sprite-icons icons-' + i;
-  node.id = i;
-  node.addEventListener( 'click' , onClick , false );
-  icons.appendChild( node );
-}
-
-// Add slider
-
-var multiSlides = document.querySelector('.slider');
-
-lory(multiSlides, {
-    infinite: 0,
-    slidesToScroll: 3,
-    rewind: true
-});
-
-// Click to add items
-
-function onClick(event) {
-  var id = event.target.id;
-  console.log(id);
-  addItem(id);
-}
-
-// ADD ITEM
-
-  function addItem(id) {
-    // var image = frames[id];
-    // var add = new item(id, image);
-    // add.anchor.set(0.5);
-    // stage.addChild(add);
-    // console.log(add);
-  }
-
-
-
-
-
+  for (i = 1; i <= 8; i++)
+    {
+      var textureArm = PIXI.Texture.fromFrame( 'b' + i + '.png' );
+      this.bodyTextures.push(textureArm);
+    }
 
 
 // OLD
@@ -89,48 +26,6 @@ var g, ropeLength, strip, items;
 
 
 
-
-
-
-
-var spriteNames = [];
-var frames = [];
-
-// 'Magically works' 4 is number of sprites, Pixi 'knows' cached the sprite names and what they relate to
-// Might need to support multiple sprite sheets
-
-for (var i = 1; i < 8; i++) {
-  spriteNames.push('b' + i + '.png');
-  console.log(spriteNames[i]);
-  frames.push(PIXI.Texture.fromFrame('b' + i + '.png'));
-}
-
-// Add all icons to tray
-
-var icons = document.getElementById('icons');
-
-for (var i = 0; i < spriteNames.length; i++) {
-  var node = document.createElement("li");
-  node.className = 'js_slide spritesheet sprite' + i;
-  node.id = i;
-  node.addEventListener('click',onClick,false);
-  icons.appendChild(node);
-}
-
-// Add slider
-
-var multiSlides = document.querySelector('.js_slider');
-
-lory(multiSlides, {
-    infinite: 0,
-    slidesToScroll: 1,
-    rewind: true
-});
-
-// TEST SPRITES
-for (var i = 0; i < items.length; i++) {
-  stage.addChild(items[i]);
-}
 
 makeRope();
 makeG();
@@ -210,13 +105,13 @@ makeG();
 
       for (var i = 1; i < points.length; i++) {
           g.lineTo(points[i].x,points[i].y);
-      };
+      }
 
-      for (var i = 1; i < points.length; i++) {
+      for (i = 1; i < points.length; i++) {
           g.beginFill(0xff0022);
           g.drawCircle(points[i].x,points[i].y,10);
           g.endFill();
-      };
+      }
   }
 
 
