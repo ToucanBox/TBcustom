@@ -67,17 +67,6 @@ function loadProgressHandler(loader, loadedResource) {
 
 function onAssetsLoaded() {
 
-  var viewport = new PIXI.Container();
-  viewport.pivot.x = cWidth/2;
-  viewport.pivot.y = cHeight/2;
-
-  viewport.position.x = cWidth/2;
-  viewport.position.y = cHeight/2;
-
-  stage.addChild(viewport);
-
-
-
   //Item constructor
   var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
 
@@ -103,6 +92,15 @@ function onAssetsLoaded() {
   animate();
 
   //TESTING frame
+
+  window.viewport = new PIXI.Container();
+  viewport.pivot.x = cWidth/2;
+  viewport.pivot.y = cHeight/2;
+
+  viewport.position.x = cWidth/2;
+  viewport.position.y = cHeight/2;
+
+  stage.addChild(viewport);
 
   var graphics = new PIXI.Graphics();
   graphics.lineStyle(1, 0xffd900, 1);

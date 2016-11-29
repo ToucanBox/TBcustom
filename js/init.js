@@ -19,7 +19,7 @@ var init = function () {
     console.log(image);
     var add = new item(id, image);
     // WHY CANT I ACCESS THIS GLOBAL?
-    viewport.addChild(add);
+    window.viewport.addChild(add);
     console.log(add);
   };
 
