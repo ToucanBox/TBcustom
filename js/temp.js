@@ -1,3 +1,12 @@
+// add object
+
+// Create and add combined arm sprite to scene
+this.armSprite = new PIXI.Sprite(this.renderTexture);
+route.addChild(this.armSprite);
+console.log('arm added');
+
+
+
 // testing code
 
 //Libraries

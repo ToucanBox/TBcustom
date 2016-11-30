@@ -7,6 +7,7 @@ var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
 var arm = require('/Users/anthonymoles/Documents/TBcustom/js/arm.js');
 
 
+
 var init = function () {
 
   // init
@@ -14,6 +15,13 @@ var init = function () {
   this.renderer = PIXI.autoDetectRenderer(600, 720, { transparent: true, antialias: true });
   this.canvas.appendChild(this.renderer.view);
   this.renderer.view.setAttribute('class', 'canvas-class');
+
+  // test canvas for armCanvas
+  this.testCanvas = document.getElementById('test-canvas');
+
+  // arm renderTexture
+  this.brt = new PIXI.BaseRenderTexture(200, 80, PIXI.SCALE_MODES.LINEAR, 1);
+  this.rt = new PIXI.RenderTexture(this.brt);
 
   // canvas dimensions
   this.cWidth = this.renderer.width;
@@ -49,6 +57,9 @@ var init = function () {
   this.armsTextures = [];
   this.bodyTextures = [];
 
+
+
+
   // adding items to the scene (extend with clothes(also affects arm object - change arms method), hair and shoes (static, placed in lower layers)) TODO
   var self = this;
 
@@ -66,10 +77,13 @@ var init = function () {
     self.route.addChild(add);
   };
 
-  // init first render cycle
-  requestAnimationFrame(this.animate.bind(this));
+
 
 };
+
+
+
+
 
 init.prototype.loadTextures = function () {
   var i;
@@ -128,28 +142,48 @@ init.prototype.makeTestFrame = function () {
 
 };
 
+init.prototype.startAnimate = function () {
+  // init first render cycle
+  requestAnimationFrame(this.animate.bind(this));
+
+};
+
 init.prototype.animate = function () {
 
-  // ANIMATE
+  // renderTexture
+  this.renderer.render(this.initArm.armCanvas, this.rt);
+
+  // render loop
+  requestAnimationFrame(this.animate.bind(this));
 
   // loop animating toucanoo route TODO
 
   // render the stage
   this.renderer.render(this.stage);
 
-  // render loop
-  requestAnimationFrame(this.animate.bind(this));
+
 };
 
 init.prototype.makeBody = function() {
   // construct base toucanoo
-  var initBody = new body(this.route, this.cWidth, this.cHeight);
+  this.initBody = new body(this.route, this.cWidth, this.cHeight);
 
 };
 
 init.prototype.makeArms = function() {
   // construct toucanoo arms
-  var initArm = new arm(this.route, this.cWidth, this.cHeight, true);
+
+  this.initArm = new arm();
+  // arm sprites
+  this.armSpriteR = new PIXI.Sprite(this.rt);
+  this.armSpriteR.position.x = 400;
+  this.armSpriteR.position.y = 400;
+  this.route.addChild(this.armSpriteR);
+
+  this.armSpriteL = new PIXI.Sprite(this.rt);
+  this.armSpriteL.position.x = 200;
+  this.armSpriteL.position.y = 200;
+  this.route.addChild(this.armSpriteL);
 
 };
 

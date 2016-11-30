@@ -2,9 +2,9 @@
 
 /*
 
-Double click/tap to delete, or undo? Since clothing is replace rather than add
+Double click/tap to delete, or undo? Since clothing is replace rather than add TODO
 
-If dropped near face, add to face group? Or face type?
+If dropped near face, add to face group? Or face type? TODO
 
 */
 
@@ -41,6 +41,8 @@ function onAssetsLoaded() {
   init.makeTestFrame();
   init.makeBody();
   init.makeArms();
+  init.startAnimate();
+
 
   // Remove loader overlay
   var loader = document.getElementById('busy');
