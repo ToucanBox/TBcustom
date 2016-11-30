@@ -53,9 +53,9 @@ arm.prototype.update = function () {
 
 };
 
-init.prototype.changeArms = function(id) {
+arm.prototype.changeArms = function(id) {
   // expose arm clothes changing API TODO
-  
+
 };
 
 
