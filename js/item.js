@@ -1,16 +1,27 @@
 // Make items
 
-var item = function (id, image) {
+var item = function (id, image, route) {
+    this.routeContainer = route;
     this.id = id;
+    this.image = image;
     console.log('new item added ID:' + this.id);
     PIXI.Sprite.call(this, image);
-    this.image = image;
     this.interactive = true;
     this.buttonMode = true;
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
     this.position.x = 200;
     this.position.y = 400;
+
+    // hit area
+    this.hitSizer = this.height/3;
+    this.hitArea = new PIXI.Circle(0.5, 0.5, this.hitSizer);
+    this.visualHit = new PIXI.Circle(0.5, 0.5, this.hitSizer);
+    this.drawHit = new PIXI.Graphics();
+    this.drawHit.beginFill(0xffd900);
+    this.drawHit.drawShape(this.visualHit);
+    this.drawHit.alpha = 0.5;
+    this.addChild(this.drawHit);
 
     // if clothes or shoes then static, appears in place, removes other clothes, shoes
     // hair is draggable but removes other hair
@@ -51,6 +62,8 @@ var item = function (id, image) {
       parent.removeChild(this);
       parent.addChild(this);
     }
+
+    // remove from route object on drag
   };
 
   item.prototype.onDragEnd = function(event) {
@@ -61,7 +74,6 @@ var item = function (id, image) {
       this.scale.y /= 1.1;
       // set the interaction data to null
       this.data = null;
-
     }
   };
 

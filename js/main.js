@@ -47,12 +47,7 @@ function onAssetsLoaded() {
   loader.style.display = 'none';
 
   // TESTING
-  var test2 = new item(61, init.itemTextures[60]);
-  test2.position.x = 300;
-  init.viewport.addChild(test2);
 
-  var test = new item(1 , init.itemTextures[0]);
-  init.viewport.addChild(test);
 
 
   } //end load init ------------------------------------------------------

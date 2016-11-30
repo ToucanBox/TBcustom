@@ -26,11 +26,23 @@ var init = function () {
   this.viewport = new PIXI.Container();
   this.viewport.pivot.x = this.cWidth/2;
   this.viewport.pivot.y = this.cHeight/2;
-
   this.viewport.position.x = this.cWidth/2;
   this.viewport.position.y = this.cHeight/2;
-
   this.stage.addChild(this.viewport);
+
+  // add name container banner
+  //
+
+  // Route object for group animation
+  this.route = new PIXI.Container();
+  this.route.pivot.x = this.cWidth/2;
+  this.route.pivot.y = this.cHeight;
+  this.route.position.x = this.cWidth/2;
+  this.route.position.y = this.cHeight - 20;
+  this.route.skew.x = 0.1;
+  this.route.rotation = 0.1;
+  this.route.scale.y = 1.2;
+  this.viewport.addChild(this.route);
 
   // list of all textures
   this.itemTextures = [];
@@ -42,14 +54,16 @@ var init = function () {
 
   this.onClick = function(event) {
     var id = event.target.id;
-    console.log(id);
+    console.log('clicked item ID: ' + id);
     var index = id - 1;
 
     var image = self.itemTextures[index];
+    var routeContainer = self.route;
+    var dragLayer = self.dragLayer;
 
-    var add = new item(id, image);
+    var add = new item(id, image, routeContainer, dragLayer);
 
-    self.viewport.addChild(add);
+    self.route.addChild(add);
   };
 
   // init first render cycle
@@ -127,23 +141,18 @@ init.prototype.animate = function () {
 
 init.prototype.makeBody = function() {
   // construct base toucanoo
-  var initBody = new body(this.viewport, this.cWidth, this.cHeight);
-  // this.viewport.addChild(initBody.torso);
-
-
+  var initBody = new body(this.route, this.cWidth, this.cHeight);
 
 };
 
 init.prototype.makeArms = function() {
   // construct toucanoo arms
-  // this.armLeft = new arm(this.viewport, this.cWidth, this.cHeight);
-
+  var initArm = new arm(this.route, this.cWidth, this.cHeight, true);
 
 };
 
 init.prototype.changeArms = function(id) {
   // change arms
-
 
 };
 
