@@ -1,3 +1,131 @@
+// testing code
+
+//Libraries
+var PIXI = require('pixi.js');
+var anime = require('animejs');
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+var armBase, armPjs;
+
+//Screen size event
+require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
+
+// Load Assets
+PIXI.loader
+    .add('spritesheet', 'img/canvas/base-arms.json')
+    .add('items', 'img/canvas/items.json')
+    .on("progress", loadProgressHandler)
+    .load(onAssetsLoaded);
+
+function loadProgressHandler(loader, loadedResource) {
+  console.log('Progress:', loader.progress + '%');
+}
+
+function onAssetsLoaded() {
+
+  // TESTING
+  var canvas = document.getElementById('Pcanvas');
+  var testCanvas = document.getElementById('test-canvas');
+
+  var renderer = PIXI.autoDetectRenderer(600, 720, { transparent: true, antialias: true });
+  canvas.appendChild(renderer.view);
+
+  var stage = new PIXI.Container();
+
+  var route = new PIXI.Container();
+  stage.addChild(route);
+
+  var graphics = new PIXI.Graphics();
+  graphics.lineStyle(1, 0xffd900, 1);
+
+  graphics.moveTo(0,0);
+  graphics.lineTo(600, 0);
+  graphics.lineTo(600, 720);
+  graphics.lineTo(0, 720);
+  graphics.lineTo(0, 0);
+  route.addChild(graphics);
+
+  var body = new PIXI.Sprite.fromFrame('b2.png');
+  route.addChild(body);
+
+
+
+  /////////////////////
+
+  var armCanvas = new PIXI.Container();
+
+  addArm();
+  animate();
+
+
+
+
+
+
+  function addArm() {
+
+  // Place base arm sprite
+  armCanvas.pivot.x = renderer.width / 2;
+  armCanvas.pivot.y = renderer.height / 2;
+  armCanvas.position.x = renderer.width / 2 + 2;
+  armCanvas.position.y = renderer.height / 2;
+
+  var armBase = new PIXI.Sprite.fromFrame('a1.png');
+  armCanvas.addChild(armBase);
+
+  var armPjs = new PIXI.Sprite.fromFrame('a3.png');
+  armCanvas.addChild(armPjs);
+
+  // test frame for canvas
+  var testFrame = new PIXI.Graphics();
+  testFrame.lineStyle(1, 0xffd900, 1);
+  armCanvas.addChild(testFrame);
+
+  testFrame.moveTo(0,0);
+  testFrame.lineTo(192, 0);
+  testFrame.lineTo(192, 78);
+  testFrame.lineTo(0, 78);
+  testFrame.lineTo(0, 0);
+
+  // Create render texture
+  var baseRenderTexture = new PIXI.BaseRenderTexture(renderer, 200, 80, PIXI.SCALE_MODES.LINEAR, 1);
+  var renderTexture = new PIXI.RenderTexture(baseRenderTexture);
+
+  // Create and add combined arm sprite to scene
+  var armSprite = new PIXI.Sprite(renderTexture);
+  armSprite.position.x = 200;
+  armSprite.position.y = 200;
+  route.addChild(armSprite);
+}
+
+
+
+
+
+
+  function animate() {
+    renderer.render(stage);
+
+    // Render to test canvas
+      // renderer.render(armCanvas, testCanvas);
+
+    // Render to render texture
+    renderer.render(graphics, renderTexture);
+
+
+    // render loop
+    requestAnimationFrame(animate);
+  }
+
+} //end load init ------------------------------------------------------
+
+
+
+}); //end window load
+
+
+
 // using texture cache instead of arrays - seem to populate too late for building the body and arms
 
   for (i = 1; i <= 5; i++)

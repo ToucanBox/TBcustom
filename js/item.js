@@ -23,8 +23,8 @@ var item = function (id, image, route) {
     this.drawHit.alpha = 0.5;
     this.addChild(this.drawHit);
 
-    // if clothes or shoes then static, appears in place, removes other clothes, shoes
-    // hair is draggable but removes other hair
+    // if clothes or shoes then static, appears in place, removes other clothes, shoes TODO
+    // hair is draggable but removes other hair TODO
     this
     // events for drag start
     .on('mousedown', this.onDragStart.bind(this))
@@ -44,8 +44,8 @@ var item = function (id, image, route) {
   item.prototype = Object.create(PIXI.Sprite.prototype);
   item.prototype.constructor = item;
 
-  // Need to include touch control - handle multitouch
   item.prototype.onDragStart = function(event) {
+      // Need to include touch control - handle multitouch TODO
       // store a reference to the data
       // the reason for this is because of multitouch
       // we want to track the movement of this particular touch
@@ -62,8 +62,6 @@ var item = function (id, image, route) {
       parent.removeChild(this);
       parent.addChild(this);
     }
-
-    // remove from route object on drag
   };
 
   item.prototype.onDragEnd = function(event) {
@@ -83,15 +81,19 @@ var item = function (id, image, route) {
           var newPosition = this.data.getLocalPosition(this.parent);
           this.position.x = newPosition.x - this.dragPoint.x;
           this.position.y = newPosition.y - this.dragPoint.y;
+
+          // stars particle effect TODO
       }
   };
 
   item.prototype.animate = function(event) {
       if (this.dragging)
       {
-          //announce with pop
-          //wiggling until first drag and release, maybe text 'put me somewhere'
+          //announce with pop TODO
+          //wiggling until first drag and release, maybe text 'put me somewhere' TODO
       }
+
+      // occasionally fade in drag targets TODO
 
       requestAnimationFrame(this.animate.bind(this));
   };

@@ -1,9 +1,5 @@
 //body constructor
 
-// construct body
-// face group
-// animate
-
 var body = function (route, cWidth, cHeight) {
 
   //test circle to see base
@@ -20,11 +16,14 @@ var body = function (route, cWidth, cHeight) {
   this.torso.position.y = cHeight/2 + 100;
   route.addChild(this.torso);
 
+  // face TODO
+
 };
 
 
 body.prototype.animate = function () {
 
+  // face animations TODO
 
 };
 

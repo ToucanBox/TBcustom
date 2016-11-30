@@ -30,7 +30,7 @@ var init = function () {
   this.viewport.position.y = this.cHeight/2;
   this.stage.addChild(this.viewport);
 
-  // add name container banner
+  // add name container banner TODO
   //
 
   // Route object for group animation
@@ -49,7 +49,7 @@ var init = function () {
   this.armsTextures = [];
   this.bodyTextures = [];
 
-  // adding items to the scene (extend with clothes(also affects arm object - change arms method), hair and shoes (static, placed in lower layers))
+  // adding items to the scene (extend with clothes(also affects arm object - change arms method), hair and shoes (static, placed in lower layers)) TODO
   var self = this;
 
   this.onClick = function(event) {
@@ -132,6 +132,8 @@ init.prototype.animate = function () {
 
   // ANIMATE
 
+  // loop animating toucanoo route TODO
+
   // render the stage
   this.renderer.render(this.stage);
 
@@ -152,8 +154,8 @@ init.prototype.makeArms = function() {
 };
 
 init.prototype.changeArms = function(id) {
-  // change arms
-
+  // change arms TODO
+  // if clothes
 };
 
 
