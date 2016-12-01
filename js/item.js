@@ -1,10 +1,10 @@
 // Make items
 
-var item = function (id, image, route) {
-    this.routeContainer = route;
+var item = function (id, image, type) {
     this.id = id;
+    this.type = type;
     this.image = image;
-    console.log('new item added ID:' + this.id);
+    console.log('new item added ID:' + this.id + ', type: ' + this.type);
     PIXI.Sprite.call(this, image);
     this.interactive = true;
     this.buttonMode = true;
@@ -14,17 +14,18 @@ var item = function (id, image, route) {
     this.position.y = 400;
 
     // hit area
+    // make based on height or width, whichever is smallest? TODO
     this.hitSizer = this.height/3;
     this.hitArea = new PIXI.Circle(0.5, 0.5, this.hitSizer);
-    this.visualHit = new PIXI.Circle(0.5, 0.5, this.hitSizer);
+    this.visualHit = new PIXI.Circle(0.5, 0.5, this.hitSizer); // could be different from actual hitArea in the future?
     this.drawHit = new PIXI.Graphics();
     this.drawHit.beginFill(0xffd900);
     this.drawHit.drawShape(this.visualHit);
     this.drawHit.alpha = 0.5;
     this.addChild(this.drawHit);
 
-    // if clothes or shoes then static, appears in place, removes other clothes, shoes TODO
-    // hair is draggable but removes other hair TODO
+    // if ID is makes this draggable then ... TODO
+
     this
     // events for drag start
     .on('mousedown', this.onDragStart.bind(this))
@@ -53,8 +54,8 @@ var item = function (id, image, route) {
       this.data = event.data;
       this.alpha = 0.5;
       this.dragging = true;
-      this.scale.x *= 1.1;
-      this.scale.y *= 1.1;
+      this.scale.x *= 1.05;
+      this.scale.y *= 1.05;
       this.dragPoint = event.data.getLocalPosition(this.parent);
       this.dragPoint.x -= this.position.x;
       this.dragPoint.y -= this.position.y;
@@ -68,10 +69,13 @@ var item = function (id, image, route) {
     if (this.dragging) {
       this.alpha = 1;
       this.dragging = false;
-      this.scale.x /= 1.1;
-      this.scale.y /= 1.1;
-      // set the interaction data to null
+      this.scale.x /= 1.05;
+      this.scale.y /= 1.05;
+      // set the interaction data to null on end
       this.data = null;
+
+      // remove items if outside bounds TODO
+      // show edge if dragging outside bounds TODO
     }
   };
 

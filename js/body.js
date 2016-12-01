@@ -16,14 +16,26 @@ var body = function (route, cWidth, cHeight) {
   this.torso.position.y = cHeight/2 + 100;
   route.addChild(this.torso);
 
+  // feet shadows TODO
+
   // face TODO
+  // faceLayer in init
 
 };
+
+body.prototype.startAnimate = function () {
+  // init first render cycle
+  requestAnimationFrame(this.animate.bind(this));
+  console.log('face anim started');
+};
+
 
 
 body.prototype.animate = function () {
 
   // face animations TODO
+
+  requestAnimationFrame(this.animate.bind(this));
 
 };
 

@@ -1,9 +1,7 @@
 // arm constructor
 
-// make arm canvas
-// renderable to arm sprite
-// swappable textures
-// animated
+
+// swappable textures TODO
 
 var arm = function () {
 
@@ -13,7 +11,7 @@ var arm = function () {
   this.armCanvas.pivot.x = 200 / 2;
   this.armCanvas.pivot.y = 80 / 2;
   this.armCanvas.position.x = 200 / 2 + 2;
-  this.armCanvas.position.y = 80 / 2;
+  this.armCanvas.position.y = 80 / 2 + 2;
 
   this.armBase = new PIXI.Sprite.fromFrame('a1.png');
   this.armCanvas.addChild(this.armBase);
@@ -21,8 +19,8 @@ var arm = function () {
   // setup arm clothes sprites in advance - tweak positions for each TODO
   // add to stage depending on conditions
 
-  this.armPjs = new PIXI.Sprite.fromFrame('a3.png');
-  this.armCanvas.addChild(this.armPjs);
+  // this.armPjs = new PIXI.Sprite.fromFrame('a3.png');
+  // this.armCanvas.addChild(this.armPjs);
 
   // test frame for canvas
   this.testFrame = new PIXI.Graphics();
@@ -45,7 +43,7 @@ var arm = function () {
 arm.prototype.update = function () {
 
 
-  // arm animations loop TODO
+  // NEEDED? TODO
 
   // arm canvas updates
 
@@ -53,8 +51,13 @@ arm.prototype.update = function () {
 
 };
 
-arm.prototype.changeArms = function(id) {
+arm.prototype.changeArmClothes = function(id) {
   // expose arm clothes changing API TODO
+
+};
+
+arm.prototype.changeArmHand = function(id) {
+  // expose arm hand flipping API TODO
 
 };
 
