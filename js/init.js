@@ -46,6 +46,18 @@ var init = function () {
   this.route.scale.y = 1;
   this.viewport.addChild(this.route);
 
+  // Cape layer
+  this.cape = new PIXI.Sprite.fromFrame('39.png');
+  this.cape.anchor.set(0.5, 0.5);
+  this.cape.alpha = 0;
+  this.route.addChild(this.cape);
+  this.cape.position.set(300, 520);
+
+
+  // Body layer
+  this.bodyLayer = new PIXI.Container();
+  this.route.addChild(this.bodyLayer);
+
   // Clothes layer
   this.clothesLayer = new PIXI.Container();
   this.route.addChild(this.clothesLayer);
@@ -58,7 +70,6 @@ var init = function () {
   this.faceLayer = new PIXI.Container();
   this.route.addChild(this.faceLayer);
 
-
   // list of all textures
   this.itemTextures = [];
 
@@ -66,65 +77,97 @@ var init = function () {
   var self = this;
 
   this.onClick = function(event) {
-    var id = event.target.id;
+    var id = event.target.id.toString();
     console.log('clicked item ID: ' + id);
     var index = id - 1;
     var image = self.itemTextures[index];
     var type;
+    var add;
 
-    // var routeContainer = self.route;
-    // var clothesLayer = self.clothesLayer;
-    // var accessoriesLayer = self.accessoriesLayer;
-    // var faceLayer = self.faceLayer;
+    // Type logic
 
+    if ( id === '40' || id === '30' || id === '32' || id === '35' || id === '45' ) {
+        // CLOTHES
+        console.log('clothes');
+        type = 'Clothes';
+        add = new item(id, image, type);
+        self.clothesLayer.addChild(add);
+        // remove any other objects of type Clothes TODO
+        // if clothes id then changeArms(id)
+      }
 
-    if ( id == 40 || 30 || 32 || 35 || 45 ) {
-      // CLOTHES
-      console.log('clothes');
+      else if ( id === '1' || id === '8' || id === '18' || id === '22' || id === '29' || id === '37' || id === '46' || id === '52' ) {
+        // HAIR
+        console.log('hair');
+        type = 'Hair';
+        add = new item(id, image, type);
+        self.accessoriesLayer.addChild(add);
+        // remove any other objects of type Hair TODO
+      }
 
-    } else if ( id == 1 || 8 || 18 || 22 || 29 || 37 || 46 || 52 ) {
-      // HAIR
-      console.log('hair');
+      else if ( id === '2' || id === '11' || id === '21' || id === '25' || id === '48' || id === '55' ) {
+        // HATS
+        console.log('hats');
+        type = 'Hats';
+        add = new item(id, image, type);
+        self.accessoriesLayer.addChild(add);
+        // remove any other objects of type Hats TODO
+      }
 
-    } else if ( id == 2 || 11 || 21 || 25 || 48 || 55 ) {
-      // HATS
-      console.log('hats');
+      else if ( id === '6' || id === '10' || id === '20' || id === '31' ) {
+        // SHOES
+        console.log('shoes');
+        type = 'Shoes';
+        add = new item(id, image, type);
+        self.accessoriesLayer.addChild(add);
+        // remove any other objects of type Shoes TODO
+      }
 
-    } else if ( id == 6 || 10 || 20 || 31 ) {
-      // SHOES
-      console.log('shoes');
+      else if ( id === '3' || id === '27' || id === '33' || id === '38' || id === '47' ) {
+        // FACELAYER
+        console.log('facelayer');
+        type = 'FaceLayer';
+        add = new item(id, image, type);
+        self.faceLayer.addChild(add);
+      }
 
-    } else if ( id == 3 || 27 || 33 || 38 || 47 ) {
-      // FACELAYER
-      console.log('facelayer');
+      else if ( id === '5' || id === '26' || id === '28' || id === '42' || id === '49' || id === '54' ) {
+        // FACELAYERGLASSES
+        console.log('glasses');
+        type = 'Glasses';
+        add = new item(id, image, type);
+        self.faceLayer.addChild(add);
+        // remove any other objects of type Glasses TODO
+      }
 
-    } else if ( id == 5 || 26 || 28 || 42 || 49 || 54 ) {
-      // FACELAYERGLASSES
-      console.log('glasses');
+      else if ( id === '39' ) {
+        // LOW ACCESSORIES
+        console.log('cape');
+        type = 'Low Accessories';
+        // how to add to bottom and still drag? always there and increase opacity
+        // placed like clothes TODO
+        // increase alpha of cape - same ping in animation?
+        // kick off an anime tween
+        self.cape.alpha = 1;
 
-    } else if ( id == 39 ) {
-      // LOW ACCESSORIES
-      console.log('cape');
+      }
 
-    } else {
+    else {
       // ACCESSORIES
       console.log('accessories');
       type = 'Accessories';
-      var add = new item(id, image, type);
+      add = new item(id, image, type);
       self.route.addChild(add);
     }
 
-    // if clothes id then changeArms(id)
-    // if hair id, remove anything with hair type TODO
-
-    // ACCESSORIES 4 7 9 12 13 14 15 16 17 19 23 24 34 36 41 43 44 50 51 53 56 57 58 59 60 61
+    // ACCESSORIES 4,7,9,12,13,14,15,16,17,19,23,24,34,36,41,43,44,50,51,53,56,57,58,59,60,61
     // LOW ACCESSORIES 39
-    // CLOTHES 40 30 32 35 45
-    // HAIR 1 8 18 22 29 37 46 52
-    // HATS 2 11 21 25 48 55
-    // SHOES 6 10 20 31
-    // FACELAYER 3 27 33 38 47
-    // FACELAYERGLASSES 5 26 28 42 49 54
+    // CLOTHES 40,30,32,35,45
+    // HAIR 1,8,18,22,29,37,46,52
+    // HATS 2,11,21,25,48,55
+    // SHOES 6,10,20,31
+    // FACELAYER 3,27,33,38,47
+    // FACELAYERGLASSES 5,26,28,42,49,54
 
 
   };
@@ -231,7 +274,7 @@ init.prototype.makeBody = function() {
   // this.viewport.addChild(this.banner);
 
   // construct base toucanoo
-  this.initBody = new body(this.route, this.cWidth, this.cHeight);
+  this.initBody = new body(this.bodyLayer, this.cWidth, this.cHeight);
 
 };
 
@@ -244,7 +287,7 @@ init.prototype.makeArms = function() {
   // arm sprites
   this.armSpriteR = new PIXI.Sprite(this.rt);
   this.armSpriteR.anchor.set(0.85,0.5);
-  this.route.addChild(this.armSpriteR);
+  this.bodyLayer.addChild(this.armSpriteR);
   this.armSpriteR.rotation = - 0.88;
   this.armSpriteR.position.set(185,395);
   // Rarm pivot visual
@@ -256,13 +299,13 @@ init.prototype.makeArms = function() {
   this.armSpriteL = new PIXI.Sprite(this.rt);
   this.armSpriteL.anchor.set(0.85,0.5);
   this.armSpriteL.scale.x = -1;
-  this.route.addChild(this.armSpriteL);
+  this.bodyLayer.addChild(this.armSpriteL);
   this.armSpriteL.rotation = 0.88;
   this.armSpriteL.position.set(416,395);
   // Larm pivot visual
   this.visualPivotR = new PIXI.Circle(this.armSpriteL.position.x, this.armSpriteL.position.y, 5);
   this.drawHit.drawShape(this.visualPivotR);
-  this.route.addChild(this.drawHit);
+  this.bodyLayer.addChild(this.drawHit);
 
 
 };

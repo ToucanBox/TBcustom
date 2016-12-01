@@ -58,7 +58,7 @@ arm.prototype.changeArmClothes = function(id) {
 
 arm.prototype.changeArmHand = function(id) {
   // expose arm hand flipping API TODO
-
+  // for animations
 };
 
 

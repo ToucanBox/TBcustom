@@ -1,3 +1,90 @@
+if ( id === 40 || 30 || 32 || 35 || 45 ) {
+  // CLOTHES
+  console.log('clothes');
+
+} else if ( id === 1 || 8 || 18 || 22 || 29 || 37 || 46 || 52 ) {
+  // HAIR
+  console.log('hair');
+
+} else if ( id === 2 || 11 || 21 || 25 || 48 || 55 ) {
+  // HATS
+  console.log('hats');
+
+} else if ( id === 6 || 10 || 20 || 31 ) {
+  // SHOES
+  console.log('shoes');
+
+} else if ( id === 3 || 27 || 33 || 38 || 47 ) {
+  // FACELAYER
+  console.log('facelayer');
+
+} else if ( id === 5 || 26 || 28 || 42 || 49 || 54 ) {
+  // FACELAYERGLASSES
+  console.log('glasses');
+
+} else if ( id === 39 ) {
+  // LOW ACCESSORIES
+  console.log('cape');
+
+} else {
+  // ACCESSORIES
+  console.log('accessories');
+  type = 'Accessories';
+  var add = new item(id, image, type);
+  self.route.addChild(add);
+}
+
+
+
+
+
+
+if ( id in ['40','30','32','35','45'] ) {
+  // CLOTHES
+  console.log('clothes');
+  type = 'Clothes';
+
+}
+
+else if ( id in ['1','8','18','22','29','37','46','52'] ) {
+  // HAIR
+  console.log('hair');
+  type = 'Hair';
+
+}
+
+else if ( id in ['2','11','21','25','48','55'] ) {
+  // HATS
+  console.log('hats');
+  type = 'Hats';
+
+}
+
+else if ( id in ['6','10','20','31'] ) {
+  // SHOES
+  console.log('shoes');
+  type = 'Shoes';
+
+}
+
+else if ( id in ['3','27','33','38','47'] ) {
+  // FACELAYER
+  console.log('facelayer');
+  type = 'FaceLayer';
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 // add object
 
 // Create and add combined arm sprite to scene
@@ -182,7 +269,7 @@ makeG();
     strip = new PIXI.mesh.Rope(PIXI.Texture.fromImage('img/Path_1.png'), points);
 
     // Makeinitial bend
-    for (var i = 0; i < points.length; i++) {
+    for ( i = 0; i < points.length; i++) {
 
           points[i].y = Math.pow( i, 2);
     }
