@@ -1,6 +1,8 @@
 // Make items
 
-var item = function (id, image, type) {
+var anime = require('animejs');
+
+var item = function (id, image, type, viewport) {
     this.id = id;
     this.type = type;
     this.image = image;
@@ -10,34 +12,53 @@ var item = function (id, image, type) {
     this.buttonMode = true;
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
-    this.position.x = 200;
-    this.position.y = 400;
-
-    // hit area
-    // make based on height or width, whichever is smallest? TODO
-    this.hitSizer = this.height/3;
-    this.hitArea = new PIXI.Circle(0.5, 0.5, this.hitSizer);
-    this.visualHit = new PIXI.Circle(0.5, 0.5, this.hitSizer); // could be different from actual hitArea in the future?
-    this.drawHit = new PIXI.Graphics();
-    this.drawHit.beginFill(0xffd900);
-    this.drawHit.drawShape(this.visualHit);
-    this.drawHit.alpha = 0.5;
-    this.addChild(this.drawHit);
+    this.position.x = anime.random(180, 440);
+    this.position.y = anime.random(140, 640);
 
     // if ID is makes this draggable then ... TODO
 
-    this
-    // events for drag start
-    .on('mousedown', this.onDragStart.bind(this))
-    .on('touchstart', this.onDragStart.bind(this))
-    // events for drag end
-    .on('mouseup', this.onDragEnd.bind(this))
-    .on('mouseupoutside', this.onDragEnd.bind(this))
-    .on('touchend', this.onDragEnd.bind(this))
-    .on('touchendoutside', this.onDragEnd.bind(this))
-    // events for drag move
-    .on('mousemove', this.onDragMove.bind(this))
-    .on('touchmove', this.onDragMove.bind(this));
+    if (id === '40') {
+      this.position.x = viewport.width / 2 - 4;
+      this.position.y = viewport.height / 2 + 163;
+    } else if (id === '30') {
+      this.position.x = viewport.width / 2 + 8;
+      this.position.y = viewport.height / 2 + 128;
+    } else if (id === '32') {
+      this.position.x = viewport.width / 2 - 4;
+      this.position.y = viewport.height / 2 + 119;
+    } else if (id === '35') {
+      this.position.x = viewport.width / 2 - 4;
+      this.position.y = viewport.height / 2 + 119;
+    } else if (id === '45') {
+      this.position.x = viewport.width / 2 - 4;
+      this.position.y = viewport.height / 2 + 119;
+    } else {
+      // hit area
+      // make based on height or width, whichever is smallest? TODO
+      this.hitSizer = this.height/3;
+      this.hitArea = new PIXI.Circle(0.5, 0.5, this.hitSizer);
+      this.visualHit = new PIXI.Circle(0.5, 0.5, this.hitSizer); // could be different from actual hitArea in the future?
+      this.drawHit = new PIXI.Graphics();
+      this.drawHit.beginFill(0xffd900);
+      this.drawHit.drawShape(this.visualHit);
+      this.drawHit.alpha = 0.5;
+      this.addChild(this.drawHit);
+
+      this
+      // events for drag start
+      .on('mousedown', this.onDragStart.bind(this))
+      .on('touchstart', this.onDragStart.bind(this))
+      // events for drag end
+      .on('mouseup', this.onDragEnd.bind(this))
+      .on('mouseupoutside', this.onDragEnd.bind(this))
+      .on('touchend', this.onDragEnd.bind(this))
+      .on('touchendoutside', this.onDragEnd.bind(this))
+      // events for drag move
+      .on('mousemove', this.onDragMove.bind(this))
+      .on('touchmove', this.onDragMove.bind(this));
+    }
+
+
 
     requestAnimationFrame(this.animate.bind(this));
   };

@@ -62,6 +62,10 @@ var init = function () {
   this.clothesLayer = new PIXI.Container();
   this.route.addChild(this.clothesLayer);
 
+  // Arms layer
+  this.armLayer = new PIXI.Container();
+  this.route.addChild(this.armLayer);
+
   // Accessories layer
   this.accessoriesLayer = new PIXI.Container();
   this.route.addChild(this.accessoriesLayer);
@@ -69,6 +73,7 @@ var init = function () {
   // Face layer
   this.faceLayer = new PIXI.Container();
   this.route.addChild(this.faceLayer);
+  this.faceLayer.position.set(this.cWidth/2, this.cHeight/2);
 
   // list of all textures
   this.itemTextures = [];
@@ -77,6 +82,7 @@ var init = function () {
   var self = this;
 
   this.onClick = function(event) {
+    var viewport = self.viewport;
     var id = event.target.id.toString();
     console.log('clicked item ID: ' + id);
     var index = id - 1;
@@ -86,48 +92,60 @@ var init = function () {
 
     // Type logic
 
-    if ( id === '40' || id === '30' || id === '32' || id === '35' || id === '45' ) {
+    if ( id === '40' || id === '32' || id === '35' ) {
         // CLOTHES
         console.log('clothes');
         type = 'Clothes';
-        add = new item(id, image, type);
+        add = new item(id, image, type, viewport);
+        self.removeChildType(self.clothesLayer, 'Clothes');
+        self.removeChildType(self.accessoriesLayer, 'Clothes');
         self.clothesLayer.addChild(add);
-        // remove any other objects of type Clothes TODO
-        // if clothes id then changeArms(id)
+        this.changeArms(id);
+      }
+
+      else if ( id === '30' || id === '45' ) {
+        // CLOTHES 2
+        console.log('clothes 2');
+        type = 'Clothes';
+        add = new item(id, image, type, viewport);
+        self.removeChildType(self.accessoriesLayer, 'Clothes');
+        self.removeChildType(self.clothesLayer, 'Clothes');
+        self.accessoriesLayer.addChild(add);
+        this.changeArms(id);
       }
 
       else if ( id === '1' || id === '8' || id === '18' || id === '22' || id === '29' || id === '37' || id === '46' || id === '52' ) {
         // HAIR
         console.log('hair');
         type = 'Hair';
-        add = new item(id, image, type);
+        add = new item(id, image, type, viewport);
+        self.removeChildType(self.accessoriesLayer, 'Hair');
         self.accessoriesLayer.addChild(add);
-        // remove any other objects of type Hair TODO
       }
 
       else if ( id === '2' || id === '11' || id === '21' || id === '25' || id === '48' || id === '55' ) {
         // HATS
         console.log('hats');
         type = 'Hats';
-        add = new item(id, image, type);
+        add = new item(id, image, type, viewport);
+        self.removeChildType(self.accessoriesLayer, 'Hats');
         self.accessoriesLayer.addChild(add);
-        // remove any other objects of type Hats TODO
       }
 
       else if ( id === '6' || id === '10' || id === '20' || id === '31' ) {
         // SHOES
         console.log('shoes');
         type = 'Shoes';
-        add = new item(id, image, type);
+        add = new item(id, image, type, viewport);
+        self.removeChildType(self.accessoriesLayer, 'Shoes');
         self.accessoriesLayer.addChild(add);
-        // remove any other objects of type Shoes TODO
       }
 
       else if ( id === '3' || id === '27' || id === '33' || id === '38' || id === '47' ) {
         // FACELAYER
         console.log('facelayer');
         type = 'FaceLayer';
-        add = new item(id, image, type);
+        add = new item(id, image, type, viewport);
         self.faceLayer.addChild(add);
       }
 
@@ -135,18 +153,16 @@ var init = function () {
         // FACELAYERGLASSES
         console.log('glasses');
         type = 'Glasses';
-        add = new item(id, image, type);
+        add = new item(id, image, type, viewport);
+        self.removeChildType(self.faceLayer, 'Glasses');
         self.faceLayer.addChild(add);
-        // remove any other objects of type Glasses TODO
       }
 
       else if ( id === '39' ) {
         // LOW ACCESSORIES
         console.log('cape');
         type = 'Low Accessories';
-        // how to add to bottom and still drag? always there and increase opacity
-        // placed like clothes TODO
-        // increase alpha of cape - same ping in animation?
+        // increase alpha of cape - same ping in animation? TODO
         // kick off an anime tween
         self.cape.alpha = 1;
 
@@ -156,7 +172,7 @@ var init = function () {
       // ACCESSORIES
       console.log('accessories');
       type = 'Accessories';
-      add = new item(id, image, type);
+      add = new item(id, image, type, viewport);
       self.route.addChild(add);
     }
 
@@ -256,6 +272,7 @@ init.prototype.animate = function () {
   // loop animating toucanoo route TODO
 
   // arm animations loop TODO
+  // call arm wave tween on intervals (modulus?) TODO
 
   // render the stage
   this.renderer.render(this.stage);
@@ -274,7 +291,7 @@ init.prototype.makeBody = function() {
   // this.viewport.addChild(this.banner);
 
   // construct base toucanoo
-  this.initBody = new body(this.bodyLayer, this.cWidth, this.cHeight);
+  this.initBody = new body(this.bodyLayer, this.faceLayer, this.cWidth, this.cHeight);
 
 };
 
@@ -287,9 +304,9 @@ init.prototype.makeArms = function() {
   // arm sprites
   this.armSpriteR = new PIXI.Sprite(this.rt);
   this.armSpriteR.anchor.set(0.85,0.5);
-  this.bodyLayer.addChild(this.armSpriteR);
-  this.armSpriteR.rotation = - 0.88;
-  this.armSpriteR.position.set(185,395);
+  this.armLayer.addChild(this.armSpriteR);
+  this.armSpriteR.rotation = - 0.89;
+  this.armSpriteR.position.set(185,397);
   // Rarm pivot visual
   this.visualPivotR = new PIXI.Circle(this.armSpriteR.position.x, this.armSpriteR.position.y, 5);
   this.drawHit = new PIXI.Graphics();
@@ -299,20 +316,27 @@ init.prototype.makeArms = function() {
   this.armSpriteL = new PIXI.Sprite(this.rt);
   this.armSpriteL.anchor.set(0.85,0.5);
   this.armSpriteL.scale.x = -1;
-  this.bodyLayer.addChild(this.armSpriteL);
-  this.armSpriteL.rotation = 0.88;
-  this.armSpriteL.position.set(416,395);
+  this.armLayer.addChild(this.armSpriteL);
+  this.armSpriteL.rotation = 0.89;
+  this.armSpriteL.position.set(416,397);
   // Larm pivot visual
   this.visualPivotR = new PIXI.Circle(this.armSpriteL.position.x, this.armSpriteL.position.y, 5);
   this.drawHit.drawShape(this.visualPivotR);
-  this.bodyLayer.addChild(this.drawHit);
-
-
+  this.armLayer.addChild(this.drawHit);
 };
 
 init.prototype.changeArms = function(id) {
-  // change arms TODO
-  // if clothes
+  // change arms - functionality in arm constructor
+  this.initArm.changeArmClothes(id);
+};
+
+init.prototype.removeChildType = function(parent, type) {
+    for (var i = parent.children.length - 1; i >= 0; i--) {
+        if ( parent.children[i].type === type ) {
+      	parent.removeChild(parent.children[i]);
+      }
+    }
+
 };
 
 

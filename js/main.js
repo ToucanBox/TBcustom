@@ -1,12 +1,6 @@
 //TBcustom
 
-/*
-
-Double click/tap to delete, or undo? Since clothing is replace rather than add TODO
-
-If dropped near face, add to face group? Or face type? TODO
-
-*/
+// put more clothes earlier in palette - change out of PJs - girl and boy
 
 //Libraries
 var PIXI = require('pixi.js');
@@ -41,8 +35,8 @@ function onAssetsLoaded() {
   init.makeTestFrame();
   init.makeBody();
   init.makeArms();
-  init.initBody.startAnimate(); // face update loop
-  init.startAnimate();
+  init.initBody.startAnimate(); // start face update loop
+  init.startAnimate(); // start main update and rendering loops
 
 
   // Remove loader overlay
