@@ -12,21 +12,28 @@ var item = function (id, image, type, viewport) {
     this.buttonMode = true;
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
-    this.position.x = anime.random(180, 440);
-    this.position.y = anime.random(140, 640);
+    if (this.type === 'FaceLayer' || this.type === 'Glasses'){
+      this.position.x = anime.random(-200, 200);
+      this.position.y = anime.random(-280, 280);
+    } else {
+      this.position.x = anime.random(180, 340);
+      this.position.y = anime.random(140, 540);
+    }
 
     // if ID is makes this draggable then ... TODO
 
     if (id === '40') {
       this.position.x = viewport.width / 2 - 4;
       this.position.y = viewport.height / 2 + 163;
-    } else if (id === '30') {
+    } else if (id === '5') {
       this.position.x = viewport.width / 2 + 8;
       this.position.y = viewport.height / 2 + 128;
     } else if (id === '32') {
-      this.position.x = viewport.width / 2 - 4;
+      this.position.x = viewport.width / 2 + 1;
       this.position.y = viewport.height / 2 + 119;
-    } else if (id === '35') {
+      this.scale.x = 1.01;
+      // this.rotation = 0.02;
+    } else if (id === '7') {
       this.position.x = viewport.width / 2 - 4;
       this.position.y = viewport.height / 2 + 119;
     } else if (id === '45') {
@@ -122,6 +129,7 @@ var item = function (id, image, type, viewport) {
 
       requestAnimationFrame(this.animate.bind(this));
   };
+
 
 
 

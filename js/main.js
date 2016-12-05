@@ -12,9 +12,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
 
 // Load Assets
-PIXI.loader
-    .add('spritesheet', 'img/canvas/base-arms.json')
-    .add('items', 'img/canvas/items.json')
+var loader = PIXI.loader;
+loader
+    .add('base', '../img/canvas/base-arms.json')
+    .add('items', '../img/canvas/items.json')
     .on("progress", loadProgressHandler)
     .load(onAssetsLoaded);
 
@@ -23,9 +24,6 @@ function loadProgressHandler(loader, loadedResource) {
 }
 
 function onAssetsLoaded() {
-
-  //Item constructor, for testing only
-  var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
 
   //Initialiser object (module exports new init)
   var init = require('/Users/anthonymoles/Documents/TBcustom/js/init.js');
@@ -42,10 +40,6 @@ function onAssetsLoaded() {
   // Remove loader overlay
   var loader = document.getElementById('busy');
   loader.style.display = 'none';
-
-  // TESTING
-
-
 
   } //end load init ------------------------------------------------------
 

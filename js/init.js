@@ -92,7 +92,7 @@ var init = function () {
 
     // Type logic
 
-    if ( id === '40' || id === '32' || id === '35' ) {
+    if ( id === '40' || id === '32' || id === '7' ) {
         // CLOTHES
         console.log('clothes');
         type = 'Clothes';
@@ -103,9 +103,9 @@ var init = function () {
         this.changeArms(id);
       }
 
-      else if ( id === '30' || id === '45' ) {
+      else if ( id === '5' || id === '45' ) {
         // CLOTHES 2
-        console.log('clothes 2');
+        console.log('clothes v2');
         type = 'Clothes';
         add = new item(id, image, type, viewport);
         self.removeChildType(self.accessoriesLayer, 'Clothes');
@@ -149,7 +149,7 @@ var init = function () {
         self.faceLayer.addChild(add);
       }
 
-      else if ( id === '5' || id === '26' || id === '28' || id === '42' || id === '49' || id === '54' ) {
+      else if ( id === '30' || id === '26' || id === '28' || id === '42' || id === '49' || id === '54' ) {
         // FACELAYERGLASSES
         console.log('glasses');
         type = 'Glasses';

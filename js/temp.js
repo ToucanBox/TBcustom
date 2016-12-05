@@ -1,3 +1,69 @@
+
+
+var animalTypes = [{
+    "typeID": 0,
+    "name": "creeper",
+    "tilesheet": "animalAssets/animal0.png",
+    "JSON": "animalAssets/animal0.json"
+}, {
+    "typeID": 1,
+    "name": "sleeper",
+    "tilesheet": "animalAssets/animal1.png",
+    "JSON": "animalAssets/animal1.json"
+}];
+
+function Animal(id, type, speed, start) {
+    var aID = id;
+    var aData = animalTypes[type]; // References a JS Object literal with the "DATA"
+    var aSpeed = speed;
+    var aPosition = start;
+    var FRAMES = ["walk01", "walk02", "walk03", "walk04", "stand01", "stand02", "stand03", "stand04"];
+    var frameIndex;
+    var frameTime;
+    var FRAMERATE = 0.08;
+    var VELOCITY = 0;
+    PIXI.loader.add('animal' + aID, aData.JSON).load(function() {
+                var texture = resources["animal" + aID].textures;
+                console.log(resources.animal0.textures); // SHOWS ARRAY OF TEXTURE OBJECTS NAMED AS ABOVE
+              });
+              var aSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(FRAMES[0]));
+              frameIndex = 0;
+              aSprite.anchor.x = 0.5;
+              aSprite.anchor.y = 0.5;
+              aSprite.position.x = 0;
+              aSprite.position.y = 0;
+              stage.addChild(aSprite);
+              }
+              var newSprite = new Animal(0, 1, 1, 1);
+
+
+
+PIXI.loader.add('animal' + aID, aData.JSON).load(function() {
+            var textures = resources["animal" + aID].textures;
+            console.log(resources.animal0.textures); // SHOWS ARRAY OF TEXTURE OBJECTS NAMED AS ABOVE
+            var aSprite = new PIXI.Sprite(textures[FRAMES[0]]);
+            frameIndex = 0;
+            aSprite.anchor.x = 0.5;
+            aSprite.anchor.y = 0.5;
+            aSprite.position.x = 0;
+            aSprite.position.y = 0;
+            stage.addChild(aSprite);
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if ( id === 40 || 30 || 32 || 35 || 45 ) {
   // CLOTHES
   console.log('clothes');

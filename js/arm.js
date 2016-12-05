@@ -20,11 +20,11 @@ var arm = function () {
   this.armCanvas.addChild(this.armFlip);
   this.armFlip.alpha = 0;
 
-  // Tweak positions of clothing items - do we need to redo some textures? TODO
-
   this.armTshirt = new PIXI.Sprite.fromFrame('a3.png');
   this.armCanvas.addChild(this.armTshirt);
   this.armTshirt.alpha = 0;
+  // this.armTshirt.rotation = -0.05;
+  this.armTshirt.position.set(-5,3);
 
   this.armJumper = new PIXI.Sprite.fromFrame('a4.png');
   this.armCanvas.addChild(this.armJumper);
@@ -33,6 +33,19 @@ var arm = function () {
   this.armPjs = new PIXI.Sprite.fromFrame('a5.png');
   this.armCanvas.addChild(this.armPjs);
   this.armPjs.alpha = 0;
+  this.armPjs.position.set(-2,1);
+
+
+  // arm mask
+  this.mask = new PIXI.Graphics();
+  this.mask.lineStyle(1, 0xffd900, 1);
+  this.mask.beginFill(0x8bc5ff, 0.4);
+  this.mask.moveTo(0,0);
+  this.mask.lineTo(130, 0);
+  this.mask.lineTo(130, 78);
+  this.mask.lineTo(0, 78);
+  this.mask.lineTo(0, 0);
+
 
   // test frame for canvas
   this.testFrame = new PIXI.Graphics();
@@ -54,27 +67,37 @@ arm.prototype.changeArmClothes = function(id) {
     this.armTshirt.alpha = 0;
     this.armJumper.alpha = 0;
     this.armPjs.alpha = 1;
+    this.armBase.mask = this.mask;
+    this.armFlip.mask = this.mask;
 
-  } else if (id === '35') {
+  } else if (id === '7') {
     // Jumper
     this.armTshirt.alpha = 0;
     this.armJumper.alpha = 1;
     this.armPjs.alpha = 0;
+    this.armBase.mask = this.mask;
+    this.armFlip.mask = this.mask;
 
   } else if (id === '32') {
     // T-shirt
     this.armTshirt.alpha = 1;
     this.armJumper.alpha = 0;
     this.armPjs.alpha = 0;
+    this.armBase.mask = this.mask;
+    this.armFlip.mask = this.mask;
 
-  } else if (id === '30') {
+  } else if (id === '5') {
     this.armTshirt.alpha = 0;
     this.armJumper.alpha = 0;
     this.armPjs.alpha = 0;
+    this.armBase.mask = null;
+    this.armFlip.mask = null;
   } else if (id === '45') {
     this.armTshirt.alpha = 0;
     this.armJumper.alpha = 0;
     this.armPjs.alpha = 0;
+    this.armBase.mask = null;
+    this.armFlip.mask = null;
   }
 
 };
