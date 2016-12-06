@@ -1,6 +1,6 @@
 //TBcustom
 
-// put more clothes earlier in palette - change out of PJs - girl and boy
+// Save pipeline - add name, add name and banner to canvas, move route down to accomodate TODO
 
 //Libraries
 var PIXI = require('pixi.js');

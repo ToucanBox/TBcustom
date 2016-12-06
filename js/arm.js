@@ -3,14 +3,15 @@
 var arm = function () {
 
   this.armCanvas = new PIXI.Container();
+  this.armCanvas.scale.x = -1;
 
   this.flipToggle = false;
 
   // Place base arm container
   this.armCanvas.pivot.x = 200 / 2;
   this.armCanvas.pivot.y = 80 / 2;
-  this.armCanvas.position.x = 200 / 2 + 2;
-  this.armCanvas.position.y = 80 / 2 + 2;
+  this.armCanvas.position.x = 200 / 2 - 2;
+  this.armCanvas.position.y = 80 / 2 - 2;
 
   this.armBase = new PIXI.Sprite.fromFrame('a1.png');
   this.armCanvas.addChild(this.armBase);
@@ -40,11 +41,17 @@ var arm = function () {
   this.mask = new PIXI.Graphics();
   this.mask.lineStyle(1, 0xffd900, 1);
   this.mask.beginFill(0x8bc5ff, 0.4);
-  this.mask.moveTo(0,0);
-  this.mask.lineTo(130, 0);
-  this.mask.lineTo(130, 78);
-  this.mask.lineTo(0, 78);
-  this.mask.lineTo(0, 0);
+  this.mask.moveTo(200,80);
+  this.mask.lineTo(70, 80);
+  this.mask.lineTo(70, 0);
+  this.mask.lineTo(200, 0);
+  this.mask.lineTo(200, 80);
+  // OLD
+  // this.mask.moveTo(0,0);
+  // this.mask.lineTo(130, 0);
+  // this.mask.lineTo(130, 78);
+  // this.mask.lineTo(0, 78);
+  // this.mask.lineTo(0, 0);
 
 
   // test frame for canvas

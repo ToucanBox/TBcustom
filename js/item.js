@@ -42,7 +42,11 @@ var item = function (id, image, type, viewport) {
     } else {
       // hit area
       // make based on height or width, whichever is smallest? TODO
-      this.hitSizer = this.height/3;
+      if (this.height >= this.width) {
+        this.hitSizer = this.width / 2;
+      } else {
+        this.hitSizer = this.height / 1.2;
+      }
       this.hitArea = new PIXI.Circle(0.5, 0.5, this.hitSizer);
       this.visualHit = new PIXI.Circle(0.5, 0.5, this.hitSizer); // could be different from actual hitArea in the future?
       this.drawHit = new PIXI.Graphics();
@@ -126,6 +130,8 @@ var item = function (id, image, type, viewport) {
       }
 
       // occasionally fade in drag targets TODO
+
+      // if id=13, googly eyes, rotate
 
       requestAnimationFrame(this.animate.bind(this));
   };

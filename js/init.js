@@ -78,6 +78,14 @@ var init = function () {
   // list of all textures
   this.itemTextures = [];
 
+  // arm points
+  this.points = [];
+  this.ropeLength = 200/19;
+
+
+  // animation count
+  this.count = 0;
+
   // adding items to the scene (extend with clothes(also affects arm object - change arms method), hair and shoes (static, placed in lower layers)) TODO
   var self = this;
 
@@ -262,7 +270,7 @@ init.prototype.startAnimate = function () {
 };
 
 init.prototype.animate = function () {
-
+  this.count += 0.01;
   // renderTexture
   this.renderer.render(this.initArm.armCanvas, this.rt);
 
@@ -272,6 +280,22 @@ init.prototype.animate = function () {
   // loop animating toucanoo route TODO
 
   // arm animations loop TODO
+  for (var i = 1; i < this.points.length; i++) {
+
+      this.points[0].y = 0;
+      this.points[0].x = 0;
+
+      // Wiggle
+      this.points[i].y = Math.pow( i, 1.35 * (Math.sin(3.5 * this.count) + 0.1 * Math.sin(5.5 * this.count + 60) + 0.2 * Math.sin(7.5 * this.count + 120))) - Math.pow( i, Math.sin(3.5 * this.count) + 0.1 * Math.sin(5.3 * this.count + 60) + 0.2 * Math.sin(7.8 * this.count + 120));
+      this.points[i].x = i * this.ropeLength - 0.5 * Math.pow( i, Math.sin(3.2 * this.count + 5) + 0.2 * Math.sin(8 * this.count + 30));
+
+       // points[i].x = (ropeLength * i) - i * (ropeLength/2);
+      // points[i].x = i * this.ropeLength + Math.cos((i * 0.3) + this.count) * 20;
+  }
+
+// this.points[i].y = Math.pow( i, 4 * Math.sin(0.4 * i + 15 * this.count));
+// this.points[i].y = 4 * Math.sin(0.4 * i + 15 * this.count);
+
   // call arm wave tween on intervals (modulus?) TODO
 
   // render the stage
@@ -298,30 +322,54 @@ init.prototype.makeBody = function() {
 init.prototype.makeArms = function() {
   // construct toucanoo arms
 
-  // change to mesh sprite TODO
-
   this.initArm = new arm();
   // arm sprites
-  this.armSpriteR = new PIXI.Sprite(this.rt);
-  this.armSpriteR.anchor.set(0.85,0.5);
-  this.armLayer.addChild(this.armSpriteR);
-  this.armSpriteR.rotation = - 0.89;
-  this.armSpriteR.position.set(185,397);
+  // this.armSpriteR = new PIXI.Sprite(this.rt);
+  // this.armSpriteR.anchor.set(0.85,0.5);
+  // this.armLayer.addChild(this.armSpriteR);
+  // this.armSpriteR.rotation = - 0.89;
+  // this.armSpriteR.position.set(185,397);
+
+  // this.armSpriteL = new PIXI.Sprite(this.rt);
+  // this.armSpriteL.anchor.set(0.85,0.5);
+  // this.armSpriteL.scale.x = -1;
+  // this.armLayer.addChild(this.armSpriteL);
+  // this.armSpriteL.rotation = 0.89;
+  // this.armSpriteL.position.set(416,397);
+
+  // Arm rope
+  for (var i = 0; i < 20; i++)
+  {
+      this.points.push(new PIXI.Point(i * this.ropeLength, null));
+  }
+  this.ropeR = new PIXI.mesh.Rope(this.rt, this.points);
+  this.ropeR.pivot.x = 38;
+  this.ropeR.pivot.y = 0;
+  this.ropeR.scale.x = -1;
+  this.armLayer.addChild(this.ropeR);
+  this.ropeR.rotation = - 0.89;
+  this.ropeR.position.x = 183;
+  this.ropeR.position.y = 406;
+
   // Rarm pivot visual
-  this.visualPivotR = new PIXI.Circle(this.armSpriteR.position.x, this.armSpriteR.position.y, 5);
+  this.visualPivotR = new PIXI.Circle(this.ropeR.position.x, this.ropeR.position.y, 5);
   this.drawHit = new PIXI.Graphics();
   this.drawHit.beginFill(0xffd900);
   this.drawHit.drawShape(this.visualPivotR);
 
-  this.armSpriteL = new PIXI.Sprite(this.rt);
-  this.armSpriteL.anchor.set(0.85,0.5);
-  this.armSpriteL.scale.x = -1;
-  this.armLayer.addChild(this.armSpriteL);
-  this.armSpriteL.rotation = 0.89;
-  this.armSpriteL.position.set(416,397);
+  //L rope
+  this.ropeL = new PIXI.mesh.Rope(this.rt, this.points);
+  this.ropeL.pivot.x = 38;
+  this.ropeL.pivot.y = 0;
+  this.armLayer.addChild(this.ropeL);
+  this.ropeL.rotation = 0.89;
+  this.ropeL.position.x = 418;
+  this.ropeL.position.y = 405;
+
+
   // Larm pivot visual
-  this.visualPivotR = new PIXI.Circle(this.armSpriteL.position.x, this.armSpriteL.position.y, 5);
-  this.drawHit.drawShape(this.visualPivotR);
+  this.visualPivotL = new PIXI.Circle(this.ropeL.position.x, this.ropeL.position.y, 5);
+  this.drawHit.drawShape(this.visualPivotL);
   this.armLayer.addChild(this.drawHit);
 };
 
