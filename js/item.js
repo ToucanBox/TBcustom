@@ -2,7 +2,7 @@
 
 var anime = require('animejs');
 
-var item = function (id, image, type, viewport) {
+var item = function (id, image, type, cWidth, cHeight) {
     this.id = id;
     this.type = type;
     this.image = image;
@@ -20,28 +20,27 @@ var item = function (id, image, type, viewport) {
       this.position.y = anime.random(140, 540);
     }
 
-    // if ID is makes this draggable then ... TODO
+    // if ID is makes this non-draggable then
 
     if (id === '40') {
-      this.position.x = viewport.width / 2 - 4;
-      this.position.y = viewport.height / 2 + 163;
+      this.position.x = cWidth / 2 - 4;
+      this.position.y = cHeight / 2 + 163;
     } else if (id === '5') {
-      this.position.x = viewport.width / 2 + 8;
-      this.position.y = viewport.height / 2 + 128;
+      this.position.x = cWidth / 2 + 8;
+      this.position.y = cHeight / 2 + 128;
     } else if (id === '32') {
-      this.position.x = viewport.width / 2 + 1;
-      this.position.y = viewport.height / 2 + 119;
+      this.position.x = cWidth / 2 + 1;
+      this.position.y = cHeight / 2 + 119;
       this.scale.x = 1.01;
       // this.rotation = 0.02;
     } else if (id === '7') {
-      this.position.x = viewport.width / 2 - 4;
-      this.position.y = viewport.height / 2 + 119;
+      this.position.x = cWidth / 2 - 4;
+      this.position.y = cHeight / 2 + 119;
     } else if (id === '45') {
-      this.position.x = viewport.width / 2 - 4;
-      this.position.y = viewport.height / 2 + 119;
+      this.position.x = cWidth / 2 - 4;
+      this.position.y = cHeight / 2 + 119;
     } else {
       // hit area
-      // make based on height or width, whichever is smallest? TODO
       if (this.height >= this.width) {
         this.hitSizer = this.width / 2;
       } else {

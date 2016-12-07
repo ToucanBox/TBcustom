@@ -20,9 +20,9 @@ var init = function () {
   this.brt = new PIXI.BaseRenderTexture(200, 80, PIXI.SCALE_MODES.LINEAR, 1);
   this.rt = new PIXI.RenderTexture(this.brt);
 
-  // canvas dimensions
-  this.cWidth = this.renderer.width;
-  this.cHeight = this.renderer.height;
+  // canvas viewport dimensions
+  this.cWidth = 600;
+  this.cHeight = 720;
 
   // create the root of the scene graph
   this.stage = new PIXI.Container();
@@ -79,8 +79,19 @@ var init = function () {
   this.itemTextures = [];
 
   // arm points
-  this.points = [];
+  this.pointsR = [];
+  this.pointsL = [];
   this.ropeLength = 200/19;
+
+  this.wave = {
+    bL: 0,
+    bR: 0
+  };
+
+  // this.aL = 0;
+  // this.bL = 0;
+  // this.aR = 0;
+  // this.bR = 0;
 
 
   // animation count
@@ -104,7 +115,7 @@ var init = function () {
         // CLOTHES
         console.log('clothes');
         type = 'Clothes';
-        add = new item(id, image, type, viewport);
+        add = new item(id, image, type, this.cWidth, this.cHeight);
         self.removeChildType(self.clothesLayer, 'Clothes');
         self.removeChildType(self.accessoriesLayer, 'Clothes');
         self.clothesLayer.addChild(add);
@@ -115,7 +126,7 @@ var init = function () {
         // CLOTHES 2
         console.log('clothes v2');
         type = 'Clothes';
-        add = new item(id, image, type, viewport);
+        add = new item(id, image, type, this.cWidth, this.cHeight);
         self.removeChildType(self.accessoriesLayer, 'Clothes');
         self.removeChildType(self.clothesLayer, 'Clothes');
         self.accessoriesLayer.addChild(add);
@@ -126,7 +137,7 @@ var init = function () {
         // HAIR
         console.log('hair');
         type = 'Hair';
-        add = new item(id, image, type, viewport);
+        add = new item(id, image, type, this.cWidth, this.cHeight);
         self.removeChildType(self.accessoriesLayer, 'Hair');
         self.accessoriesLayer.addChild(add);
       }
@@ -135,7 +146,7 @@ var init = function () {
         // HATS
         console.log('hats');
         type = 'Hats';
-        add = new item(id, image, type, viewport);
+        add = new item(id, image, type, this.cWidth, this.cHeight);
         self.removeChildType(self.accessoriesLayer, 'Hats');
         self.accessoriesLayer.addChild(add);
       }
@@ -144,7 +155,7 @@ var init = function () {
         // SHOES
         console.log('shoes');
         type = 'Shoes';
-        add = new item(id, image, type, viewport);
+        add = new item(id, image, type, this.cWidth, this.cHeight);
         self.removeChildType(self.accessoriesLayer, 'Shoes');
         self.accessoriesLayer.addChild(add);
       }
@@ -153,7 +164,7 @@ var init = function () {
         // FACELAYER
         console.log('facelayer');
         type = 'FaceLayer';
-        add = new item(id, image, type, viewport);
+        add = new item(id, image, type, this.cWidth, this.cHeight);
         self.faceLayer.addChild(add);
       }
 
@@ -161,7 +172,7 @@ var init = function () {
         // FACELAYERGLASSES
         console.log('glasses');
         type = 'Glasses';
-        add = new item(id, image, type, viewport);
+        add = new item(id, image, type, this.cWidth, this.cHeight);
         self.removeChildType(self.faceLayer, 'Glasses');
         self.faceLayer.addChild(add);
       }
@@ -180,7 +191,7 @@ var init = function () {
       // ACCESSORIES
       console.log('accessories');
       type = 'Accessories';
-      add = new item(id, image, type, viewport);
+      add = new item(id, image, type, this.cWidth, this.cHeight);
       self.route.addChild(add);
     }
 
@@ -279,28 +290,101 @@ init.prototype.animate = function () {
 
   // loop animating toucanoo route TODO
 
+  // this.route.skew.x = 0.025 * Math.sin(4 * this.count);
+  // this.route.rotation = Math.sin(this.count);
+  // this.route.scale.y = 1 + 0.04 * Math.sin(1.5 * this.count);
+
   // arm animations loop TODO
-  for (var i = 1; i < this.points.length; i++) {
+  for (var i = 1; i < this.pointsR.length; i++) {
 
-      this.points[0].y = 0;
-      this.points[0].x = 0;
+      this.pointsR[0].y = 0;
+      this.pointsR[0].x = 0;
 
-      // Wiggle
-      this.points[i].y = Math.pow( i, 1.35 * (Math.sin(3.5 * this.count) + 0.1 * Math.sin(5.5 * this.count + 60) + 0.2 * Math.sin(7.5 * this.count + 120))) - Math.pow( i, Math.sin(3.5 * this.count) + 0.1 * Math.sin(5.3 * this.count + 60) + 0.2 * Math.sin(7.8 * this.count + 120));
-      this.points[i].x = i * this.ropeLength - 0.5 * Math.pow( i, Math.sin(3.2 * this.count + 5) + 0.2 * Math.sin(8 * this.count + 30));
+      // Arm loop
+      // this.pointsR[i].y = Math.pow( i, 1.35 * (Math.sin(3.5 * this.count) + 0.2 * Math.sin(5.5 * this.count + 60) )) - Math.pow( i, Math.sin(3.5 * this.count) + 0.2 * Math.sin(5.3 * this.count + 60) );
+      // this.pointsR[i].x = i * this.ropeLength - 0.5 * Math.pow( i, Math.sin(3.2 * this.count + 5) + 0.2 * Math.sin(8 * this.count + 30));
+      // this.pointsL[i].y = Math.pow( i, 1.36 * (Math.sin(3.6 * this.count) + 0.22 * Math.sin(5.6 * this.count + 64) )) - Math.pow( i, Math.sin(3.4 * this.count) + 0.18 * Math.sin(5.2 * this.count + 58) );
+      // this.pointsL[i].x = i * this.ropeLength - 0.45 * Math.pow( i, Math.sin(3.1 * this.count + 8) + 0.22 * Math.sin(7.8 * this.count + 32));
 
-       // points[i].x = (ropeLength * i) - i * (ropeLength/2);
-      // points[i].x = i * this.ropeLength + Math.cos((i * 0.3) + this.count) * 20;
+      // call arm wave tween and wiggle on intervals (modulus?) TODO
+
+      // Arm wiggle
+      // this.pointsR[i].y = 2 * Math.sin(i / 2 + 20 * this.count);
+      // this.pointsL[i].y = 2 * Math.sin(i / 2 + 20 * this.count);
+
+      // Twirl easter
+      // this.pointsR[i].y = -(10 * i) * Math.sin(this.count * (i / 13)) + 2 * Math.pow(Math.log(i), 2);
+      // this.pointsR[i].x = (6 * i) * Math.cos(this.count * (i / 13)) - 2 * Math.pow(Math.log(i), 2);
+
+      // Loop wave incl flip TODO
+      // this.pointsR[i].y = (i * 10) * (Math.sin(0.05 * Math.sin(3 * this.count) * i));
+      // this.pointsR[i].x = (i * 10) * (Math.cos(0.05 * Math.sin(3 * this.count) * i));
+      // this.pointsL[i].y = (i * 10) * (Math.sin(0.05 * Math.sin(3 * this.count) * i));
+      // this.pointsL[i].x = (i * 10) * (Math.cos(0.05 * Math.sin(3 * this.count) * i));
+
+      // Arm wave controlled incl flip TODO
+      this.pointsR[i].y = -(i * 10) * Math.sin(0.07 * i * this.wave.bR);
+      this.pointsR[i].x = (i * 10) * Math.cos(0.07 * i * this.wave.bR);
+      this.pointsL[i].y = -(i * 10) * Math.sin(0.07 * i * this.wave.bL);
+      this.pointsL[i].x = (i * 10) * Math.cos(0.07 * i * this.wave.bL);
   }
-
-// this.points[i].y = Math.pow( i, 4 * Math.sin(0.4 * i + 15 * this.count));
-// this.points[i].y = 4 * Math.sin(0.4 * i + 15 * this.count);
-
-  // call arm wave tween on intervals (modulus?) TODO
-
   // render the stage
   this.renderer.render(this.stage);
 
+
+};
+
+init.prototype.animateWave = function(side) {
+
+  var init = this;
+
+  this.animeWave1 = anime({
+    targets: this.wave,
+    //bL: 1,
+    bR: 1.2,
+    autoplay: false,
+    duration: 2000,
+    elasticity: 600,
+    direction: 'alternate',
+    loop: 4,
+    update: function() {
+      if ( (init.wave.bR >= 0.48 && 0.52 >= init.wave.bR) ) {
+        console.log('fired');
+        init.initArm.toggleArmHand();
+    }
+  },
+    begin: function() {
+      init.initArm.toggleArmHand();
+    }
+  });
+
+  this.animeWaveCompensate = anime({
+    targets: this.ropeR,
+    rotation: - 1.4, //0.89
+    autoplay: false,
+    duration: 2000,
+    elasticity: 600,
+    direction: 'alternate',
+    loop: 4
+  });
+
+  this.animeWaveCompensate2 = anime({
+    targets: this.ropeR.position,
+    x: 192, //179
+    y: 408, //403
+    autoplay: false,
+    duration: 2000,
+    elasticity: 600,
+    direction: 'alternate',
+    loop: 4
+  });
+
+this.animeWave1.play();
+this.animeWaveCompensate.play();
+this.animeWaveCompensate2.play();
+
+
+// TODO use complete?
 
 };
 
@@ -340,16 +424,16 @@ init.prototype.makeArms = function() {
   // Arm rope
   for (var i = 0; i < 20; i++)
   {
-      this.points.push(new PIXI.Point(i * this.ropeLength, null));
+      this.pointsR.push(new PIXI.Point(i * this.ropeLength, null));
   }
-  this.ropeR = new PIXI.mesh.Rope(this.rt, this.points);
+  this.ropeR = new PIXI.mesh.Rope(this.rt, this.pointsR);
   this.ropeR.pivot.x = 38;
   this.ropeR.pivot.y = 0;
   this.ropeR.scale.x = -1;
   this.armLayer.addChild(this.ropeR);
   this.ropeR.rotation = - 0.89;
-  this.ropeR.position.x = 183;
-  this.ropeR.position.y = 406;
+  this.ropeR.position.x = 179;
+  this.ropeR.position.y = 403;
 
   // Rarm pivot visual
   this.visualPivotR = new PIXI.Circle(this.ropeR.position.x, this.ropeR.position.y, 5);
@@ -358,13 +442,17 @@ init.prototype.makeArms = function() {
   this.drawHit.drawShape(this.visualPivotR);
 
   //L rope
-  this.ropeL = new PIXI.mesh.Rope(this.rt, this.points);
+  for (i = 0; i < 20; i++)
+  {
+      this.pointsL.push(new PIXI.Point(i * this.ropeLength, null));
+  }
+  this.ropeL = new PIXI.mesh.Rope(this.rt, this.pointsL);
   this.ropeL.pivot.x = 38;
   this.ropeL.pivot.y = 0;
   this.armLayer.addChild(this.ropeL);
   this.ropeL.rotation = 0.89;
-  this.ropeL.position.x = 418;
-  this.ropeL.position.y = 405;
+  this.ropeL.position.x = 422;
+  this.ropeL.position.y = 403;
 
 
   // Larm pivot visual

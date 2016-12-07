@@ -11,7 +11,7 @@ var arm = function () {
   this.armCanvas.pivot.x = 200 / 2;
   this.armCanvas.pivot.y = 80 / 2;
   this.armCanvas.position.x = 200 / 2 - 2;
-  this.armCanvas.position.y = 80 / 2 - 2;
+  this.armCanvas.position.y = 80 / 2 + 2;
 
   this.armBase = new PIXI.Sprite.fromFrame('a1.png');
   this.armCanvas.addChild(this.armBase);
@@ -30,6 +30,8 @@ var arm = function () {
   this.armJumper = new PIXI.Sprite.fromFrame('a4.png');
   this.armCanvas.addChild(this.armJumper);
   this.armJumper.alpha = 0;
+  // this.armJumper.rotation = 0.01;
+  this.armJumper.position.set(2,3);
 
   this.armPjs = new PIXI.Sprite.fromFrame('a5.png');
   this.armCanvas.addChild(this.armPjs);

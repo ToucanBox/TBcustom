@@ -33,8 +33,10 @@ function onAssetsLoaded() {
   init.makeTestFrame();
   init.makeBody();
   init.makeArms();
+  // init.initArm.toggleArmHand();
   init.initBody.startAnimate(); // start face update loop
   init.startAnimate(); // start main update and rendering loops
+  init.animateWave();
 
 
   // Remove loader overlay
