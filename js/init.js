@@ -88,16 +88,19 @@ var init = function () {
     bR: 0
   };
 
-  // this.aL = 0;
-  // this.bL = 0;
-  // this.aR = 0;
-  // this.bR = 0;
+  this.isArmWaving = true;
+  this.isAnimeWaving = false;
+  this.isMainArmLoop = false;
+  this.isArmWiggle = false;
+  this.isArmSwing = false;
+  this.isArmSpiral = false;
 
 
   // animation count
   this.count = 0;
+  // special count for arm - gets reset
+  this.armCount = 0;
 
-  // adding items to the scene (extend with clothes(also affects arm object - change arms method), hair and shoes (static, placed in lower layers)) TODO
   var self = this;
 
   this.onClick = function(event) {
@@ -282,6 +285,7 @@ init.prototype.startAnimate = function () {
 
 init.prototype.animate = function () {
   this.count += 0.01;
+  this.armCount += 0.01;
   // renderTexture
   this.renderer.render(this.initArm.armCanvas, this.rt);
 
@@ -291,8 +295,8 @@ init.prototype.animate = function () {
   // loop animating toucanoo route TODO
 
   // this.route.skew.x = 0.025 * Math.sin(4 * this.count);
-  // this.route.rotation = Math.sin(this.count);
-  // this.route.scale.y = 1 + 0.04 * Math.sin(1.5 * this.count);
+  this.route.rotation = 0.015 * Math.sin(this.count);
+  this.route.scale.y = 1 + 0.015 * Math.sin(1.8 * this.count);
 
   // arm animations loop TODO
   for (var i = 1; i < this.pointsR.length; i++) {
@@ -300,33 +304,43 @@ init.prototype.animate = function () {
       this.pointsR[0].y = 0;
       this.pointsR[0].x = 0;
 
+      // call arm wave tween and wiggle on intervals (modulus?) Logic system for arm animations TODO
+
+      if (this.isMainArmLoop) {
       // Arm loop
-      // this.pointsR[i].y = Math.pow( i, 1.35 * (Math.sin(3.5 * this.count) + 0.2 * Math.sin(5.5 * this.count + 60) )) - Math.pow( i, Math.sin(3.5 * this.count) + 0.2 * Math.sin(5.3 * this.count + 60) );
-      // this.pointsR[i].x = i * this.ropeLength - 0.5 * Math.pow( i, Math.sin(3.2 * this.count + 5) + 0.2 * Math.sin(8 * this.count + 30));
-      // this.pointsL[i].y = Math.pow( i, 1.36 * (Math.sin(3.6 * this.count) + 0.22 * Math.sin(5.6 * this.count + 64) )) - Math.pow( i, Math.sin(3.4 * this.count) + 0.18 * Math.sin(5.2 * this.count + 58) );
-      // this.pointsL[i].x = i * this.ropeLength - 0.45 * Math.pow( i, Math.sin(3.1 * this.count + 8) + 0.22 * Math.sin(7.8 * this.count + 32));
-
-      // call arm wave tween and wiggle on intervals (modulus?) TODO
-
+      this.pointsR[i].y = Math.pow( i, 1.1 * (Math.sin(3.5 * this.armCount) + 0.1 * Math.sin(5.5 * this.armCount + 60) ));
+      this.pointsR[i].x = i * this.ropeLength - 0.5 * Math.pow( i, Math.sin(3.2 * this.armCount + 5) + 0.1 * Math.sin(8 * this.armCount + 30));
+      this.pointsL[i].y = Math.pow( i, 1.1 * (Math.sin(3.55 * this.armCount) + 0.1 * Math.sin(5.55 * this.armCount + 61) ));
+      this.pointsL[i].x = i * this.ropeLength - 0.5 * Math.pow( i, Math.sin(3.25 * this.armCount + 5.5) + 0.1 * Math.sin(7.5 * this.armCount + 30.5));
+    } else if (this.isArmWiggle) {
       // Arm wiggle
-      // this.pointsR[i].y = 2 * Math.sin(i / 2 + 20 * this.count);
-      // this.pointsL[i].y = 2 * Math.sin(i / 2 + 20 * this.count);
+      this.pointsR[i].y = 2 * Math.sin(i / 2 + 20 * this.armCount);
+      this.pointsL[i].y = 2 * Math.sin(i / 2 + 20 * this.armCount);
+    } else if (this.isArmSwing) {
 
-      // Twirl easter
-      // this.pointsR[i].y = -(10 * i) * Math.sin(this.count * (i / 13)) + 2 * Math.pow(Math.log(i), 2);
-      // this.pointsR[i].x = (6 * i) * Math.cos(this.count * (i / 13)) - 2 * Math.pow(Math.log(i), 2);
-
+    } else if (this.isArmSpiral) {
+      // Spiral easter
+      this.pointsR[i].y = -(10 * i) * Math.sin(this.armCount * (i / 13)) + 2 * Math.pow(Math.log(i), 2);
+      this.pointsR[i].x = (6 * i) * Math.cos(this.armCount * (i / 13)) - 2 * Math.pow(Math.log(i), 2);
+    } else if (this.isArmSwing) {
       // Loop wave incl flip TODO
-      // this.pointsR[i].y = (i * 10) * (Math.sin(0.05 * Math.sin(3 * this.count) * i));
-      // this.pointsR[i].x = (i * 10) * (Math.cos(0.05 * Math.sin(3 * this.count) * i));
-      // this.pointsL[i].y = (i * 10) * (Math.sin(0.05 * Math.sin(3 * this.count) * i));
-      // this.pointsL[i].x = (i * 10) * (Math.cos(0.05 * Math.sin(3 * this.count) * i));
+      this.pointsR[i].y = (i * this.ropeLength) * (Math.sin(0.05 * Math.sin(3 * this.armCount) * i));
+      this.pointsR[i].x = (i * this.ropeLength) * (Math.cos(0.05 * Math.sin(3 * this.armCount) * i));
+      this.pointsL[i].y = (i * this.ropeLength) * (Math.sin(0.05 * Math.sin(3 * this.armCount) * i));
+      this.pointsL[i].x = (i * this.ropeLength) * (Math.cos(0.05 * Math.sin(3 * this.armCount) * i));
+    } else if (this.isArmWaving) {
+      if (!this.isAnimeWaving) {
+        this.isAnimeWaving = true;
+        this.animateWave();
+      }
+      // Arm wave controlled incl flip
+      this.pointsR[i].y = -(i * this.ropeLength) * Math.sin(0.07 * i * this.wave.bR);
+      this.pointsR[i].x = (i * this.ropeLength) * Math.cos(0.07 * i * this.wave.bR);
+      this.pointsL[i].y = -(i * this.ropeLength) * Math.sin(0.07 * i * this.wave.bL);
+      this.pointsL[i].x = (i * this.ropeLength) * Math.cos(0.07 * i * this.wave.bL);
 
-      // Arm wave controlled incl flip TODO
-      this.pointsR[i].y = -(i * 10) * Math.sin(0.07 * i * this.wave.bR);
-      this.pointsR[i].x = (i * 10) * Math.cos(0.07 * i * this.wave.bR);
-      this.pointsL[i].y = -(i * 10) * Math.sin(0.07 * i * this.wave.bL);
-      this.pointsL[i].x = (i * 10) * Math.cos(0.07 * i * this.wave.bL);
+    }
+
   }
   // render the stage
   this.renderer.render(this.stage);
@@ -346,15 +360,23 @@ init.prototype.animateWave = function(side) {
     duration: 2000,
     elasticity: 600,
     direction: 'alternate',
-    loop: 4,
+    loop: 1,
     update: function() {
-      if ( (init.wave.bR >= 0.48 && 0.52 >= init.wave.bR) ) {
+      if ( init.wave.bR <= 0.25 ) {
+        if (init.initArm.flipToggle){
         console.log('fired');
         init.initArm.toggleArmHand();
+      }
     }
   },
     begin: function() {
       init.initArm.toggleArmHand();
+    },
+    complete: function() {
+      init.isAnimeWaving = false;
+      init.isArmWaving = false;
+      init.isMainArmLoop = true;
+      init.armCount = 0;
     }
   });
 
@@ -365,7 +387,7 @@ init.prototype.animateWave = function(side) {
     duration: 2000,
     elasticity: 600,
     direction: 'alternate',
-    loop: 4
+    loop: 1
   });
 
   this.animeWaveCompensate2 = anime({
@@ -376,15 +398,34 @@ init.prototype.animateWave = function(side) {
     duration: 2000,
     elasticity: 600,
     direction: 'alternate',
-    loop: 4
+    loop: 1
+  });
+
+  this.animeWaveCompensate3 = anime({
+    targets: this.ropeR.scale,
+    y: 0.8, //179
+    autoplay: false,
+    duration: 2000,
+    elasticity: 400,
+    direction: 'alternate',
+    loop: 1
+  });
+
+  this.animeSkew = anime({
+    targets: this.route.skew,
+    x: -0.04,
+    autoplay: false,
+    duration: 2000,
+    elasticity: 400,
+    direction: 'alternate',
+    loop: 1
   });
 
 this.animeWave1.play();
 this.animeWaveCompensate.play();
 this.animeWaveCompensate2.play();
-
-
-// TODO use complete?
+this.animeWaveCompensate3.play();
+this.animeSkew.play();
 
 };
 

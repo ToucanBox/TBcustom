@@ -8,6 +8,7 @@ var item = function (id, image, type, cWidth, cHeight) {
     this.image = image;
     console.log('new item added ID:' + this.id + ', type: ' + this.type);
     PIXI.Sprite.call(this, image);
+    this.wiggle = false;
     this.interactive = true;
     this.buttonMode = true;
     this.anchor.x = 0.5;
@@ -49,7 +50,7 @@ var item = function (id, image, type, cWidth, cHeight) {
       this.hitArea = new PIXI.Circle(0.5, 0.5, this.hitSizer);
       this.visualHit = new PIXI.Circle(0.5, 0.5, this.hitSizer); // could be different from actual hitArea in the future?
       this.drawHit = new PIXI.Graphics();
-      this.drawHit.beginFill(0xffd900);
+      this.drawHit.beginFill(0xFFE448);
       this.drawHit.drawShape(this.visualHit);
       this.drawHit.alpha = 0.5;
       this.addChild(this.drawHit);
@@ -77,7 +78,7 @@ var item = function (id, image, type, cWidth, cHeight) {
   item.prototype.constructor = item;
 
   item.prototype.onDragStart = function(event) {
-      // Need to include touch control - handle multitouch TODO
+      // Need to include touch control - handle multitouch
       // store a reference to the data
       // the reason for this is because of multitouch
       // we want to track the movement of this particular touch
@@ -105,8 +106,10 @@ var item = function (id, image, type, cWidth, cHeight) {
       // set the interaction data to null on end
       this.data = null;
 
-      // remove items if outside bounds TODO
-      // show edge if dragging outside bounds TODO
+      if (this.position.x >= 560 || this.position.x <= 40) {
+        this.destroy();
+      }
+
     }
   };
 
@@ -116,6 +119,12 @@ var item = function (id, image, type, cWidth, cHeight) {
           var newPosition = this.data.getLocalPosition(this.parent);
           this.position.x = newPosition.x - this.dragPoint.x;
           this.position.y = newPosition.y - this.dragPoint.y;
+
+          if (this.position.x >= 560 || this.position.x <= 40) {
+            this.drawHit.beginFill(0xff393a);
+            this.drawHit.alpha = 0.05;
+            this.drawHit.drawShape(this.visualHit);
+          }
 
           // stars particle effect TODO
       }
