@@ -13,13 +13,10 @@ var item = function (id, image, type, cWidth, cHeight) {
     this.buttonMode = true;
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
-    if (this.type === 'FaceLayer' || this.type === 'Glasses'){
-      this.position.x = anime.random(-200, 200);
-      this.position.y = anime.random(-280, 280);
-    } else {
-      this.position.x = anime.random(180, 340);
-      this.position.y = anime.random(140, 540);
-    }
+    this.position.x = anime.random(180, 340);
+    this.position.y = anime.random(140, 540);
+
+    this.count = 0;
 
     // if ID is makes this non-draggable then
 
@@ -48,7 +45,7 @@ var item = function (id, image, type, cWidth, cHeight) {
         this.hitSizer = this.height / 1.2;
       }
       this.hitArea = new PIXI.Circle(0.5, 0.5, this.hitSizer);
-      this.visualHit = new PIXI.Circle(0.5, 0.5, this.hitSizer); // could be different from actual hitArea in the future?
+      this.visualHit = new PIXI.Circle(0.5, 0.5, 40); // could be different from actual hitArea in the future?
       this.drawHit = new PIXI.Graphics();
       this.drawHit.beginFill(0xFFE448);
       this.drawHit.drawShape(this.visualHit);
@@ -110,6 +107,10 @@ var item = function (id, image, type, cWidth, cHeight) {
         this.destroy();
       }
 
+      if (this.type === 'Hair' || this.type === 'Hats' || this.type === 'Shoes' || this.type === 'Glasses' || this.type === 'FaceLayer') {
+        this.rotation = 0;
+      }
+
     }
   };
 
@@ -131,15 +132,26 @@ var item = function (id, image, type, cWidth, cHeight) {
   };
 
   item.prototype.animate = function(event) {
+      this.count += 0.01;
       if (this.dragging)
       {
           //announce with pop TODO
-          //wiggling until first drag and release, maybe text 'put me somewhere' TODO
+          //wiggling until first drag and release, maybe text 'put me somewhere'
+          this.rotation = 0.1 * Math.sin(10 * this.count);
       }
 
-      // occasionally fade in drag targets TODO
+      if (!this.dragging)
+      {
+        // occasionally fade in drag targets
+        if (this.type !== 'Clothes' && this.type !== 'Low Accessories' ) {
+        this.drawHit.alpha = 0 - 0.5 * Math.sin(3 * this.count);
+        }
+    }
 
       // if id=13, googly eyes, rotate
+      if (this.id === '13') {
+        this.rotation = 2 * this.count;
+      }
 
       requestAnimationFrame(this.animate.bind(this));
   };

@@ -48,24 +48,17 @@ var arm = function () {
   this.mask.lineTo(70, 0);
   this.mask.lineTo(200, 0);
   this.mask.lineTo(200, 80);
-  // OLD
-  // this.mask.moveTo(0,0);
-  // this.mask.lineTo(130, 0);
-  // this.mask.lineTo(130, 78);
-  // this.mask.lineTo(0, 78);
-  // this.mask.lineTo(0, 0);
-
 
   // test frame for canvas
-  this.testFrame = new PIXI.Graphics();
-  this.testFrame.lineStyle(1, 0xffd900, 1);
-  this.armCanvas.addChild(this.testFrame);
-
-  this.testFrame.moveTo(0,0);
-  this.testFrame.lineTo(192, 0);
-  this.testFrame.lineTo(192, 78);
-  this.testFrame.lineTo(0, 78);
-  this.testFrame.lineTo(0, 0);
+  // this.testFrame = new PIXI.Graphics();
+  // this.testFrame.lineStyle(1, 0xffd900, 1);
+  // this.armCanvas.addChild(this.testFrame);
+  //
+  // this.testFrame.moveTo(0,0);
+  // this.testFrame.lineTo(192, 0);
+  // this.testFrame.lineTo(192, 78);
+  // this.testFrame.lineTo(0, 78);
+  // this.testFrame.lineTo(0, 0);
 
 };
 

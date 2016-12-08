@@ -73,7 +73,6 @@ var init = function () {
   // Face layer
   this.faceLayer = new PIXI.Container();
   this.route.addChild(this.faceLayer);
-  this.faceLayer.position.set(this.cWidth/2, this.cHeight/2);
 
   // list of all textures
   this.itemTextures = [];
@@ -111,6 +110,12 @@ var init = function () {
     var image = self.itemTextures[index];
     var type;
     var add;
+
+    // More toucanoo reactions TODO
+
+    self.initBody.oMouth();
+    setTimeout (function() { self.initBody.sEyes(); }, 700);
+
 
     // Type logic
 
@@ -283,6 +288,15 @@ init.prototype.startAnimate = function () {
 
 };
 
+init.prototype.startFaceAnimate = function () {
+  // init first update cycle
+  var init = this;
+  setInterval(function() { init.initBody.doBlink(); }, anime.random(4000, 6000));
+  setInterval(function() { init.initBody.swapMouth(); }, anime.random(5000, 7000));
+  console.log('face anim started');
+
+};
+
 init.prototype.animate = function () {
   this.count += 0.01;
   this.armCount += 0.01;
@@ -292,13 +306,13 @@ init.prototype.animate = function () {
   // render loop
   requestAnimationFrame(this.animate.bind(this));
 
-  // loop animating toucanoo route TODO
+  // loop animating toucanoo route
 
   // this.route.skew.x = 0.025 * Math.sin(4 * this.count);
-  this.route.rotation = 0.015 * Math.sin(this.count);
-  this.route.scale.y = 1 + 0.015 * Math.sin(1.8 * this.count);
+  this.route.rotation = 0.01 * Math.sin(this.count);
+  this.route.scale.y = 1 + 0.015 * Math.sin(2.5 * this.count);
 
-  // arm animations loop TODO
+  // arm animations loop
   for (var i = 1; i < this.pointsR.length; i++) {
 
       this.pointsR[0].y = 0;
@@ -403,7 +417,7 @@ init.prototype.animateWave = function(side) {
 
   this.animeWaveCompensate3 = anime({
     targets: this.ropeR.scale,
-    y: 0.8, //179
+    y: 0.7,
     autoplay: false,
     duration: 2000,
     elasticity: 400,
@@ -440,7 +454,7 @@ init.prototype.makeBody = function() {
   // this.viewport.addChild(this.banner);
 
   // construct base toucanoo
-  this.initBody = new body(this.bodyLayer, this.faceLayer, this.cWidth, this.cHeight);
+  this.initBody = new body(this.route, this.bodyLayer, this.faceLayer, this.cWidth, this.cHeight);
 
 };
 

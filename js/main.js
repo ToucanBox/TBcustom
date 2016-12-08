@@ -33,7 +33,7 @@ function onAssetsLoaded() {
   init.makeTestFrame();
   init.makeBody();
   init.makeArms();
-  init.initBody.startAnimate(); // start face update loop
+  init.startFaceAnimate(); // start face update loop
   init.startAnimate(); // start main update and rendering loops
 
 
