@@ -172,7 +172,7 @@ header {
    .prev, .next {
      position: absolute;
      top: 50%;
-     margin-top: -25px;
+     margin-top: -40px;
      display: block;
      cursor: pointer;
    }
@@ -186,7 +186,7 @@ header {
    }
 
    .next svg, .prev svg {
-       width: 25px;
+       width: 50px;
    }
 
    .active {
@@ -229,7 +229,7 @@ header {
    .icons-32 { width: 100px; height: 100px; background-position: -307px -511px; }
    .icons-33 { width: 100px; height: 100px; background-position: -409px -511px; }
    .icons-34 { width: 100px; height: 100px; background-position: -103px -613px; }
-   .icons-35 { width: 100px; height: 100px; background-position: -307px -1123px; } 
+   .icons-35 { width: 100px; height: 100px; background-position: -307px -1123px; }
    .icons-36 { width: 100px; height: 100px; background-position: -205px -613px; }
    .icons-37 { width: 100px; height: 100px; background-position: -307px -613px; }
    .icons-38 { width: 100px; height: 100px; background-position: -409px -613px; }

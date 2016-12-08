@@ -1,12 +1,14 @@
 //TBcustom
 
-// Save pipeline - add name, add name and banner to canvas, move route down to accomodate TODO
+// Save/print pipeline - add name, add name and banner to canvas, move route down to accomodate TODO
+
+// Intro sequence TODO
 
 //Libraries
 var PIXI = require('pixi.js');
 var anime = require('animejs');
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener('DOMContentLoaded', function(event) {
 
 //Screen size event
 require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
@@ -29,8 +31,8 @@ function onAssetsLoaded() {
   var init = require('/Users/anthonymoles/Documents/TBcustom/js/init.js');
   init.loadTextures();
   init.populatePalette();
-  init.initSlider();
-  init.makeTestFrame();
+  init.initSlider(window.innerWidth, window.innerHeight);
+  // init.makeTestFrame();
   init.makeBody();
   init.makeArms();
   init.startFaceAnimate(); // start face update loop
@@ -40,6 +42,11 @@ function onAssetsLoaded() {
   // Remove loader overlay
   var loader = document.getElementById('busy');
   loader.style.display = 'none';
+
+  var testButton = document.getElementById('share-btn');
+  testButton.addEventListener('click', function(event) {
+  init.startArmSpiral();
+  });
 
   } //end load init ------------------------------------------------------
 

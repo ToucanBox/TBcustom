@@ -88,7 +88,6 @@ var init = function () {
   };
 
   this.isArmWaving = true;
-  this.isAnimeWaving = false;
   this.isMainArmLoop = false;
   this.isArmWiggle = false;
   this.isArmSwing = false;
@@ -111,8 +110,7 @@ var init = function () {
     var type;
     var add;
 
-    // More toucanoo reactions TODO
-
+    // More toucanoo reactions
     self.initBody.oMouth();
     setTimeout (function() { self.initBody.sEyes(); }, 700);
 
@@ -127,6 +125,7 @@ var init = function () {
         self.removeChildType(self.clothesLayer, 'Clothes');
         self.removeChildType(self.accessoriesLayer, 'Clothes');
         self.clothesLayer.addChild(add);
+        add.startIntro();
         this.changeArms(id);
       }
 
@@ -138,6 +137,7 @@ var init = function () {
         self.removeChildType(self.accessoriesLayer, 'Clothes');
         self.removeChildType(self.clothesLayer, 'Clothes');
         self.accessoriesLayer.addChild(add);
+        add.startIntro();
         this.changeArms(id);
       }
 
@@ -148,6 +148,7 @@ var init = function () {
         add = new item(id, image, type, this.cWidth, this.cHeight);
         self.removeChildType(self.accessoriesLayer, 'Hair');
         self.accessoriesLayer.addChild(add);
+        add.startIntro();
       }
 
       else if ( id === '2' || id === '11' || id === '21' || id === '25' || id === '48' || id === '55' ) {
@@ -157,6 +158,7 @@ var init = function () {
         add = new item(id, image, type, this.cWidth, this.cHeight);
         self.removeChildType(self.accessoriesLayer, 'Hats');
         self.accessoriesLayer.addChild(add);
+        add.startIntro();
       }
 
       else if ( id === '6' || id === '10' || id === '20' || id === '31' ) {
@@ -166,6 +168,7 @@ var init = function () {
         add = new item(id, image, type, this.cWidth, this.cHeight);
         self.removeChildType(self.accessoriesLayer, 'Shoes');
         self.accessoriesLayer.addChild(add);
+        add.startIntro();
       }
 
       else if ( id === '3' || id === '27' || id === '33' || id === '38' || id === '47' ) {
@@ -174,6 +177,7 @@ var init = function () {
         type = 'FaceLayer';
         add = new item(id, image, type, this.cWidth, this.cHeight);
         self.faceLayer.addChild(add);
+        add.startIntro();
       }
 
       else if ( id === '30' || id === '26' || id === '28' || id === '42' || id === '49' || id === '54' ) {
@@ -183,6 +187,7 @@ var init = function () {
         add = new item(id, image, type, this.cWidth, this.cHeight);
         self.removeChildType(self.faceLayer, 'Glasses');
         self.faceLayer.addChild(add);
+        add.startIntro();
       }
 
       else if ( id === '39' ) {
@@ -201,6 +206,7 @@ var init = function () {
       type = 'Accessories';
       add = new item(id, image, type, this.cWidth, this.cHeight);
       self.route.addChild(add);
+      add.startIntro();
     }
 
     // ACCESSORIES 4,7,9,12,13,14,15,16,17,19,23,24,34,36,41,43,44,50,51,53,56,57,58,59,60,61
@@ -248,17 +254,35 @@ init.prototype.populatePalette = function () {
 
 };
 
-init.prototype.initSlider = function () {
+init.prototype.initSlider = function (width, height) {
 
-  var multiSlides = document.querySelector('.slider');
+    var multiSlides = document.querySelector('.slider');
+    console.log(width);
+    console.log(400 >= width);
+    if (400 >= width) {
 
-  // different behaviour on wider screens - scroll more slides. if/else statement
-  lory(multiSlides, {
-      infinite: 0,
-      enableMouseEvents: true,
-      slidesToScroll: 3,
-      rewind: true
-  });
+    lory(multiSlides, {
+        infinite: 0,
+        enableMouseEvents: true,
+        slidesToScroll: 3,
+        rewind: true
+    });
+
+  } else if (800 >= width && width >= 400) {
+      lory(multiSlides, {
+          infinite: 0,
+          enableMouseEvents: true,
+          slidesToScroll: 4,
+          rewind: true
+      });
+    } else if (width >= 800){
+      lory(multiSlides, {
+          infinite: 0,
+          enableMouseEvents: true,
+          slidesToScroll: 8,
+          rewind: true
+      });
+    }
 
   // scroll left and then right to demonstrate TODO
 
@@ -285,7 +309,14 @@ init.prototype.makeTestFrame = function () {
 init.prototype.startAnimate = function () {
   // init first render cycle
   requestAnimationFrame(this.animate.bind(this));
+  var init = this;
+  init.animateWave();
+  setInterval(function() { init.animateWave(); }, anime.random(16000, 22000));
+  setInterval(function() { init.startArmWiggle(); }, anime.random(10000, 14000));
+  setInterval(function() { init.startArmSwing(); }, anime.random(35000, 45000));
+  // setInterval(function() { init.startArmSpiral(); }, 100000);
 
+  console.log('main anim started');
 };
 
 init.prototype.startFaceAnimate = function () {
@@ -293,6 +324,9 @@ init.prototype.startFaceAnimate = function () {
   var init = this;
   setInterval(function() { init.initBody.doBlink(); }, anime.random(4000, 6000));
   setInterval(function() { init.initBody.swapMouth(); }, anime.random(5000, 7000));
+  setInterval(function() { init.startAnimeFace(); }, anime.random(6000, 8000));
+
+
   console.log('face anim started');
 
 };
@@ -307,8 +341,6 @@ init.prototype.animate = function () {
   requestAnimationFrame(this.animate.bind(this));
 
   // loop animating toucanoo route
-
-  // this.route.skew.x = 0.025 * Math.sin(4 * this.count);
   this.route.rotation = 0.01 * Math.sin(this.count);
   this.route.scale.y = 1 + 0.015 * Math.sin(2.5 * this.count);
 
@@ -317,8 +349,6 @@ init.prototype.animate = function () {
 
       this.pointsR[0].y = 0;
       this.pointsR[0].x = 0;
-
-      // call arm wave tween and wiggle on intervals (modulus?) Logic system for arm animations TODO
 
       if (this.isMainArmLoop) {
       // Arm loop
@@ -330,32 +360,27 @@ init.prototype.animate = function () {
       // Arm wiggle
       this.pointsR[i].y = 2 * Math.sin(i / 2 + 20 * this.armCount);
       this.pointsL[i].y = 2 * Math.sin(i / 2 + 20 * this.armCount);
-    } else if (this.isArmSwing) {
-
     } else if (this.isArmSpiral) {
       // Spiral easter
       this.pointsR[i].y = -(10 * i) * Math.sin(this.armCount * (i / 13)) + 2 * Math.pow(Math.log(i), 2);
       this.pointsR[i].x = (6 * i) * Math.cos(this.armCount * (i / 13)) - 2 * Math.pow(Math.log(i), 2);
     } else if (this.isArmSwing) {
-      // Loop wave incl flip TODO
-      this.pointsR[i].y = (i * this.ropeLength) * (Math.sin(0.05 * Math.sin(3 * this.armCount) * i));
+      // Loop wave
+      this.pointsR[i].y = (i * this.ropeLength) * (Math.sin(0.05 * Math.sin(3 * this.armCount) * 0.9 * i));
       this.pointsR[i].x = (i * this.ropeLength) * (Math.cos(0.05 * Math.sin(3 * this.armCount) * i));
-      this.pointsL[i].y = (i * this.ropeLength) * (Math.sin(0.05 * Math.sin(3 * this.armCount) * i));
+      this.pointsL[i].y = (i * this.ropeLength) * (Math.sin(0.05 * Math.sin(3 * this.armCount) * 0.9 * i));
       this.pointsL[i].x = (i * this.ropeLength) * (Math.cos(0.05 * Math.sin(3 * this.armCount) * i));
     } else if (this.isArmWaving) {
-      if (!this.isAnimeWaving) {
-        this.isAnimeWaving = true;
-        this.animateWave();
-      }
       // Arm wave controlled incl flip
       this.pointsR[i].y = -(i * this.ropeLength) * Math.sin(0.07 * i * this.wave.bR);
       this.pointsR[i].x = (i * this.ropeLength) * Math.cos(0.07 * i * this.wave.bR);
       this.pointsL[i].y = -(i * this.ropeLength) * Math.sin(0.07 * i * this.wave.bL);
       this.pointsL[i].x = (i * this.ropeLength) * Math.cos(0.07 * i * this.wave.bL);
+      }
 
-    }
+    } // loop all points end
 
-  }
+
   // render the stage
   this.renderer.render(this.stage);
 
@@ -365,6 +390,10 @@ init.prototype.animate = function () {
 init.prototype.animateWave = function(side) {
 
   var init = this;
+  if (!this.isArmWiggle && !this.isArmSwing && !this.isArmSpiral) {
+
+    init.isArmWaving = true;
+    init.isMainArmLoop = false;
 
   this.animeWave1 = anime({
     targets: this.wave,
@@ -376,9 +405,8 @@ init.prototype.animateWave = function(side) {
     direction: 'alternate',
     loop: 1,
     update: function() {
-      if ( init.wave.bR <= 0.25 ) {
+      if ( init.wave.bR <= 0 ) {
         if (init.initArm.flipToggle){
-        console.log('fired');
         init.initArm.toggleArmHand();
       }
     }
@@ -387,7 +415,6 @@ init.prototype.animateWave = function(side) {
       init.initArm.toggleArmHand();
     },
     complete: function() {
-      init.isAnimeWaving = false;
       init.isArmWaving = false;
       init.isMainArmLoop = true;
       init.armCount = 0;
@@ -417,7 +444,7 @@ init.prototype.animateWave = function(side) {
 
   this.animeWaveCompensate3 = anime({
     targets: this.ropeR.scale,
-    y: 0.7,
+    y: 0.72,
     autoplay: false,
     duration: 2000,
     elasticity: 400,
@@ -435,12 +462,74 @@ init.prototype.animateWave = function(side) {
     loop: 1
   });
 
-this.animeWave1.play();
-this.animeWaveCompensate.play();
-this.animeWaveCompensate2.play();
-this.animeWaveCompensate3.play();
-this.animeSkew.play();
+  this.animeWave1.play();
+  this.animeWaveCompensate.play();
+  this.animeWaveCompensate2.play();
+  this.animeWaveCompensate3.play();
+  this.animeSkew.play();
+}
 
+};
+
+init.prototype.startArmWiggle = function() {
+  var self = this;
+  if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
+    console.log('wiggle on');
+    this.isArmWaving = false;
+    this.isMainArmLoop = false;
+    this.isArmWiggle = true;
+    this.isArmSwing = false;
+    this.isArmSpiral = false;
+    setTimeout (function() { self.startArmWiggle(); }, 4000);
+  } else if (this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
+    console.log('wiggle off');
+    this.isArmWaving = false;
+    this.isMainArmLoop = true;
+    this.isArmWiggle = false;
+    this.isArmSwing = false;
+    this.isArmSpiral = false;
+  }
+
+};
+
+init.prototype.startArmSwing = function() {
+  var self = this;
+  if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
+    console.log('swing on');
+    this.isArmWaving = false;
+    this.isMainArmLoop = false;
+    this.isArmWiggle = false;
+    this.isArmSwing = true;
+    this.isArmSpiral = false;
+    setTimeout (function() { self.startArmSwing(); }, 6000);
+  } else if (!this.isArmWiggle && !this.isArmWaving && this.isArmSwing && !this.isArmSpiral) {
+    console.log('swing off');
+    this.isArmWaving = false;
+    this.isMainArmLoop = true;
+    this.isArmWiggle = false;
+    this.isArmSwing = false;
+    this.isArmSpiral = false;
+  }
+};
+
+init.prototype.startArmSpiral = function() {
+  var self = this;
+  if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
+    console.log('spiral on');
+    this.isArmWaving = false;
+    this.isMainArmLoop = false;
+    this.isArmWiggle = false;
+    this.isArmSwing = false;
+    this.isArmSpiral = true;
+    setTimeout (function() { self.startArmSpiral(); }, 8000);
+  } else if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && this.isArmSpiral) {
+    console.log('spiral off');
+    this.isArmWaving = false;
+    this.isMainArmLoop = true;
+    this.isArmWiggle = false;
+    this.isArmSwing = false;
+    this.isArmSpiral = false;
+  }
 };
 
 init.prototype.makeBody = function() {
@@ -458,23 +547,58 @@ init.prototype.makeBody = function() {
 
 };
 
+init.prototype.startAnimeFace = function() {
+  var self = this;
+  this.animeFace = anime({
+    targets: this.faceLayer.position,
+    x: function(el, index) {
+    return anime.random(6, 9);
+  },
+    y: function(el, index) {
+    return -anime.random(0, 2);
+  },
+    autoplay: false,
+    duration: function(el, index) {
+    return anime.random(600, 1000);
+  },
+    delay: function(el, index) {
+    return anime.random(100, 300);
+  },
+    direction: 'alternate',
+    easing: 'easeOutExpo',
+    loop: 1,
+    complete: function() {
+      self.animeFace2.play();
+    }
+  });
+
+  this.animeFace2 = anime({
+    targets: this.faceLayer.position,
+    x: function(el, index) {
+    return -anime.random(4, 6);
+  },
+    y: function(el, index) {
+    return -anime.random(0, 2);
+  },
+    autoplay: false,
+    duration: function(el, index) {
+    return anime.random(600, 1000);
+  },
+    delay: function(el, index) {
+    return anime.random(200, 800);
+  },
+    direction: 'alternate',
+    easing: 'easeOutExpo',
+    loop: 1
+  });
+
+  this.animeFace.play();
+};
+
 init.prototype.makeArms = function() {
   // construct toucanoo arms
 
   this.initArm = new arm();
-  // arm sprites
-  // this.armSpriteR = new PIXI.Sprite(this.rt);
-  // this.armSpriteR.anchor.set(0.85,0.5);
-  // this.armLayer.addChild(this.armSpriteR);
-  // this.armSpriteR.rotation = - 0.89;
-  // this.armSpriteR.position.set(185,397);
-
-  // this.armSpriteL = new PIXI.Sprite(this.rt);
-  // this.armSpriteL.anchor.set(0.85,0.5);
-  // this.armSpriteL.scale.x = -1;
-  // this.armLayer.addChild(this.armSpriteL);
-  // this.armSpriteL.rotation = 0.89;
-  // this.armSpriteL.position.set(416,397);
 
   // Arm rope
   for (var i = 0; i < 20; i++)
@@ -491,10 +615,10 @@ init.prototype.makeArms = function() {
   this.ropeR.position.y = 403;
 
   // Rarm pivot visual
-  this.visualPivotR = new PIXI.Circle(this.ropeR.position.x, this.ropeR.position.y, 5);
-  this.drawHit = new PIXI.Graphics();
-  this.drawHit.beginFill(0xffd900);
-  this.drawHit.drawShape(this.visualPivotR);
+  // this.visualPivotR = new PIXI.Circle(this.ropeR.position.x, this.ropeR.position.y, 5);
+  // this.drawHit = new PIXI.Graphics();
+  // this.drawHit.beginFill(0xffd900);
+  // this.drawHit.drawShape(this.visualPivotR);
 
   //L rope
   for (i = 0; i < 20; i++)
@@ -506,14 +630,14 @@ init.prototype.makeArms = function() {
   this.ropeL.pivot.y = 0;
   this.armLayer.addChild(this.ropeL);
   this.ropeL.rotation = 0.89;
-  this.ropeL.position.x = 422;
+  this.ropeL.position.x = 421;
   this.ropeL.position.y = 403;
 
 
   // Larm pivot visual
-  this.visualPivotL = new PIXI.Circle(this.ropeL.position.x, this.ropeL.position.y, 5);
-  this.drawHit.drawShape(this.visualPivotL);
-  this.armLayer.addChild(this.drawHit);
+  // this.visualPivotL = new PIXI.Circle(this.ropeL.position.x, this.ropeL.position.y, 5);
+  // this.drawHit.drawShape(this.visualPivotL);
+  // this.armLayer.addChild(this.drawHit);
 };
 
 init.prototype.changeArms = function(id) {

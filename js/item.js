@@ -3,6 +3,7 @@
 var anime = require('animejs');
 
 var item = function (id, image, type, cWidth, cHeight) {
+
     this.id = id;
     this.type = type;
     this.image = image;
@@ -13,6 +14,8 @@ var item = function (id, image, type, cWidth, cHeight) {
     this.buttonMode = true;
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
+    this.scale.x = 1;
+    this.scale.y = 1;
     this.position.x = anime.random(180, 340);
     this.position.y = anime.random(140, 540);
 
@@ -39,18 +42,33 @@ var item = function (id, image, type, cWidth, cHeight) {
       this.position.y = cHeight / 2 + 119;
     } else {
       // hit area
-      if (this.height >= this.width) {
-        this.hitSizer = this.width / 2;
+      if (type === 'Shoes') {
+        this.hitSizerY = this.height / 1.6;
+        this.hitSizerX = this.width / 2;
+        this.hitArea = new PIXI.Ellipse(0.5, 0.5, this.hitSizerX, this.hitSizerY);
+        this.visualHit = new PIXI.Ellipse(0.5, 0.5, this.hitSizerX, this.hitSizerY);
+        this.drawHit = new PIXI.Graphics();
+        this.drawHit.beginFill(0xFFE448);
+        this.drawHit.drawShape(this.visualHit);
+        this.drawHit.alpha = 0.5;
+        this.addChild(this.drawHit);
+
       } else {
-        this.hitSizer = this.height / 1.2;
-      }
-      this.hitArea = new PIXI.Circle(0.5, 0.5, this.hitSizer);
-      this.visualHit = new PIXI.Circle(0.5, 0.5, 40); // could be different from actual hitArea in the future?
-      this.drawHit = new PIXI.Graphics();
-      this.drawHit.beginFill(0xFFE448);
-      this.drawHit.drawShape(this.visualHit);
-      this.drawHit.alpha = 0.5;
-      this.addChild(this.drawHit);
+
+        if (this.height >= this.width) {
+          this.hitSizer = this.width / 1.5;
+        } else {
+          this.hitSizer = this.width / 4;
+        }
+        this.hitArea = new PIXI.Circle(0.5, 0.5, this.hitSizer);
+        this.visualHit = new PIXI.Circle(0.5, 0.5, this.hitSizer);
+        this.drawHit = new PIXI.Graphics();
+        this.drawHit.beginFill(0xFFE448);
+        this.drawHit.drawShape(this.visualHit);
+        this.drawHit.alpha = 0.5;
+        this.addChild(this.drawHit);
+
+    }
 
       this
       // events for drag start
@@ -67,12 +85,16 @@ var item = function (id, image, type, cWidth, cHeight) {
     }
 
 
-
     requestAnimationFrame(this.animate.bind(this));
   };
 
   item.prototype = Object.create(PIXI.Sprite.prototype);
   item.prototype.constructor = item;
+
+  item.prototype.bindEvents = function() {
+
+
+  };
 
   item.prototype.onDragStart = function(event) {
       // Need to include touch control - handle multitouch
@@ -103,12 +125,10 @@ var item = function (id, image, type, cWidth, cHeight) {
       // set the interaction data to null on end
       this.data = null;
 
+      this.rotation = 0;
+
       if (this.position.x >= 560 || this.position.x <= 40) {
         this.destroy();
-      }
-
-      if (this.type === 'Hair' || this.type === 'Hats' || this.type === 'Shoes' || this.type === 'Glasses' || this.type === 'FaceLayer') {
-        this.rotation = 0;
       }
 
     }
@@ -135,7 +155,6 @@ var item = function (id, image, type, cWidth, cHeight) {
       this.count += 0.01;
       if (this.dragging)
       {
-          //announce with pop TODO
           //wiggling until first drag and release, maybe text 'put me somewhere'
           this.rotation = 0.1 * Math.sin(10 * this.count);
       }
@@ -155,6 +174,23 @@ var item = function (id, image, type, cWidth, cHeight) {
 
       requestAnimationFrame(this.animate.bind(this));
   };
+
+  item.prototype.startIntro = function() {
+
+  this.scale.x = 0;
+  this.scale.y = 0;
+
+  this.intro = anime({
+  targets: this.scale,
+  x: 1,
+  y: 1,
+  duration: 1000,
+  autoplay: false
+  });
+
+  this.intro.play();
+
+};
 
 
 

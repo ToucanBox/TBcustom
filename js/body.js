@@ -5,26 +5,13 @@ var anime = require('animejs');
 var body = function (route, bodyLayer, faceLayer, cWidth, cHeight) {
 
   //test circle to see base
-  this.graphics = new PIXI.Graphics();
-  this.graphics.beginFill(0xffd900);
-  this.circle = new PIXI.Circle(cWidth/2, cHeight, 10);
-  this.graphics.drawShape(this.circle);
-  bodyLayer.addChild(this.graphics);
+  // this.graphics = new PIXI.Graphics();
+  // this.graphics.beginFill(0xffd900);
+  // this.circle = new PIXI.Circle(cWidth/2, cHeight, 10);
+  // this.graphics.drawShape(this.circle);
+  // bodyLayer.addChild(this.graphics);
 
   this.cWidth = cWidth;
-
-  // animation values
-  this.animVal = {
-    eyeScaleL: 0.95,
-    eyeScaleR: 0.95,
-    faceLookX: 0,
-    faceLookY: 0,
-    eyebrowY: cHeight / 2 - 70,
-    eyebrowR: 0
-  };
-
-  faceLayer.position.x = this.animVal.faceLookX;
-  faceLayer.position.y = this.animVal.faceLookY;
 
   // feet shadows
   this.shadow = new PIXI.Graphics();
@@ -44,16 +31,18 @@ var body = function (route, bodyLayer, faceLayer, cWidth, cHeight) {
   this.torso.position.y = cHeight/2 + 100;
   bodyLayer.addChild(this.torso);
 
-  // face
+  // eyes
+
+  this.isBlinking = false;
 
   this.eyeL = new PIXI.Sprite.fromFrame('b5.png');
   this.eyeR = new PIXI.Sprite.fromFrame('b5.png');
   this.eyeL.anchor.set(0.5, 0.5);
   this.eyeR.anchor.set(0.5, 0.5);
   this.eyeL.scale.x = 0.95;
-  this.eyeL.scale.y = this.animVal.eyeScaleL;
+  this.eyeL.scale.y = 0.95;
   this.eyeL.scale.x = 0.95;
-  this.eyeR.scale.y = this.animVal.eyeScaleR;
+  this.eyeR.scale.y = 0.95;
   faceLayer.addChild(this.eyeL);
   faceLayer.addChild(this.eyeR);
   this.eyeL.position.set(cWidth / 2 + 32, cHeight / 2 - 40);
@@ -85,8 +74,10 @@ var body = function (route, bodyLayer, faceLayer, cWidth, cHeight) {
   this.eyeBrowR.anchor.set(0.5, 0.5);
   faceLayer.addChild(this.eyeBrowL);
   faceLayer.addChild(this.eyeBrowR);
-  this.eyeBrowL.position.set(cWidth / 2 + 33, this.animVal.eyebrowY);
-  this.eyeBrowR.position.set(cWidth / 2 - 33, this.animVal.eyebrowY);
+  this.eyeBrowL.position.set(cWidth / 2 + 33, cHeight / 2 - 70);
+  this.eyeBrowR.position.set(cWidth / 2 - 33, cHeight / 2 - 70);
+
+  // mouthes
 
   this.mouthMain = new PIXI.Sprite.fromFrame('b8.png');
   this.mouthMain.anchor.set(0.5, 0.5);
@@ -112,33 +103,22 @@ var body = function (route, bodyLayer, faceLayer, cWidth, cHeight) {
   faceLayer.addChild(this.mouthC);
   this.mouthC.position.set(cWidth/2, cHeight / 2 + 10);
   this.mouthC.alpha = 0;
+
 };
 
 body.prototype.doBlink = function () {
+  var self = this;
 
-  var init = this;
-
-  console.log(this.animVal.eyeScaleL);
-
-  this.eyeBlink = anime({
-  targets: this.animVal,
-  eyeScaleL: 0.1,
-  eyeScaleR: 0.1,
-  faceLookX: 50,
-  faceLookY: 10,
-  eyebrowY: init.cHeight / 2 - 120, //init.cHeight / 2 - 70
-  eyebrowR: 1,
-  duration: 2000,
-  autoplay: false,
-  direction: 'alternate',
-  loop: 1
-});
-
-console.log(this.animVal.eyeScaleL);
-
-this.eyeBlink.play();
-
-console.log('blink');
+  if (!this.isBlinking) {
+    this.eyeL.scale.y = 0.2;
+    this.eyeR.scale.y = 0.2;
+    this.isBlinking = true;
+    setTimeout (function() { self.doBlink(); }, 80);
+  } else {
+    this.eyeL.scale.y = 0.95;
+    this.eyeR.scale.y = 0.95;
+    this.isBlinking = false;
+  }
 };
 
 body.prototype.swapMouth = function () {

@@ -7,6 +7,8 @@ function canvasSizer() {
     var width = window.innerWidth;
     var canvas = document.getElementById('canvas-main');
 
+    var printButton = document.getElementById('print-btn');
+
     var intendedHeight = height - 180;
 
     var scale = intendedHeight/720;
@@ -31,6 +33,10 @@ function canvasSizer() {
       canvas.style.msTransform = 'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
       canvas.style.OTransform = 'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
       canvas.style.transform =  'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
+    }
+
+    if (400 >= width) {
+      printButton.style.display = 'none';
     }
 
 

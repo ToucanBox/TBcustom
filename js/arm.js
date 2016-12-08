@@ -25,18 +25,18 @@ var arm = function () {
   this.armCanvas.addChild(this.armTshirt);
   this.armTshirt.alpha = 0;
   // this.armTshirt.rotation = -0.05;
-  this.armTshirt.position.set(-5,3);
+  this.armTshirt.position.set(-3,3);
 
   this.armJumper = new PIXI.Sprite.fromFrame('a4.png');
   this.armCanvas.addChild(this.armJumper);
   this.armJumper.alpha = 0;
   // this.armJumper.rotation = 0.01;
-  this.armJumper.position.set(2,3);
+  this.armJumper.position.set(4,0);
 
   this.armPjs = new PIXI.Sprite.fromFrame('a5.png');
   this.armCanvas.addChild(this.armPjs);
   this.armPjs.alpha = 0;
-  this.armPjs.position.set(-2,1);
+  this.armPjs.position.set(0,-1);
 
 
   // arm mask
