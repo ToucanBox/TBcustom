@@ -1,17 +1,23 @@
-//TBcustom
+// TBcustom
 
 // Save/print pipeline - add name, add name and banner to canvas, move route down to accomodate TODO
 
 // Intro sequence TODO
 
-//Libraries
+// Libraries
 var PIXI = require('pixi.js');
 var anime = require('animejs');
 
 document.addEventListener('DOMContentLoaded', function(event) {
 
-//Screen size event
+// Screen size event
 require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
+
+// logo or not
+if (599 >= window.innerWidth) {
+  var logo = document.querySelector('.logo');
+  logo.style.opacity = 0;
+}
 
 // Load Assets
 var loader = PIXI.loader;
@@ -27,7 +33,7 @@ function loadProgressHandler(loader, loadedResource) {
 
 function onAssetsLoaded() {
 
-  //Initialiser object (module exports new init)
+  // Initialiser object (module exports new init)
   var init = require('/Users/anthonymoles/Documents/TBcustom/js/init.js');
   init.loadTextures();
   init.populatePalette();
@@ -48,6 +54,6 @@ function onAssetsLoaded() {
   init.startArmSpiral();
   });
 
-  } //end load init ------------------------------------------------------
+  } // end load init ------------------------------------------------------
 
-}); //end window load
+}); //

@@ -92,7 +92,7 @@ header {
      max-height: 720px;
      margin: 0 auto;
      transform-origin: 50% bottom;
-     z-index: 99;
+     z-index: 98;
    }
 
    .sizer {
@@ -127,11 +127,15 @@ header {
      text-align: center;
    }
 
-   @media (max-height: 900px) {
-     .app-container {
-     }
-   }
-
+   .over-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: block;
+    width: 68.5px;
+    height: 66px;
+    z-index: 99;
+  }
 
    /* ==========================================================================
      LORY
