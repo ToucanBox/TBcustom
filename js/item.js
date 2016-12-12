@@ -57,8 +57,10 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
 
       } else {
 
-        if (this.height >= this.width) {
+        if (this.height >= this.width && this.width >= 50) {
           this.hitSizer = this.width / 1.5;
+        } else if (50 >= this.width) {
+          this.hitSizer = 40;
         } else {
           this.hitSizer = this.width / 4;
         }

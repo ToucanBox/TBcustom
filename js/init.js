@@ -1,5 +1,6 @@
 // init
 
+var lory = require('/Users/anthonymoles/Documents/TBcustom/js/lory.js').lory;
 var PIXI = require('pixi.js');
 var anime = require('animejs');
 var dragula = require('dragula');
@@ -318,6 +319,7 @@ init.prototype.initSlider = function (width, height) {
           rewind: true
       });
     }
+    
 
   // scroll left and then right to demonstrate TODO
 
