@@ -257,8 +257,6 @@ init.prototype.populatePalette = function () {
 init.prototype.initSlider = function (width, height) {
 
     var multiSlides = document.querySelector('.slider');
-    console.log(width);
-    console.log(400 >= width);
     if (400 >= width) {
 
     lory(multiSlides, {
@@ -313,7 +311,7 @@ init.prototype.startAnimate = function () {
   init.animateWave();
   setInterval(function() { init.animateWave(); }, anime.random(16000, 22000));
   setInterval(function() { init.startArmWiggle(); }, anime.random(10000, 14000));
-  setInterval(function() { init.startArmSwing(); }, anime.random(35000, 45000));
+  setInterval(function() { init.startArmSwing(); }, anime.random(20000, 25000));
   // setInterval(function() { init.startArmSpiral(); }, 100000);
 
   console.log('main anim started');
@@ -370,6 +368,14 @@ init.prototype.animate = function () {
       this.pointsR[i].x = (i * this.ropeLength) * (Math.cos(0.05 * Math.sin(3 * this.armCount) * i));
       this.pointsL[i].y = (i * this.ropeLength) * (Math.sin(0.05 * Math.sin(3 * this.armCount) * 0.9 * i));
       this.pointsL[i].x = (i * this.ropeLength) * (Math.cos(0.05 * Math.sin(3 * this.armCount) * i));
+      this.ropeR.rotation = - 0.89 - 0.3 * Math.sin(3 * this.armCount + 3.3);
+      this.ropeL.rotation = 0.89 + 0.3 * Math.sin(3 * this.armCount + 3.3);
+      // this.ropeR.position.y = 403 + 9 - Math.abs(10 * Math.sin(1.5 * this.armCount ));
+      // this.ropeL.position.y = 403 + 9 - Math.abs(10 * Math.sin(1.5 * this.armCount ));
+      this.ropeR.position.y = 403 + 4 - 5 * Math.sin(3 * this.armCount );
+      this.ropeL.position.y = 403 + 4 - 5 * Math.sin(3 * this.armCount );
+      this.ropeR.position.x = 179 + 1 - 9 * Math.sin(3 * this.armCount );
+      this.ropeL.position.x = 421 - 1 + 9 * Math.sin(3 * this.armCount );
     } else if (this.isArmWaving) {
       // Arm wave controlled incl flip
       this.pointsR[i].y = -(i * this.ropeLength) * Math.sin(0.07 * i * this.wave.bR);
@@ -444,7 +450,7 @@ init.prototype.animateWave = function(side) {
 
   this.animeWaveCompensate3 = anime({
     targets: this.ropeR.scale,
-    y: 0.72,
+    y: 0.8,
     autoplay: false,
     duration: 2000,
     elasticity: 400,
@@ -496,12 +502,13 @@ init.prototype.startArmSwing = function() {
   var self = this;
   if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
     console.log('swing on');
+    this.armCount = 0;
     this.isArmWaving = false;
     this.isMainArmLoop = false;
     this.isArmWiggle = false;
     this.isArmSwing = true;
     this.isArmSpiral = false;
-    setTimeout (function() { self.startArmSwing(); }, 6000);
+    setTimeout (function() { self.startArmSwing(); }, 5300);
   } else if (!this.isArmWiggle && !this.isArmWaving && this.isArmSwing && !this.isArmSpiral) {
     console.log('swing off');
     this.isArmWaving = false;
@@ -509,6 +516,12 @@ init.prototype.startArmSwing = function() {
     this.isArmWiggle = false;
     this.isArmSwing = false;
     this.isArmSpiral = false;
+    this.ropeR.rotation = - 0.89;
+    this.ropeL.rotation = 0.89;
+    this.ropeR.position.y = 403;
+    this.ropeL.position.y = 403;
+    this.ropeR.position.x = 179;
+    this.ropeL.position.x = 421;
   }
 };
 
@@ -516,12 +529,13 @@ init.prototype.startArmSpiral = function() {
   var self = this;
   if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
     console.log('spiral on');
+    this.armCount = 0;
     this.isArmWaving = false;
     this.isMainArmLoop = false;
     this.isArmWiggle = false;
     this.isArmSwing = false;
     this.isArmSpiral = true;
-    setTimeout (function() { self.startArmSpiral(); }, 8000);
+    setTimeout (function() { self.startArmSpiral(); }, 10000);
   } else if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && this.isArmSpiral) {
     console.log('spiral off');
     this.isArmWaving = false;

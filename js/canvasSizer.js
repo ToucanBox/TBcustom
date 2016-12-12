@@ -16,7 +16,6 @@ function canvasSizer() {
     var screenRatio = width/height;
 
     if (screenRatio > 1) {
-      console.log('resize');
       canvas.style.webkitTransform = 'scale(' + scale + ',' + scale + ')';
       canvas.style.MozTransform = 'scale(' + scale + ',' + scale + ')';
       canvas.style.msTransform = 'scale(' + scale + ',' + scale + ')';
@@ -27,7 +26,6 @@ function canvasSizer() {
     var smallScreenScale = 0.78;
 
     if (screenRatio > 0.65 && width <= 320) {
-      console.log('resize2');
       canvas.style.webkitTransform = 'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
       canvas.style.MozTransform = 'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
       canvas.style.msTransform = 'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
