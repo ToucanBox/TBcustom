@@ -2,7 +2,7 @@
 
 var anime = require('animejs');
 
-var item = function (id, image, type, cWidth, cHeight) {
+var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
 
     this.id = id;
     this.type = type;
@@ -16,8 +16,10 @@ var item = function (id, image, type, cWidth, cHeight) {
     this.anchor.y = 0.5;
     this.scale.x = 1;
     this.scale.y = 1;
-    this.position.x = anime.random(180, 340);
-    this.position.y = anime.random(140, 540);
+    this.position.x = touchX;
+    this.position.y = touchY;
+    // this.position.x = anime.random(180, 340);
+    // this.position.y = anime.random(140, 540);
 
     this.count = 0;
 

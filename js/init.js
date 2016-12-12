@@ -2,6 +2,7 @@
 
 var PIXI = require('pixi.js');
 var anime = require('animejs');
+var dragula = require('dragula');
 var body = require('/Users/anthonymoles/Documents/TBcustom/js/body.js');
 var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
 var arm = require('/Users/anthonymoles/Documents/TBcustom/js/arm.js');
@@ -15,6 +16,12 @@ var init = function () {
   this.renderer = PIXI.autoDetectRenderer(600, 720, { transparent: true, antialias: true });
   this.canvas.appendChild(this.renderer.view);
   this.renderer.view.setAttribute('class', 'canvas-class');
+
+  // icon palette list
+  this.iconList = document.getElementById('icons');
+
+  // main canvas container
+  this.canvasMain = document.getElementById('canvas-main');
 
   // arm renderTexture
   this.brt = new PIXI.BaseRenderTexture(200, 80, PIXI.SCALE_MODES.LINEAR, 1);
@@ -101,7 +108,34 @@ var init = function () {
 
   var self = this;
 
-  this.onClick = function(event) {
+  this.onStart = function(event) {
+    event.preventDefault();
+    setTimeout(function() {
+      var tempIcon = document.querySelector(".gu-mirror");
+      tempIcon.addEventListener( 'mouseup' , self.onEnd.bind(self) , false );
+    }, 200);
+
+};
+
+  this.onEnd = function(event) {
+    event.preventDefault();
+    var style = self.canvasMain.currentStyle || window.getComputedStyle(self.canvasMain);
+    var displacement = parseInt(style.marginLeft);
+
+    var touchX;
+    var touchY;
+    console.log('displacement: ' + displacement);
+
+    if (event.type === 'touchend') {
+    touchX = event.changedTouches[0].pageX - displacement;
+    touchY = event.changedTouches[0].pageY;
+  } else {
+    touchX = event.pageX - displacement;
+    touchY = event.pageY;
+  }
+    console.log('tX: ' + touchX);
+    console.log('tY: ' + touchY);
+
     var viewport = self.viewport;
     var id = event.target.id.toString();
     console.log('clicked item ID: ' + id);
@@ -110,7 +144,7 @@ var init = function () {
     var type;
     var add;
 
-    // More toucanoo reactions
+    // toucanoo reactions
     self.initBody.oMouth();
     setTimeout (function() { self.initBody.sEyes(); }, 700);
 
@@ -119,9 +153,8 @@ var init = function () {
 
     if ( id === '40' || id === '32' || id === '7' ) {
         // CLOTHES
-        console.log('clothes');
         type = 'Clothes';
-        add = new item(id, image, type, this.cWidth, this.cHeight);
+        add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
         self.removeChildType(self.clothesLayer, 'Clothes');
         self.removeChildType(self.accessoriesLayer, 'Clothes');
         self.clothesLayer.addChild(add);
@@ -131,9 +164,8 @@ var init = function () {
 
       else if ( id === '5' || id === '45' ) {
         // CLOTHES 2
-        console.log('clothes v2');
         type = 'Clothes';
-        add = new item(id, image, type, this.cWidth, this.cHeight);
+        add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
         self.removeChildType(self.accessoriesLayer, 'Clothes');
         self.removeChildType(self.clothesLayer, 'Clothes');
         self.accessoriesLayer.addChild(add);
@@ -143,9 +175,8 @@ var init = function () {
 
       else if ( id === '1' || id === '8' || id === '18' || id === '22' || id === '29' || id === '37' || id === '46' || id === '52' ) {
         // HAIR
-        console.log('hair');
         type = 'Hair';
-        add = new item(id, image, type, this.cWidth, this.cHeight);
+        add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
         self.removeChildType(self.accessoriesLayer, 'Hair');
         self.accessoriesLayer.addChild(add);
         add.startIntro();
@@ -153,9 +184,8 @@ var init = function () {
 
       else if ( id === '2' || id === '11' || id === '21' || id === '25' || id === '48' || id === '55' ) {
         // HATS
-        console.log('hats');
         type = 'Hats';
-        add = new item(id, image, type, this.cWidth, this.cHeight);
+        add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
         self.removeChildType(self.accessoriesLayer, 'Hats');
         self.accessoriesLayer.addChild(add);
         add.startIntro();
@@ -163,9 +193,8 @@ var init = function () {
 
       else if ( id === '6' || id === '10' || id === '20' || id === '31' ) {
         // SHOES
-        console.log('shoes');
         type = 'Shoes';
-        add = new item(id, image, type, this.cWidth, this.cHeight);
+        add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
         self.removeChildType(self.accessoriesLayer, 'Shoes');
         self.accessoriesLayer.addChild(add);
         add.startIntro();
@@ -173,18 +202,16 @@ var init = function () {
 
       else if ( id === '3' || id === '27' || id === '33' || id === '38' || id === '47' ) {
         // FACELAYER
-        console.log('facelayer');
         type = 'FaceLayer';
-        add = new item(id, image, type, this.cWidth, this.cHeight);
+        add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
         self.faceLayer.addChild(add);
         add.startIntro();
       }
 
       else if ( id === '30' || id === '26' || id === '28' || id === '42' || id === '49' || id === '54' ) {
         // FACELAYERGLASSES
-        console.log('glasses');
         type = 'Glasses';
-        add = new item(id, image, type, this.cWidth, this.cHeight);
+        add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
         self.removeChildType(self.faceLayer, 'Glasses');
         self.faceLayer.addChild(add);
         add.startIntro();
@@ -192,7 +219,6 @@ var init = function () {
 
       else if ( id === '39' ) {
         // LOW ACCESSORIES
-        console.log('cape');
         type = 'Low Accessories';
         // increase alpha of cape - same ping in animation? TODO
         // kick off an anime tween
@@ -202,9 +228,8 @@ var init = function () {
 
     else {
       // ACCESSORIES
-      console.log('accessories');
       type = 'Accessories';
-      add = new item(id, image, type, this.cWidth, this.cHeight);
+      add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
       self.route.addChild(add);
       add.startIntro();
     }
@@ -230,9 +255,8 @@ var init = function () {
 
 
 init.prototype.loadTextures = function () {
-  var i;
 
-  for (i = 1; i <= 61; i++)
+  for (var i = 1; i <= 61; i++)
     {
        var texture = PIXI.Texture.fromFrame( i + '.png' );
        this.itemTextures.push(texture);
@@ -240,16 +264,22 @@ init.prototype.loadTextures = function () {
 };
 
 init.prototype.populatePalette = function () {
-  var i;
 
-  var icons = document.getElementById('icons');
+  var drake = dragula([this.iconList], {
+   copy: true,
+   revertOnSpill: true,
+   removeOnSpill: true
+  });
 
-  for (i = 1; i <= 61; i++) {
+  // remove objects with class gu-mirror
+
+  for (var i = 1; i <= 61; i++) {
     var node = document.createElement("li");
     node.className = 'js_slide sprite-icons icons-' + i;
     node.id = i;
-    node.addEventListener( 'click' , this.onClick.bind(this) , false );
-    icons.appendChild( node );
+    node.addEventListener( 'touchend' , this.onEnd.bind(this) , false );
+    node.addEventListener( 'mousedown' , this.onStart.bind(this) , false );
+    this.iconList.appendChild( node );
   }
 
 };
@@ -314,7 +344,6 @@ init.prototype.startAnimate = function () {
   setInterval(function() { init.startArmSwing(); }, anime.random(20000, 25000));
   // setInterval(function() { init.startArmSpiral(); }, 100000);
 
-  console.log('main anim started');
 };
 
 init.prototype.startFaceAnimate = function () {
@@ -323,9 +352,6 @@ init.prototype.startFaceAnimate = function () {
   setInterval(function() { init.initBody.doBlink(); }, anime.random(4000, 6000));
   setInterval(function() { init.initBody.swapMouth(); }, anime.random(5000, 7000));
   setInterval(function() { init.startAnimeFace(); }, anime.random(6000, 8000));
-
-
-  console.log('face anim started');
 
 };
 
@@ -480,7 +506,7 @@ init.prototype.animateWave = function(side) {
 init.prototype.startArmWiggle = function() {
   var self = this;
   if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
-    console.log('wiggle on');
+    // console.log('wiggle on');
     this.isArmWaving = false;
     this.isMainArmLoop = false;
     this.isArmWiggle = true;
@@ -488,7 +514,7 @@ init.prototype.startArmWiggle = function() {
     this.isArmSpiral = false;
     setTimeout (function() { self.startArmWiggle(); }, 4000);
   } else if (this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
-    console.log('wiggle off');
+    // console.log('wiggle off');
     this.isArmWaving = false;
     this.isMainArmLoop = true;
     this.isArmWiggle = false;
@@ -501,7 +527,7 @@ init.prototype.startArmWiggle = function() {
 init.prototype.startArmSwing = function() {
   var self = this;
   if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
-    console.log('swing on');
+    // console.log('swing on');
     this.armCount = 0;
     this.isArmWaving = false;
     this.isMainArmLoop = false;
@@ -510,7 +536,7 @@ init.prototype.startArmSwing = function() {
     this.isArmSpiral = false;
     setTimeout (function() { self.startArmSwing(); }, 5300);
   } else if (!this.isArmWiggle && !this.isArmWaving && this.isArmSwing && !this.isArmSpiral) {
-    console.log('swing off');
+    // console.log('swing off');
     this.isArmWaving = false;
     this.isMainArmLoop = true;
     this.isArmWiggle = false;
@@ -528,7 +554,7 @@ init.prototype.startArmSwing = function() {
 init.prototype.startArmSpiral = function() {
   var self = this;
   if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
-    console.log('spiral on');
+    // console.log('spiral on');
     this.armCount = 0;
     this.isArmWaving = false;
     this.isMainArmLoop = false;
@@ -537,7 +563,7 @@ init.prototype.startArmSpiral = function() {
     this.isArmSpiral = true;
     setTimeout (function() { self.startArmSpiral(); }, 10000);
   } else if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && this.isArmSpiral) {
-    console.log('spiral off');
+    // console.log('spiral off');
     this.isArmWaving = false;
     this.isMainArmLoop = true;
     this.isArmWiggle = false;

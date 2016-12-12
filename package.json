@@ -9,10 +9,10 @@
   "main": "index.html",
   "dependencies": {
     "animejs": "^1.1.1",
+    "dragula": "^3.7.2",
     "pixi.js": "^4.2.2"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "beefy js/main.js --browserify $(which browserify) --live",
