@@ -110,12 +110,10 @@ arm.prototype.toggleArmHand = function() {
     this.armFlip.alpha = 1;
     this.armBase.alpha = 0;
     this.flipToggle = true;
-    console.log('flipping the arm');
   } else {
     this.armFlip.alpha = 0;
     this.armBase.alpha = 1;
     this.flipToggle = false;
-    console.log('flipping the arm back');
   }
 };
 

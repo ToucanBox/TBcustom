@@ -113,25 +113,32 @@ var init = function () {
     setTimeout(function() {
       var tempIcon = document.querySelector(".gu-mirror");
       tempIcon.addEventListener( 'mouseup' , self.onEnd.bind(self) , false );
-    }, 200);
+    }, 300);
 
 };
 
   this.onEnd = function(event) {
     event.preventDefault();
-    var style = self.canvasMain.currentStyle || window.getComputedStyle(self.canvasMain);
-    var displacement = parseInt(style.marginLeft);
+
+    var rect = self.canvasMain.getBoundingClientRect();
+    var displacementX = rect.left;
+    var displacementY = rect.top;
+
+    var scaleFactor = rect.width / 600;
+    console.log('canvasScale: ' + scaleFactor);
 
     var touchX;
     var touchY;
-    console.log('displacement: ' + displacement);
+    console.log('displacementX2: ' + displacementX);
+    console.log('displacementY2: ' + displacementY);
+
 
     if (event.type === 'touchend') {
-    touchX = event.changedTouches[0].pageX - displacement;
-    touchY = event.changedTouches[0].pageY;
+    touchX = (event.changedTouches[0].pageX - displacementX) / scaleFactor;
+    touchY = (event.changedTouches[0].pageY - displacementY) / scaleFactor + 50;
   } else {
-    touchX = event.pageX - displacement;
-    touchY = event.pageY;
+    touchX = (event.pageX - displacementX) / scaleFactor;
+    touchY = (event.pageY - displacementY) / scaleFactor + 50;
   }
     console.log('tX: ' + touchX);
     console.log('tY: ' + touchY);
