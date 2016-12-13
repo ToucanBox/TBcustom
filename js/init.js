@@ -646,7 +646,7 @@ init.prototype.makeBody = function() {
   this.banner.anchor.x = 0.5;
   this.banner.anchor.y = 0.5;
   this.banner.position.x = this.cWidth / 2;
-  this.banner.position.y = 40;
+  this.banner.position.y = 70;
   // Add when exporting - when to add child/toucanoo name? Popup modal? TODO
   // this.viewport.addChild(this.banner);
 
@@ -773,6 +773,10 @@ init.prototype.removeChildId = function(parent, id) {
 
 };
 
+init.prototype.printPipe = function(parent, id) {
+  this.route.position.y += 15;
+  this.route.addChild(this.banner);
 
+};
 
 module.exports = new init();

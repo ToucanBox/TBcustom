@@ -38,11 +38,12 @@ function onAssetsLoaded() {
   init.loadTextures();
   init.populatePalette();
   init.initSlider(window.innerWidth, window.innerHeight);
-  // init.makeTestFrame();
+  init.makeTestFrame();
   init.makeBody();
   init.makeArms();
   init.startFaceAnimate(); // start face update loop
   init.startAnimate(); // start main update and rendering loops
+  init.printPipe();
 
 
   // Remove loader overlay
