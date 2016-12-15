@@ -113,6 +113,9 @@ var init = function () {
   // last added id
   this.lastId = 0;
 
+  // name
+  this.name = 'your toucanoo\'s name';
+
 
   var self = this;
 
@@ -170,7 +173,6 @@ var init = function () {
 
   this.onStart = function(event) {
 
-        console.log('clickstart');
         event.preventDefault();
 
         setTimeout(function() {
@@ -200,13 +202,9 @@ var init = function () {
       var displacementY = rect.top;
 
       var scaleFactor = rect.width / 600;
-      console.log('canvasScale: ' + scaleFactor);
 
       var touchX = 0;
       var touchY = 0;
-      console.log('displacementX2: ' + displacementX);
-      console.log('displacementY2: ' + displacementY);
-
 
       if (event.type === 'touchend') {
       touchX = (event.changedTouches[0].pageX - displacementX) / scaleFactor;
@@ -215,8 +213,6 @@ var init = function () {
         touchX = (event.pageX - displacementX) / scaleFactor;
         touchY = (event.pageY - displacementY) / scaleFactor + 50;
       }
-        console.log('tX: ' + touchX);
-        console.log('tY: ' + touchY);
 
         var viewport = self.viewport;
         var id = event.target.id.toString();
@@ -782,10 +778,8 @@ init.prototype.removeChildType = function(parent, type) {
 };
 
 init.prototype.removeChildId = function(parent, id) {
-  console.log('removing-outer');
   for (var i = parent.children.length - 1; i >= 0; i--) {
       if ( parent.children[i].id === id ) {
-      console.log('removing-inner');
       parent.removeChild(parent.children[i]);
     }
   }
@@ -811,7 +805,7 @@ init.prototype.printPipe = function() {
   this.route.position.y -= 65;
   this.route.addChild(this.banner);
 
-  // ensure no anchors are visible on items TODO
+  // ensure no anchors are visible on items
   var i;
   for (i = 0; i < this.accessoriesLayer.children.length; i++) {
     this.accessoriesLayer.children[i].removeAnchor();
@@ -824,8 +818,7 @@ init.prototype.printPipe = function() {
   }
 
   // add text to banner
-  this.textName = new PIXI.Text('Name goes here',{fontFamily : 'Kent4F', fontSize: 24, fill : 0x413D3B, align : 'center'});
-  console.log(this.textName.text);
+  this.textName = new PIXI.Text( this.name ,{fontFamily : 'Kent4F', fontSize: 24, fill : 0x413D3B, align : 'center'});
 
   // set text from input form TODO
   this.textName.anchor.set(0.5,0.5);
@@ -833,9 +826,34 @@ init.prototype.printPipe = function() {
   this.route.addChild(this.textName);
 };
 
+init.prototype.reversePrintPipe = function() {
+  this.route.position.y += 65;
+  this.route.removeChild(this.banner);
+  this.route.removeChild(this.textName);
+  this.count = 0;
+  this.armCount = 0;
+  this.isCounting = true;
+  this.startFaceAnimate(); // restart start face update loop
+  this.startAnimate(); // restart start main update and rendering loops
+
+  // var i;
+  // for (i = 0; i < this.accessoriesLayer.children.length; i++) {
+  //   this.accessoriesLayer.children[i].restoreAnchor();
+  // }
+  //
+  // for (i = 0; i < this.faceLayer.children.length; i++) {
+  //   if (this.faceLayer.children[i].restoreAnchor) {
+  //   this.faceLayer.children[i].restoreAnchor();
+  //   }
+  // }
+
+  // Restor anchors to draggables TODO
+};
+
 init.prototype.setNameText = function(name) {
   console.log(this.textName.text);
   this.textName.text = name;
+  this.name = name;
 };
 
 module.exports = new init();

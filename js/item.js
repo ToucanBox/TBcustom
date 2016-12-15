@@ -108,6 +108,10 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
     this.removeChild(this.drawHit);
   };
 
+  item.prototype.restoreAnchor = function() {
+    this.addChild(this.drawHit);
+  };
+
   item.prototype.onDragStart = function(event) {
       // Need to include touch control - handle multitouch
       // store a reference to the data
