@@ -50,6 +50,8 @@ function onAssetsLoaded() {
   var loader = document.getElementById('busy');
   loader.style.display = 'none';
 
+  setTimeout(function() { init.printPipe(); }, 6000);
+
   var testButton = document.getElementById('share-btn');
   testButton.addEventListener('click', function(event) {
   init.startArmSpiral();

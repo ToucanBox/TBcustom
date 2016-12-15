@@ -16,8 +16,18 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
     this.anchor.y = 0.5;
     this.scale.x = 1;
     this.scale.y = 1;
-    this.position.x = touchX;
-    this.position.y = touchY;
+
+    if (touchX > 600 || touchX < 0) {
+      this.position.x = cWidth / 2;
+    } else {
+      this.position.x = touchX;
+    }
+
+    if (touchY > 780 || touchY < 100) {
+      this.position.y = cHeight / 2;
+    } else {
+      this.position.y = touchY;
+    }
     this.anchors = true;
 
     this.count = 0;
@@ -94,9 +104,8 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
   item.prototype = Object.create(PIXI.Sprite.prototype);
   item.prototype.constructor = item;
 
-  item.prototype.bindEvents = function() {
-
-
+  item.prototype.removeAnchor = function() {
+    this.removeChild(this.drawHit);
   };
 
   item.prototype.onDragStart = function(event) {

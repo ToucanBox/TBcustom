@@ -113,6 +113,7 @@ var init = function () {
   // last added id
   this.lastId = 0;
 
+
   var self = this;
 
   this.removeLast = function(event) {
@@ -168,13 +169,28 @@ var init = function () {
 
 
   this.onStart = function(event) {
-    event.preventDefault();
-    setTimeout(function() {
-      var tempIcon = document.querySelector(".gu-mirror");
-      tempIcon.addEventListener( 'mouseup' , self.onEnd.bind(self) , false );
-    }, 300);
+
+        console.log('clickstart');
+        event.preventDefault();
+
+        setTimeout(function() {
+          try {
+            var tempIcon = document.querySelector('.gu-mirror');
+            tempIcon.addEventListener('mouseup', self.onEnd.bind(self), false);
+          }  catch(err) {
+                console.log('click, not drag: ' + err.message);
+            }
+
+        }, 300);
+
+        self.tempStaticIcon = document.getElementById(event.target.id);
+
+        if (self.tempStaticIcon.onmouseup === null) {
+            self.tempStaticIcon.onmouseup = self.onEnd.bind(self);
+        }
 
 };
+
 
   this.onEnd = function(event) {
       event.preventDefault();
@@ -186,8 +202,8 @@ var init = function () {
       var scaleFactor = rect.width / 600;
       console.log('canvasScale: ' + scaleFactor);
 
-      var touchX;
-      var touchY;
+      var touchX = 0;
+      var touchY = 0;
       console.log('displacementX2: ' + displacementX);
       console.log('displacementY2: ' + displacementY);
 
@@ -776,7 +792,7 @@ init.prototype.removeChildId = function(parent, id) {
 
 };
 
-init.prototype.printPipe = function(name) {
+init.prototype.printPipe = function() {
   // allow animations - pause armcount - set armcount to paused value
   this.isCounting = false;
   this.animeWave1.pause();
@@ -797,12 +813,14 @@ init.prototype.printPipe = function(name) {
 
   // ensure no anchors are visible on items TODO
   var i;
-  for (i = this.accessoriesLayer.children.length - 1; i >= 0; i--) {
-    this.accessoriesLayer.children[i].anchors = false;
+  for (i = 0; i < this.accessoriesLayer.children.length; i++) {
+    this.accessoriesLayer.children[i].removeAnchor();
   }
 
-  for (i = this.faceLayer.children.length - 1; i >= 0; i--) {
-    this.faceLayer.children[i].anchors = false;
+  for (i = 0; i < this.faceLayer.children.length; i++) {
+    if (this.faceLayer.children[i].removeAnchor) {
+    this.faceLayer.children[i].removeAnchor();
+    }
   }
 
   // add text to banner
