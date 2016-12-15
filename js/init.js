@@ -17,6 +17,7 @@ var init = function () {
   this.renderer = PIXI.autoDetectRenderer(600, 720, { transparent: true, antialias: true });
   this.canvas.appendChild(this.renderer.view);
   this.renderer.view.setAttribute('class', 'canvas-class');
+  this.renderer.view.setAttribute('id', 'output');
 
   // icon palette list
   this.iconList = document.getElementById('icons');
@@ -107,6 +108,7 @@ var init = function () {
   this.count = 0;
   // special count for arm - gets reset
   this.armCount = 0;
+  this.isCounting = true;
 
   // last added id
   this.lastId = 0;
@@ -314,6 +316,7 @@ var init = function () {
   };
 
 // register undo click handler
+// undo removes clothes on arms TODO
 this.undoButton = document.getElementById('undo-btn');
 this.undoButton.addEventListener( 'click' , this.removeLast.bind(this) , false );
 
@@ -407,9 +410,9 @@ init.prototype.startAnimate = function () {
   requestAnimationFrame(this.animate.bind(this));
   var init = this;
   init.animateWave();
-  setInterval(function() { init.animateWave(); }, anime.random(16000, 22000));
-  setInterval(function() { init.startArmWiggle(); }, anime.random(10000, 14000));
-  setInterval(function() { init.startArmSwing(); }, anime.random(20000, 25000));
+  init.startWave = setInterval(function() { init.animateWave(); }, anime.random(16000, 22000));
+  init.startWiggle = setInterval(function() { init.startArmWiggle(); }, anime.random(10000, 14000));
+  init.startSwing = setInterval(function() { init.startArmSwing(); }, anime.random(20000, 25000));
   // setInterval(function() { init.startArmSpiral(); }, 100000);
 
 };
@@ -417,15 +420,17 @@ init.prototype.startAnimate = function () {
 init.prototype.startFaceAnimate = function () {
   // init first update cycle
   var init = this;
-  setInterval(function() { init.initBody.doBlink(); }, anime.random(4000, 6000));
-  setInterval(function() { init.initBody.swapMouth(); }, anime.random(5000, 7000));
-  setInterval(function() { init.startAnimeFace(); }, anime.random(6000, 8000));
+  init.startBlink = setInterval(function() { init.initBody.doBlink(); }, anime.random(4000, 6000));
+  init.startSwapMouth = setInterval(function() { init.initBody.swapMouth(); }, anime.random(5000, 7000));
+  init.startFaceMove = setInterval(function() { init.startAnimeFace(); }, anime.random(6000, 8000));
 
 };
 
 init.prototype.animate = function () {
+  if (this.isCounting) {
   this.count += 0.01;
   this.armCount += 0.01;
+  }
   // renderTexture
   this.renderer.render(this.initArm.armCanvas, this.rt);
 
@@ -646,9 +651,7 @@ init.prototype.makeBody = function() {
   this.banner.anchor.x = 0.5;
   this.banner.anchor.y = 0.5;
   this.banner.position.x = this.cWidth / 2;
-  this.banner.position.y = 70;
-  // Add when exporting - when to add child/toucanoo name? Popup modal? TODO
-  // this.viewport.addChild(this.banner);
+  this.banner.position.y = 785;
 
   // construct base toucanoo
   this.initBody = new body(this.route, this.bodyLayer, this.faceLayer, this.cWidth, this.cHeight);
@@ -773,10 +776,48 @@ init.prototype.removeChildId = function(parent, id) {
 
 };
 
-init.prototype.printPipe = function(parent, id) {
-  this.route.position.y += 15;
+init.prototype.printPipe = function(name) {
+  // allow animations - pause armcount - set armcount to paused value
+  this.isCounting = false;
+  this.animeWave1.pause();
+  this.animeWaveCompensate.pause();
+  this.animeWaveCompensate2.pause();
+  this.animeWaveCompensate3.pause();
+  this.animeSkew.pause();
+  clearInterval(this.startWave);
+  clearInterval(this.startWiggle);
+  clearInterval(this.startSwing);
+  // Face
+  clearInterval(this.startBlink);
+  clearInterval(this.startSwapMouth);
+  clearInterval(this.startFaceMove);
+
+  this.route.position.y -= 65;
   this.route.addChild(this.banner);
 
+  // ensure no anchors are visible on items TODO
+  var i;
+  for (i = this.accessoriesLayer.children.length - 1; i >= 0; i--) {
+    this.accessoriesLayer.children[i].anchors = false;
+  }
+
+  for (i = this.faceLayer.children.length - 1; i >= 0; i--) {
+    this.faceLayer.children[i].anchors = false;
+  }
+
+  // add text to banner
+  this.textName = new PIXI.Text('Name goes here',{fontFamily : 'Kent4F', fontSize: 24, fill : 0x413D3B, align : 'center'});
+  console.log(this.textName.text);
+
+  // set text from input form TODO
+  this.textName.anchor.set(0.5,0.5);
+  this.textName.position.set(this.cWidth / 2, 779);
+  this.route.addChild(this.textName);
+};
+
+init.prototype.setNameText = function(name) {
+  console.log(this.textName.text);
+  this.textName.text = name;
 };
 
 module.exports = new init();

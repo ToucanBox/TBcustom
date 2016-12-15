@@ -18,8 +18,7 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
     this.scale.y = 1;
     this.position.x = touchX;
     this.position.y = touchY;
-    // this.position.x = anime.random(180, 340);
-    // this.position.y = anime.random(140, 540);
+    this.anchors = true;
 
     this.count = 0;
 
@@ -163,11 +162,11 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
           this.rotation = 0.1 * Math.sin(10 * this.count);
       }
 
-      if (!this.dragging)
+      if (!this.dragging && this.anchors)
       {
         // occasionally fade in drag targets
         if (this.type !== 'Clothes' && this.type !== 'Low Accessories' ) {
-        this.drawHit.alpha = 0 - 0.5 * Math.sin(3 * this.count);
+        this.drawHit.alpha = 0 - 0.5 * Math.sin(4 * this.count);
         }
     }
 

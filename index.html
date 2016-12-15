@@ -99,22 +99,45 @@
 
     </div>
 
-<div class="fade-bk"></div>
+<div id="fader" class="fade-bk"></div>
 
-<div id="print-modal" class="modal callout">
+<div id="intro-modal" class="modal callout">
     <div class="modal-photo"><img src="img/web/partylifestyle.jpg"></div>
     <div class="modal-contents">
-        <h2>Ready to print</h2>
+        <h2>Make your own toucanoo colouring sheet</h2>
         <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <div class="input-wrap">
-          <label for="text_field">Text Field:</label>
-          <input type="text" id="text_field">
+        <div class="panel-wrap double">
+            <div class="panel">
+                <img src="/img/web/step1.gif">
+            </div>
+            <div class="panel">
+                <img src="/img/web/step2.gif">
+            </div>
         </div>
     </div>
     <div class="modal-menu">
-      <input type="submit" value="Submit" class="success">
-      <input type="reset" value="Reset" class="danger">
+        <button id="get-started">Let's get started</button>
     </div>
+</div>
+
+<div id="print-modal" class="modal callout hidden">
+    <div class="modal-contents">
+        <div class="preview">
+          <img src="" id="preview-output">
+        </div>
+        <h2>Ready to print</h2>
+        <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <div class="panel-wrap">
+        <div class="input-wrap panel">
+          <label for="text_field">Text Field:</label>
+          <input type="text" id="text-field">
+        </div>
+      </div>
+    </div>
+    <div class="modal-menu">
+      <button id="back" class="danger">Back</button>
+      <button id="print" class="success">Print</button>
+      </div>
 </div>
 
     <a href="http://www.toucanbox.com/account" class="over-icon"> </a>
