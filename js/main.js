@@ -50,11 +50,6 @@ function onAssetsLoaded() {
   var loader = document.getElementById('busy');
   loader.style.display = 'none';
 
-  var testButton = document.getElementById('share-btn');
-  testButton.addEventListener('click', function(event) {
-  init.startArmSpiral();
-  });
-
   } // end load init ------------------------------------------------------
 
 }); //

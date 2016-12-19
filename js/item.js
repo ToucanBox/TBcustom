@@ -147,6 +147,10 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
         this.destroy();
       }
 
+      if (this.position.y >= 680 || this.position.y <= 40) {
+        this.destroy();
+      }
+
     }
   };
 

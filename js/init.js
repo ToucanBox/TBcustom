@@ -97,7 +97,7 @@ var init = function () {
     bR: 0
   };
 
-  this.isArmWaving = true;
+  this.isArmWaving = false;
   this.isMainArmLoop = false;
   this.isArmWiggle = false;
   this.isArmSwing = false;
@@ -109,12 +109,13 @@ var init = function () {
   // special count for arm - gets reset
   this.armCount = 0;
   this.isCounting = true;
+  this.isAnimLooping = false;
 
   // last added id
   this.lastId = 0;
 
   // name
-  this.name = 'your toucanoo\'s name';
+  this.name = 'toucanoo\'s name';
 
 
   var self = this;
@@ -405,7 +406,8 @@ init.prototype.makeTestFrame = function () {
   //TESTING frame
 
   this.graphics = new PIXI.Graphics();
-  this.graphics.lineStyle(1, 0xffd900, 1);
+  // this.graphics.lineStyle(1, 0xffd900, 1);
+  this.graphics.beginFill(0xFFFFFF);
 
   this.graphics.moveTo(0,0);
   this.graphics.lineTo(600, 0);
@@ -419,9 +421,12 @@ init.prototype.makeTestFrame = function () {
 
 init.prototype.startAnimate = function () {
   // init first render cycle
+  if (!this.isAnimLooping) {
+  this.isAnimLooping = true;
   requestAnimationFrame(this.animate.bind(this));
+  this.animateWave();
+  }
   var init = this;
-  init.animateWave();
   init.startWave = setInterval(function() { init.animateWave(); }, anime.random(16000, 22000));
   init.startWiggle = setInterval(function() { init.startArmWiggle(); }, anime.random(10000, 14000));
   init.startSwing = setInterval(function() { init.startArmSwing(); }, anime.random(20000, 25000));
@@ -507,7 +512,7 @@ init.prototype.animate = function () {
 init.prototype.animateWave = function(side) {
 
   var init = this;
-  if (!this.isArmWiggle && !this.isArmSwing && !this.isArmSpiral) {
+  if (!this.isArmWiggle && !this.isArmSwing && !this.isArmSpiral && !init.isArmWaving) {
 
     init.isArmWaving = true;
     init.isMainArmLoop = false;
@@ -820,13 +825,21 @@ init.prototype.printPipe = function() {
   // add text to banner
   this.textName = new PIXI.Text( this.name ,{fontFamily : 'Kent4F', fontSize: 24, fill : 0x413D3B, align : 'center'});
 
-  // set text from input form TODO
   this.textName.anchor.set(0.5,0.5);
   this.textName.position.set(this.cWidth / 2, 779);
   this.route.addChild(this.textName);
 };
 
 init.prototype.reversePrintPipe = function() {
+// restart wave animation is stuck
+  if (this.isArmWaving) {
+  this.animeWave1.play();
+  this.animeWaveCompensate.play();
+  this.animeWaveCompensate2.play();
+  this.animeWaveCompensate3.play();
+  this.animeSkew.play();
+}
+
   this.route.position.y += 65;
   this.route.removeChild(this.banner);
   this.route.removeChild(this.textName);
@@ -835,6 +848,7 @@ init.prototype.reversePrintPipe = function() {
   this.isCounting = true;
   this.startFaceAnimate(); // restart start face update loop
   this.startAnimate(); // restart start main update and rendering loops
+
 
   // var i;
   // for (i = 0; i < this.accessoriesLayer.children.length; i++) {
@@ -848,12 +862,30 @@ init.prototype.reversePrintPipe = function() {
   // }
 
   // Restor anchors to draggables TODO
+
+  this.viewport.removeChild(this.graphics);
 };
 
 init.prototype.setNameText = function(name) {
-  console.log(this.textName.text);
   this.textName.text = name;
   this.name = name;
+};
+
+init.prototype.getCanvasImage = function() {
+  this.renderer.render(this.stage);
+  this.canvasData = this.renderer.view.toDataURL('image/png', 1);
+ return this.canvasData;
+};
+
+init.prototype.printCanvas = function(isSave) {
+
+    var openWindow = window.open();
+    openWindow.document.write('<img src="' + this.canvasData + '" style="display: block; position: absolute; left:54%; top:50%; transform: scale(1.1) translate(-50%, -50%); -webkit-transform: transform: scale(1.1) translate(-50%, -50%);"/>');
+    if (!isSave) {
+    openWindow.print();
+    openWindow.location.reload();
+  }
+
 };
 
 module.exports = new init();

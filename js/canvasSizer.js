@@ -7,7 +7,9 @@ function canvasSizer() {
     var width = window.innerWidth;
     var canvas = document.getElementById('canvas-main');
 
-    var printButton = document.getElementById('print-btn');
+    // Share container position
+    var socialBtns = document.getElementById('social-container');
+    socialBtns.style.top = height / 2 - 105 - 65 + 'px';
 
     var intendedHeight = height - 180;
 
@@ -33,11 +35,7 @@ function canvasSizer() {
       canvas.style.transform =  'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
     }
 
-    if (400 >= width) {
-      printButton.style.display = 'none';
-    }
-
-
+    console.log('resize');
 
  }
 

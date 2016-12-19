@@ -13,6 +13,12 @@
     <link rel="stylesheet" type="text/css" href="https://www.toucanbox.com/css/v3/main.css">
     <link rel="stylesheet" href="css/main.css">
 
+    <meta property="og:title" content="Personalised colouring page by toucanBox"/>
+    <meta property="og:image" content="/img/web/touch.gif"/>
+    <meta property="og:site_name" content="Personalised colouring page by toucanBox"/>
+    <meta property="og:description" content="Personalise your Toucanoo colouring sheet on PC or mobile. Add clothes, hair and accessories and give them a name. Then print it on your home printer (you can also save a PDF). Are you ready for your next toucanBox creative adventure?"/>
+
+
 </head>
 
 <body>
@@ -89,8 +95,7 @@
             <div class="menu">
               <button id="undo-btn" class="danger">Undo</button>
               <button id="save-btn" class="default">Save</button>
-              <button id="share-btn" class="success">Share</button>
-              <button id="print-btn" class="edit">Print</button>
+              <button id="print-btn" class="success">Print</button>
             </div>
 
           </div>
@@ -99,19 +104,29 @@
 
     </div>
 
+    <div id="social-container">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.tbcustom.herokuapp.com" class="social-btns" id="facebook"><img src="img/web/iconmonstr-facebook-icon.svg"></a>
+      <a href="https://twitter.com/home?status=%23mytoucanoo%20make%20your%20own%20personalised%20colouring%20sheet%20with%20toucanBox!" class="social-btns" id="twitter"><img src="img/web/iconmonstr-twitter-icon.svg"></a>
+      <a href="https://pinterest.com/pin/create/button/?url=http%3A//www.tbcustom.herokuapp.com&media=http%3A//tbcustom.herokuapp.com/img/web/touch.gif&description=Make%20your%20own%20personalised%20colouring%20sheet%20with%20toucanBox!" class="social-btns" id="pinterest"><img src="img/web/iconmonstr-pinterest-icon.svg"></a>
+      <a href="http://instagram.com/toucanbox" class="social-btns" id="instagram"><img src="img/web/iconmonstr-instagram-6-icon.svg"></a>
+      <a href="https://plus.google.com/share?url=http%3A//www.tbcustom.herokuapp.com" class="social-btns" id="googleplus"><img src="img/web/iconmonstr-google-plus-1.svg"></a>
+    </div>
+
+
+
 <div id="fader" class="fade-bk"></div>
 
 <div id="intro-modal" class="modal callout">
     <div class="modal-photo"><img src="img/web/partylifestyle.jpg"></div>
     <div class="modal-contents">
         <h2>Make your own toucanoo colouring sheet</h2>
-        <p>This is a simple hero unit, a simple jumbAMotron-style component for calling extra attention to featured content or information.</p>
+        <p>Personalise your Toucanoo colouring sheet. Choose clothes, hair and accessories and give them a name. Then print it on your home printer (you can also save a image to print later). Are you ready for your next toucanBox creative adventure?</p>
         <div class="panel-wrap double">
             <div class="panel">
-                <img src="/img/web/step1.gif">
+                <img class="intro-gifs" src="/img/web/touch.gif">
             </div>
             <div class="panel">
-                <img src="/img/web/step2.gif">
+                <img class="intro-gifs" src="/img/web/print.gif">
             </div>
         </div>
     </div>
@@ -125,11 +140,11 @@
         <div class="preview">
           <img src="" id="preview-output">
         </div>
-        <h2>Ready to print</h2>
-        <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <h2 id="print-modal-title">Ready to print</h2>
+        <p id="print-modal-blurb">Great, your Toucanoo looks fantastic! Type their name in the box below and it will appear on the print-out. Click print to send it to your printer. Visit <a href="http://www.toucanbox.com">www.toucanbox.com</a> for more creative adventures!</p>
         <div class="panel-wrap">
         <div class="input-wrap panel">
-          <label for="text_field">Text Field:</label>
+          <label for="text_field">Name your toucanoo:</label>
           <input type="text" id="text-field">
         </div>
       </div>
@@ -137,6 +152,7 @@
     <div class="modal-menu">
       <button id="back-do" class="danger">Back</button>
       <button id="print-do" class="success">Print</button>
+      <button id="save-do" class="success">Save</button>
       </div>
 </div>
 
