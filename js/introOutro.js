@@ -19,8 +19,10 @@ var io = function (init) {
   this.printModal = document.getElementById('print-modal');
 
   //intro buttons
-  this.startBtn = document.getElementById('get-started');
-  this.startBtn.addEventListener( 'click' , function() {self.onIntroClick();}, false );
+  this.startBtn = document.getElementById('get-started-girl');
+  this.startBtn.addEventListener( 'click' , function() {self.onIntroClickGirl();}, false );
+  this.startBtn = document.getElementById('get-started-boy');
+  this.startBtn.addEventListener( 'click' , function() {self.onIntroClickBoy();}, false );
 
   //outtro buttons
   this.endBtn = document.getElementById('print-btn');
@@ -33,11 +35,22 @@ var io = function (init) {
   this.saveText = document.getElementById('print-modal-blurb');
 
   //let's get started
-  this.onIntroClick = function(event) {
+  this.onIntroClickGirl = function(event) {
   self.fader.setAttribute('class', 'fade-bk hidden');
   self.introModal.setAttribute('class', 'modal callout hidden');
   self.init.startFaceAnimate(); // start face update loop
   self.init.startAnimate(); // start main update and rendering loops
+  self.init.startGirl();
+
+  // waking scene and animations TODO
+  };
+
+  this.onIntroClickBoy = function(event) {
+  self.fader.setAttribute('class', 'fade-bk hidden');
+  self.introModal.setAttribute('class', 'modal callout hidden');
+  self.init.startFaceAnimate(); // start face update loop
+  self.init.startAnimate(); // start main update and rendering loops
+  self.init.startBoy();
 
   // waking scene and animations TODO
   };

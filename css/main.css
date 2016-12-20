@@ -166,7 +166,8 @@ img {
   border-radius: 4px 4px 4px 4px;
   margin: 0px 0px 20px;
   padding: 0 !important;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
   -ms-overflow-style: hidden;
   -ms-scroll-chaining: none;
 }
@@ -205,7 +206,7 @@ img {
 }
 
 .intro-gifs {
-  padding: 0 10px 0 10px;
+  /*padding: 0 10px 0 10px;*/
 }
 
 .modal-menu {
@@ -346,7 +347,7 @@ background-color: #d34836;
    .night-moon { width: 93px; height: 134px; background-position: -1px -1px; }
    .night-star { width: 31px; height: 34px; background-position: -1px -135px; }
 
-   .sprite-icons { display:inline-block; overflow: hidden; background-repeat: no-repeat; background-image: url('../img/web/icons.png'); }
+   .sprite-icons { display:inline-block; overflow: hidden; background-repeat: no-repeat; background-image: url('../img/web/icons.png'); -ms-touch-action: none;}
 
    .icons-42 { width: 101px; height: 101px; background-position: -1px -1px; }
    .icons-1 { width: 100px; height: 100px; background-position: -104px -1px; }
@@ -417,6 +418,7 @@ background-color: #d34836;
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80);
+  -ms-touch-action: none;
   }
   .gu-hide {
     display: none !important;

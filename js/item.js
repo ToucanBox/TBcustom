@@ -66,12 +66,10 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
 
       } else {
 
-        if (this.height >= this.width && this.width >= 50) {
-          this.hitSizer = this.width / 1.5;
-        } else if (50 >= this.width) {
-          this.hitSizer = 40;
+        if (this.width > 80 && this.height > 80) {
+          this.hitSizer = this.width / 2.5;
         } else {
-          this.hitSizer = this.width / 4;
+          this.hitSizer = 40;
         }
         this.hitArea = new PIXI.Circle(0.5, 0.5, this.hitSizer);
         this.visualHit = new PIXI.Circle(0.5, 0.5, this.hitSizer);
@@ -147,7 +145,7 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
         this.destroy();
       }
 
-      if (this.position.y >= 680 || this.position.y <= 40) {
+      if (this.position.y >= 760 || this.position.y <= 40) {
         this.destroy();
       }
 
@@ -166,6 +164,11 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
             this.drawHit.alpha = 0.05;
             this.drawHit.drawShape(this.visualHit);
           }
+
+          if (this.position.y >= 760 || this.position.y <= 40) {
+            this.drawHit.beginFill(0xff393a);
+            this.drawHit.alpha = 0.05;
+            this.drawHit.drawShape(this.visualHit);          }
 
           // stars particle effect TODO
       }

@@ -13,29 +13,24 @@ var arm = function () {
   this.armCanvas.position.x = 200 / 2 - 2;
   this.armCanvas.position.y = 80 / 2 + 2;
 
+  this.toucanooLayer = new PIXI.Container();
+  this.armCanvas.addChild(this.toucanooLayer);
+
+  this.clothesLayer = new PIXI.Container();
+  this.armCanvas.addChild(this.clothesLayer);
+
   this.armBase = new PIXI.Sprite.fromFrame('a1.png');
-  this.armCanvas.addChild(this.armBase);
-  this.armBase.alpha = 1;
+  this.toucanooLayer.addChild(this.armBase);
 
   this.armFlip = new PIXI.Sprite.fromFrame('a2.png');
-  this.armCanvas.addChild(this.armFlip);
-  this.armFlip.alpha = 0;
 
   this.armTshirt = new PIXI.Sprite.fromFrame('a3.png');
-  this.armCanvas.addChild(this.armTshirt);
-  this.armTshirt.alpha = 0;
-  // this.armTshirt.rotation = -0.05;
   this.armTshirt.position.set(-3,3);
 
   this.armJumper = new PIXI.Sprite.fromFrame('a4.png');
-  this.armCanvas.addChild(this.armJumper);
-  this.armJumper.alpha = 0;
-  // this.armJumper.rotation = 0.01;
   this.armJumper.position.set(4,0);
 
   this.armPjs = new PIXI.Sprite.fromFrame('a5.png');
-  this.armCanvas.addChild(this.armPjs);
-  this.armPjs.alpha = 0;
   this.armPjs.position.set(0,-1);
 
 
@@ -62,42 +57,54 @@ var arm = function () {
 
 };
 
+arm.prototype.removeAllClothes = function() {
+  for (var i = this.clothesLayer.children.length - 1; i >= 0; i--) {
+      this.clothesLayer.removeChild(this.clothesLayer.children[i]);
+  }
+  this.armBase.mask = null;
+  this.armFlip.mask = null;
+};
+
+arm.prototype.removeClothesChange = function() {
+  for (var i = this.clothesLayer.children.length - 1; i >= 0; i--) {
+      this.clothesLayer.removeChild(this.clothesLayer.children[i]);
+  }
+};
+
 arm.prototype.changeArmClothes = function(id) {
   // expose arm clothes changing API
+  console.log('CHANGING ARMS CLOTHES');
   if (id === '40') {
     // PJs
-    this.armTshirt.alpha = 0;
-    this.armJumper.alpha = 0;
-    this.armPjs.alpha = 1;
+    this.removeClothesChange();
+    this.clothesLayer.addChild(this.armPjs);
     this.armBase.mask = this.mask;
     this.armFlip.mask = this.mask;
 
   } else if (id === '7') {
     // Jumper
-    this.armTshirt.alpha = 0;
-    this.armJumper.alpha = 1;
-    this.armPjs.alpha = 0;
+    this.removeClothesChange();
+    this.clothesLayer.addChild(this.armJumper);
     this.armBase.mask = this.mask;
     this.armFlip.mask = this.mask;
 
   } else if (id === '32') {
     // T-shirt
-    this.armTshirt.alpha = 1;
-    this.armJumper.alpha = 0;
-    this.armPjs.alpha = 0;
+    this.removeClothesChange();
+    this.clothesLayer.addChild(this.armTshirt);
     this.armBase.mask = this.mask;
     this.armFlip.mask = this.mask;
 
   } else if (id === '5') {
-    this.armTshirt.alpha = 0;
-    this.armJumper.alpha = 0;
-    this.armPjs.alpha = 0;
+    this.removeClothesChange();
     this.armBase.mask = null;
     this.armFlip.mask = null;
   } else if (id === '45') {
-    this.armTshirt.alpha = 0;
-    this.armJumper.alpha = 0;
-    this.armPjs.alpha = 0;
+    this.removeClothesChange();
+    this.armBase.mask = null;
+    this.armFlip.mask = null;
+  } else {
+    this.removeClothesChange();
     this.armBase.mask = null;
     this.armFlip.mask = null;
   }
@@ -107,12 +114,12 @@ arm.prototype.changeArmClothes = function(id) {
 arm.prototype.toggleArmHand = function() {
   // expose arm hand flipping API for animations
   if (!this.flipToggle) {
-    this.armFlip.alpha = 1;
-    this.armBase.alpha = 0;
+    this.toucanooLayer.addChild(this.armFlip);
+    this.toucanooLayer.removeChild(this.armBase);
     this.flipToggle = true;
   } else {
-    this.armFlip.alpha = 0;
-    this.armBase.alpha = 1;
+    this.toucanooLayer.removeChild(this.armFlip);
+    this.toucanooLayer.addChild(this.armBase);
     this.flipToggle = false;
   }
 };

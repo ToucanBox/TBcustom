@@ -117,6 +117,12 @@ var init = function () {
   // name
   this.name = 'toucanoo\'s name';
 
+  // mouse/touch event direction tracking
+  this.startX = 0;
+  this.startY = 0;
+
+  this.dX = 0;
+  this.dy = 0;
 
   var self = this;
 
@@ -126,8 +132,8 @@ var init = function () {
     if ( id === '40' || id === '32' || id === '7' ) {
         // CLOTHES
         self.removeChildId(self.clothesLayer, id);
-
-        // change back arms on arms class
+        self.removeAllArmClothes(id);
+        // undo removes clothes on arms TODO
       }
 
       else if ( id === '5' || id === '45' ) {
@@ -171,11 +177,27 @@ var init = function () {
     }
   };
 
+  // register undo click handler
+  this.undoButton = document.getElementById('undo-btn');
+  this.undoButton.addEventListener( 'click' , this.removeLast.bind(this) , false );
 
   this.onStart = function(event) {
-
         event.preventDefault();
 
+        self.dX = 0;
+        self.dy = 0;
+
+        // set initial event position for dx dy
+        if (event.type === 'touchstart') {
+        self.startX = event.touches[0].pageX;
+        self.startY = event.touches[0].pageY;
+        console.log('touch! startX:' + self.startX + ' startY: ' + self.startY);
+      } else {
+        self.startX = event.pageX;
+        self.startY = event.pageY;
+        console.log('click! startX:' + self.startX + ' startY: ' + self.startY);
+
+        // allow mouse drag
         setTimeout(function() {
           try {
             var tempIcon = document.querySelector('.gu-mirror');
@@ -186,155 +208,176 @@ var init = function () {
 
         }, 300);
 
+        // allow mouse click
         self.tempStaticIcon = document.getElementById(event.target.id);
 
         if (self.tempStaticIcon.onmouseup === null) {
             self.tempStaticIcon.onmouseup = self.onEnd.bind(self);
         }
+      }
 
 };
 
+  this.onMove = function(event) {
+    if (event.type === 'touchmove') {
+    self.dX = self.startX - event.touches[0].pageX;
+    self.dY = self.startY - event.touches[0].pageY;
+  } else {
+    self.dX = self.startX - event.pageX;
+    self.dY = self.startY - event.pageY;
+  }
+  };
+// on move
+// set element dx and dy
 
   this.onEnd = function(event) {
-      event.preventDefault();
+    event.preventDefault();
 
-      var rect = self.canvasMain.getBoundingClientRect();
-      var displacementX = rect.left;
-      var displacementY = rect.top;
+    var viewport = self.viewport;
+    var id = event.target.id.toString();
+    console.log('clicked item ID: ' + id);
+    var index = id - 1;
+    var image = self.itemTextures[index];
 
-      var scaleFactor = rect.width / 600;
+    // counter zoom for correct placement
+    var rect = self.canvasMain.getBoundingClientRect();
+    var displacementX = rect.left;
+    var displacementY = rect.top;
 
-      var touchX = 0;
-      var touchY = 0;
+    var scaleFactor = rect.width / 600;
+
+    var touchX = 0;
+    var touchY = 0;
+
+    // set last id for undo
+    self.lastId = id;
+
+    // toucanoo reactions
+    self.initBody.oMouth();
+    setTimeout (function() { self.initBody.sEyes(); }, 700);
+
+    console.log('dX:' + self.dX + ' dY: ' + self.dY);
 
       if (event.type === 'touchend') {
       touchX = (event.changedTouches[0].pageX - displacementX) / scaleFactor;
       touchY = (event.changedTouches[0].pageY - displacementY) / scaleFactor + 50;
+      // only do anything if not a horizontal menu drag.
+      if (self.dY > 50 && self.dY > self.dX) {
+        self.addItem(id, image, touchX, touchY);
+      } else if (Math.abs(self.dX) < 5 && Math.abs(self.dY) < 5) {
+        self.addItem(id, image, touchX, touchY);
+      } else if (self.dX === 0) {
+        self.addItem(id, image, touchX, touchY);
+      }
     } else {
         touchX = (event.pageX - displacementX) / scaleFactor;
         touchY = (event.pageY - displacementY) / scaleFactor + 50;
+        self.addItem(id, image, touchX, touchY);
       }
-
-        var viewport = self.viewport;
-        var id = event.target.id.toString();
-        console.log('clicked item ID: ' + id);
-        var index = id - 1;
-        var image = self.itemTextures[index];
-        var type;
-        var add;
-
-        // set last id
-        self.lastId = id;
-
-        // toucanoo reactions
-        self.initBody.oMouth();
-        setTimeout (function() { self.initBody.sEyes(); }, 700);
-
-
-        // Type logic
-
-        if ( id === '40' || id === '32' || id === '7' ) {
-            // CLOTHES
-            type = 'Clothes';
-            add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
-            self.removeChildType(self.clothesLayer, 'Clothes');
-            self.removeChildType(self.accessoriesLayer, 'Clothes');
-            self.clothesLayer.addChild(add);
-            add.startIntro();
-            this.changeArms(id);
-          }
-
-          else if ( id === '5' || id === '45' ) {
-            // CLOTHES 2
-            type = 'Clothes';
-            add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
-            self.removeChildType(self.accessoriesLayer, 'Clothes');
-            self.removeChildType(self.clothesLayer, 'Clothes');
-            self.accessoriesLayer.addChild(add);
-            add.startIntro();
-            this.changeArms(id);
-          }
-
-          else if ( id === '1' || id === '8' || id === '18' || id === '22' || id === '29' || id === '37' || id === '46' || id === '52' ) {
-            // HAIR
-            type = 'Hair';
-            add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
-            self.removeChildType(self.accessoriesLayer, 'Hair');
-            self.accessoriesLayer.addChild(add);
-            add.startIntro();
-          }
-
-          else if ( id === '2' || id === '11' || id === '21' || id === '25' || id === '48' || id === '55' ) {
-            // HATS
-            type = 'Hats';
-            add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
-            self.removeChildType(self.accessoriesLayer, 'Hats');
-            self.accessoriesLayer.addChild(add);
-            add.startIntro();
-          }
-
-          else if ( id === '6' || id === '10' || id === '20' || id === '31' ) {
-            // SHOES
-            type = 'Shoes';
-            add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
-            self.removeChildType(self.accessoriesLayer, 'Shoes');
-            self.accessoriesLayer.addChild(add);
-            add.startIntro();
-          }
-
-          else if ( id === '3' || id === '27' || id === '33' || id === '38' || id === '47' ) {
-            // FACELAYER
-            type = 'FaceLayer';
-            add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
-            self.faceLayer.addChild(add);
-            add.startIntro();
-          }
-
-          else if ( id === '30' || id === '26' || id === '28' || id === '42' || id === '49' || id === '54' ) {
-            // FACELAYERGLASSES
-            type = 'Glasses';
-            add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
-            self.removeChildType(self.faceLayer, 'Glasses');
-            self.faceLayer.addChild(add);
-            add.startIntro();
-          }
-
-          else if ( id === '39' ) {
-            // LOW ACCESSORIES
-            type = 'Low Accessories';
-            // increase alpha of cape - same ping in animation? TODO
-            // kick off an anime tween
-            self.cape.alpha = 1;
-
-          }
-
-        else {
-          // ACCESSORIES
-          type = 'Accessories';
-          add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
-          self.accessoriesLayer.addChild(add);
-          add.startIntro();
-        }
-
-        // ACCESSORIES 4,7,9,12,13,14,15,16,17,19,23,24,34,36,41,43,44,50,51,53,56,57,58,59,60,61
-        // LOW ACCESSORIES 39
-        // CLOTHES 40,30,32,35,45
-        // HAIR 1,8,18,22,29,37,46,52
-        // HATS 2,11,21,25,48,55
-        // SHOES 6,10,20,31
-        // FACELAYER 3,27,33,38,47
-        // FACELAYERGLASSES 5,26,28,42,49,54
-
 
   };
 
-// register undo click handler
-// undo removes clothes on arms TODO
-this.undoButton = document.getElementById('undo-btn');
-this.undoButton.addEventListener( 'click' , this.removeLast.bind(this) , false );
-
 };
 
+init.prototype.addItem = function (id, image, touchX, touchY) {
+
+  // Type logic for adding items
+
+  var type;
+  var add;
+
+  if ( id === '40' || id === '32' || id === '7' ) {
+      // CLOTHES
+      type = 'Clothes';
+      add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
+      this.removeChildType(this.clothesLayer, 'Clothes');
+      this.removeChildType(this.accessoriesLayer, 'Clothes');
+      this.clothesLayer.addChild(add);
+      add.startIntro();
+      this.changeArms(id);
+    }
+
+    else if ( id === '5' || id === '45' ) {
+      // CLOTHES 2
+      type = 'Clothes';
+      add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
+      this.removeChildType(this.accessoriesLayer, 'Clothes');
+      this.removeChildType(this.clothesLayer, 'Clothes');
+      this.accessoriesLayer.addChild(add);
+      add.startIntro();
+      this.changeArms(id);
+    }
+
+    else if ( id === '1' || id === '8' || id === '18' || id === '22' || id === '29' || id === '37' || id === '46' || id === '52' ) {
+      // HAIR
+      type = 'Hair';
+      add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
+      this.removeChildType(this.accessoriesLayer, 'Hair');
+      this.accessoriesLayer.addChild(add);
+      add.startIntro();
+    }
+
+    else if ( id === '2' || id === '11' || id === '21' || id === '25' || id === '48' || id === '55' ) {
+      // HATS
+      type = 'Hats';
+      add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
+      this.removeChildType(this.accessoriesLayer, 'Hats');
+      this.accessoriesLayer.addChild(add);
+      add.startIntro();
+    }
+
+    else if ( id === '6' || id === '10' || id === '20' || id === '31' ) {
+      // SHOES
+      type = 'Shoes';
+      add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
+      this.removeChildType(this.accessoriesLayer, 'Shoes');
+      this.accessoriesLayer.addChild(add);
+      add.startIntro();
+    }
+
+    else if ( id === '3' || id === '27' || id === '33' || id === '38' || id === '47' ) {
+      // FACELAYER
+      type = 'FaceLayer';
+      add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
+      this.faceLayer.addChild(add);
+      add.startIntro();
+    }
+
+    else if ( id === '30' || id === '26' || id === '28' || id === '42' || id === '49' || id === '54' ) {
+      // FACELAYERGLASSES
+      type = 'Glasses';
+      add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
+      this.removeChildType(this.faceLayer, 'Glasses');
+      this.faceLayer.addChild(add);
+      add.startIntro();
+    }
+
+    else if ( id === '39' ) {
+      // LOW ACCESSORIES
+      type = 'Low Accessories';
+      // increase alpha of cape - same ping in animation? TODO
+      // kick off an anime tween
+      this.cape.alpha = 1;
+
+    }
+
+  else {
+    // ACCESSORIES
+    type = 'Accessories';
+    add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
+    this.accessoriesLayer.addChild(add);
+    add.startIntro();
+  }
+
+  // ACCESSORIES 4,7,9,12,13,14,15,16,17,19,23,24,34,36,41,43,44,50,51,53,56,57,58,59,60,61
+  // LOW ACCESSORIES 39
+  // CLOTHES 40,30,32,35,45
+  // HAIR 1,8,18,22,29,37,46,52
+  // HATS 2,11,21,25,48,55
+  // SHOES 6,10,20,31
+  // FACELAYER 3,27,33,38,47
+  // FACELAYERGLASSES 5,26,28,42,49,54
+};
 
 
 init.prototype.loadTextures = function () {
@@ -360,6 +403,8 @@ init.prototype.populatePalette = function () {
     var node = document.createElement("li");
     node.className = 'js_slide sprite-icons icons-' + i;
     node.id = i;
+    node.addEventListener( 'touchstart' , this.onStart.bind(this) , false );
+    node.addEventListener( 'touchmove' , this.onMove.bind(this) , false );
     node.addEventListener( 'touchend' , this.onEnd.bind(this) , false );
     node.addEventListener( 'mousedown' , this.onStart.bind(this) , false );
     this.iconList.appendChild( node );
@@ -773,6 +818,11 @@ init.prototype.changeArms = function(id) {
   this.initArm.changeArmClothes(id);
 };
 
+init.prototype.removeAllArmClothes = function(id) {
+  // remove arms - functionality in arm constructor
+  this.initArm.removeAllClothes(id);
+};
+
 init.prototype.removeChildType = function(parent, type) {
     for (var i = parent.children.length - 1; i >= 0; i--) {
         if ( parent.children[i].type === type ) {
@@ -831,39 +881,39 @@ init.prototype.printPipe = function() {
 };
 
 init.prototype.reversePrintPipe = function() {
-// restart wave animation is stuck
-  if (this.isArmWaving) {
-  this.animeWave1.play();
-  this.animeWaveCompensate.play();
-  this.animeWaveCompensate2.play();
-  this.animeWaveCompensate3.play();
-  this.animeSkew.play();
-}
+  // restart wave animation is stuck
+    if (this.isArmWaving) {
+    this.animeWave1.play();
+    this.animeWaveCompensate.play();
+    this.animeWaveCompensate2.play();
+    this.animeWaveCompensate3.play();
+    this.animeSkew.play();
+  }
 
-  this.route.position.y += 65;
-  this.route.removeChild(this.banner);
-  this.route.removeChild(this.textName);
-  this.count = 0;
-  this.armCount = 0;
-  this.isCounting = true;
-  this.startFaceAnimate(); // restart start face update loop
-  this.startAnimate(); // restart start main update and rendering loops
+    this.route.position.y += 65;
+    this.route.removeChild(this.banner);
+    this.route.removeChild(this.textName);
+    this.count = 0;
+    this.armCount = 0;
+    this.isCounting = true;
+    this.startFaceAnimate(); // restart start face update loop
+    this.startAnimate(); // restart start main update and rendering loops
 
 
-  // var i;
-  // for (i = 0; i < this.accessoriesLayer.children.length; i++) {
-  //   this.accessoriesLayer.children[i].restoreAnchor();
-  // }
-  //
-  // for (i = 0; i < this.faceLayer.children.length; i++) {
-  //   if (this.faceLayer.children[i].restoreAnchor) {
-  //   this.faceLayer.children[i].restoreAnchor();
-  //   }
-  // }
+    // var i;
+    // for (i = 0; i < this.accessoriesLayer.children.length; i++) {
+    //   this.accessoriesLayer.children[i].restoreAnchor();
+    // }
+    //
+    // for (i = 0; i < this.faceLayer.children.length; i++) {
+    //   if (this.faceLayer.children[i].restoreAnchor) {
+    //   this.faceLayer.children[i].restoreAnchor();
+    //   }
+    // }
 
-  // Restor anchors to draggables TODO
+    // Restor anchors to draggables TODO
 
-  this.viewport.removeChild(this.graphics);
+    this.viewport.removeChild(this.graphics);
 };
 
 init.prototype.setNameText = function(name) {
@@ -886,6 +936,27 @@ init.prototype.printCanvas = function(isSave) {
     openWindow.location.reload();
   }
 
+};
+
+init.prototype.startGirl = function(isSave) {
+console.log('I\'m a girl!');
+var touchX = 0;
+var touchY = 0;
+var clothes = new item('5', this.itemTextures[4], 'Clothes', this.cWidth, this.cHeight, touchX, touchY);
+this.accessoriesLayer.addChild(clothes);
+var hair = new item('37', this.itemTextures[36], 'Hair', this.cWidth, this.cHeight, this.cWidth / 2 - 5, this.cHeight / 2 - 70);
+this.accessoriesLayer.addChild(hair);
+};
+
+init.prototype.startBoy = function(isSave) {
+console.log('I\'m a boy!');
+var touchX = 0;
+var touchY = 0;
+var clothes = new item('32', this.itemTextures[31], 'Clothes', this.cWidth, this.cHeight, touchX, touchY);
+this.clothesLayer.addChild(clothes);
+this.changeArms('32');
+var hair = new item('18', this.itemTextures[17], 'Hair', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight / 2 - 105 );
+this.accessoriesLayer.addChild(hair);
 };
 
 module.exports = new init();

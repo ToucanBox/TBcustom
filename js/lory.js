@@ -333,6 +333,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextCtrl.addEventListener('click', next);
 	        }
 
+	        frame.addEventListener('touchstart', onTouchstart);
+
 	        if (enableMouseEvents) {
 	            frame.addEventListener('mousedown', onTouchstart);
 	            frame.addEventListener('click', onClick);
@@ -428,6 +430,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        // remove event listeners
 	        frame.removeEventListener(prefixes.transitionEnd, onTransitionEnd);
+	        frame.removeEventListener('touchstart', onTouchstart);
+	        frame.removeEventListener('touchmove', onTouchmove);
+	        frame.removeEventListener('touchend', onTouchend);
 	        frame.removeEventListener('mousemove', onTouchmove);
 	        frame.removeEventListener('mousedown', onTouchstart);
 	        frame.removeEventListener('mouseup', onTouchend);
@@ -480,6 +485,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            frame.addEventListener('mouseup', onTouchend);
 	            frame.addEventListener('mouseleave', onTouchend);
 	        }
+
+	        frame.addEventListener('touchmove', onTouchmove);
+	        frame.addEventListener('touchend', onTouchend);
 
 	        var pageX = touches.pageX;
 	        var pageY = touches.pageY;
@@ -672,7 +680,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        hasTranslate3d: hasTranslate3d
 	    };
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())));
 
 /***/ },
 /* 3 */
@@ -759,9 +767,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    e.detail = void 0;
 	  }
 	  return e;
-	}
+	};
 
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())));
 
 /***/ },
 /* 5 */
@@ -869,6 +877,5 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ }
-/******/ ])
+/******/ ]);
 });
-;

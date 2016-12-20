@@ -35,6 +35,11 @@ function canvasSizer() {
       canvas.style.transform =  'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
     }
 
+    if (width < 600) {
+      var thirdPanel = document.getElementById('third-panel');
+      thirdPanel.style.display = 'none';
+    }
+
     console.log('resize');
 
  }
