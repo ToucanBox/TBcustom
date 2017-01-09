@@ -14,7 +14,7 @@ var init = function () {
 
   // init
   this.canvas = document.getElementById('Pcanvas');
-  this.renderer = PIXI.autoDetectRenderer(600, 720, { transparent: true, antialias: true });
+    this.renderer = PIXI.autoDetectRenderer(600, 720, { transparent: true, antialias: true });
   this.canvas.appendChild(this.renderer.view);
   this.renderer.view.setAttribute('class', 'canvas-class');
   this.renderer.view.setAttribute('id', 'output');
@@ -198,15 +198,25 @@ var init = function () {
         console.log('click! startX:' + self.startX + ' startY: ' + self.startY);
 
         // allow mouse drag
-        setTimeout(function() {
-          try {
-            var tempIcon = document.querySelector('.gu-mirror');
-            tempIcon.addEventListener('mouseup', self.onEnd.bind(self), false);
-          }  catch(err) {
-                console.log('click, not drag: ' + err.message);
-            }
+        // setTimeout(function() {
+        //   try {
+        //     var tempIcon = document.querySelector('.gu-mirror');
+        //     tempIcon.addEventListener('mouseup', self.onEnd.bind(self), false);
+        //   }  catch(err) {
+        //         console.log('click, not drag: ' + err.message);
+        //     }
+        //
+        // }, 300);
 
-        }, 300);
+        // mouse drag robust
+        try {
+          var body = document.getElementsByTagName('body')[0];
+          // body.addEventListener('mouseup', self.onEnd.bind(self), false);
+          body.onmouseup = self.onEnd.bind(self);
+        }  catch(err) {
+              console.log('mouse drag error: ' + err.message);
+          }
+
 
         // allow mouse click
         self.tempStaticIcon = document.getElementById(event.target.id);
@@ -258,17 +268,23 @@ var init = function () {
 
     console.log('dX:' + self.dX + ' dY: ' + self.dY);
 
+    if (event.type === 'mouseup') {
+    // remove temp mouseup from body
+    var body = document.getElementsByTagName('body')[0];
+    body.onmouseup = null;
+    }
+
       if (event.type === 'touchend') {
       touchX = (event.changedTouches[0].pageX - displacementX) / scaleFactor;
       touchY = (event.changedTouches[0].pageY - displacementY) / scaleFactor + 50;
       // only do anything if not a horizontal menu drag.
-      if (self.dY > 50 && self.dY > self.dX) {
+      if (self.dY > 100 && 4 * self.dY > Math.abs(self.dX)) {
         self.addItem(id, image, touchX, touchY);
-      } else if (Math.abs(self.dX) < 5 && Math.abs(self.dY) < 5) {
+      } else if (Math.abs(self.dX) < 5 && Math.abs(self.dY) < 5) { // touch non-drag
         self.addItem(id, image, touchX, touchY);
-      } else if (self.dX === 0) {
+      } else if (self.dX === 0) { // touch non-drag 2
         self.addItem(id, image, touchX, touchY);
-      }
+      } // else do nothing on touch
     } else {
         touchX = (event.pageX - displacementX) / scaleFactor;
         touchY = (event.pageY - displacementY) / scaleFactor + 50;
@@ -276,6 +292,7 @@ var init = function () {
       }
 
   };
+
 
 };
 
@@ -397,8 +414,6 @@ init.prototype.populatePalette = function () {
    removeOnSpill: true
   });
 
-  // remove objects with class gu-mirror
-
   for (var i = 1; i <= 61; i++) {
     var node = document.createElement("li");
     node.className = 'js_slide sprite-icons icons-' + i;
@@ -413,35 +428,46 @@ init.prototype.populatePalette = function () {
 };
 
 init.prototype.initSlider = function (width, height) {
-
+    var slider;
     var multiSlides = document.querySelector('.slider');
+
+    // invisible back button to indicate scroll right not possible
+    var backBtn = document.getElementsByClassName('prev')[0];
+
     if (400 >= width) {
 
-    lory(multiSlides, {
-        infinite: 0,
+    slider = lory(multiSlides, {
         enableMouseEvents: true,
         slidesToScroll: 3,
         rewind: true
     });
 
   } else if (800 >= width && width >= 400) {
-      lory(multiSlides, {
-          infinite: 0,
+      slider = lory(multiSlides, {
           enableMouseEvents: true,
           slidesToScroll: 4,
           rewind: true
       });
     } else if (width >= 800){
-      lory(multiSlides, {
-          infinite: 0,
+      slider = lory(multiSlides, {
           enableMouseEvents: true,
           slidesToScroll: 8,
           rewind: true
       });
     }
 
+    this.noBk = function(event) {
+      var currentIndex = slider.returnIndex();
+      console.log(currentIndex);
+      if (currentIndex === 0) {
+        backBtn.style.visibility = 'hidden';
+      } else {
+        backBtn.style.visibility = 'visible';
+      }
+    };
 
-  // scroll left and then right to demonstrate TODO
+    multiSlides.addEventListener( 'after.lory.slide' , this.noBk.bind(this));
+
 
 
 };
@@ -933,7 +959,7 @@ init.prototype.printCanvas = function(isSave) {
     openWindow.document.write('<img src="' + this.canvasData + '" style="display: block; position: absolute; left:54%; top:50%; transform: scale(1.1) translate(-50%, -50%); -webkit-transform: transform: scale(1.1) translate(-50%, -50%);"/>');
     if (!isSave) {
     openWindow.print();
-    openWindow.location.reload();
+    // openWindow.location.reload();
   }
 
 };

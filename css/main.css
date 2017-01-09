@@ -336,6 +336,7 @@ background-color: #d34836;
 
    .prev {
        left: 0;
+       visibility: hidden;
    }
 
    .next svg, .prev svg {

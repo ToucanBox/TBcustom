@@ -65,8 +65,10 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
         this.addChild(this.drawHit);
 
       } else {
-
-        if (this.width > 80 && this.height > 80) {
+        if (this.width > 100) {
+          this.hitSizer = 80;
+        }
+        else if (this.width > 80 && this.height > 80) {
           this.hitSizer = this.width / 2.5;
         } else {
           this.hitSizer = 40;
@@ -159,16 +161,16 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
           this.position.x = newPosition.x - this.dragPoint.x;
           this.position.y = newPosition.y - this.dragPoint.y;
 
-          if (this.position.x >= 560 || this.position.x <= 40) {
-            this.drawHit.beginFill(0xff393a);
-            this.drawHit.alpha = 0.05;
-            this.drawHit.drawShape(this.visualHit);
-          }
-
-          if (this.position.y >= 760 || this.position.y <= 40) {
-            this.drawHit.beginFill(0xff393a);
-            this.drawHit.alpha = 0.05;
-            this.drawHit.drawShape(this.visualHit);          }
+          // if (this.position.x >= 560 || this.position.x <= 40) {
+          //   this.drawHit.beginFill(0xff393a);
+          //   this.drawHit.alpha = 0.05;
+          //   this.drawHit.drawShape(this.visualHit);
+          // }
+          //
+          // if (this.position.y >= 760 || this.position.y <= 40) {
+          //   this.drawHit.beginFill(0xff393a);
+          //   this.drawHit.alpha = 0.05;
+          //   this.drawHit.drawShape(this.visualHit);          }
 
           // stars particle effect TODO
       }

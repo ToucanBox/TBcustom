@@ -1,47 +1,53 @@
 //canvasSizer
 
- window.addEventListener('resize', canvasSizer);
+var canvasSizer = function () {
 
-function canvasSizer() {
-    var height = window.innerHeight;
-    var width = window.innerWidth;
-    var canvas = document.getElementById('canvas-main');
+};
 
-    // Share container position
-    var socialBtns = document.getElementById('social-container');
-    socialBtns.style.top = height / 2 - 105 - 65 + 'px';
+canvasSizer.prototype.resize = function() {
 
-    var intendedHeight = height - 180;
+  this.canvas = document.getElementById('canvas-main');
 
-    var scale = intendedHeight/720;
+  // Share container position
+  this.socialBtns = document.getElementById('social-container');
+  this.socialBtns.style.top = this.height / 2 - 105 - 65 + 'px';
 
-    var screenRatio = width/height;
 
-    if (screenRatio > 1) {
-      canvas.style.webkitTransform = 'scale(' + scale + ',' + scale + ')';
-      canvas.style.MozTransform = 'scale(' + scale + ',' + scale + ')';
-      canvas.style.msTransform = 'scale(' + scale + ',' + scale + ')';
-      canvas.style.OTransform = 'scale(' + scale + ',' + scale + ')';
-      canvas.style.transform =  'scale(' + scale + ',' + scale + ')';
-    }
+  this.height = window.innerHeight;
+  this.width = window.innerWidth;
 
-    var smallScreenScale = 0.78;
+  this.intendedHeight = this.height - 180;
 
-    if (screenRatio > 0.65 && width <= 320) {
-      canvas.style.webkitTransform = 'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
-      canvas.style.MozTransform = 'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
-      canvas.style.msTransform = 'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
-      canvas.style.OTransform = 'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
-      canvas.style.transform =  'scale(' + smallScreenScale + ',' + smallScreenScale + ')';
-    }
+  this.scale = this.intendedHeight/720;
 
-    if (width < 600) {
-      var thirdPanel = document.getElementById('third-panel');
-      thirdPanel.style.display = 'none';
-    }
+  this.screenRatio = this.width/this.height;
 
-    console.log('resize');
+  if (this.screenRatio > 1) {
+    this.canvas.style.webkitTransform = 'scale(' + this.scale + ',' + this.scale + ')';
+    this.canvas.style.MozTransform = 'scale(' + this.scale + ',' + this.scale + ')';
+    this.canvas.style.msTransform = 'scale(' + this.scale + ',' + this.scale + ')';
+    this.canvas.style.OTransform = 'scale(' + this.scale + ',' + this.scale + ')';
+    this.canvas.style.transform =  'scale(' + this.scale + ',' + this.scale + ')';
+  }
 
- }
+  this.smallScreenScale = 0.78;
 
- canvasSizer();
+  if (this.screenRatio > 0.65 && this.width <= 320) {
+    this.canvas.style.webkitTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
+    this.canvas.style.MozTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
+    this.canvas.style.msTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
+    this.canvas.style.OTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
+    this.canvas.style.transform =  'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
+  }
+
+  if (this.width < 600) {
+    this.thirdPanel = document.getElementById('third-panel');
+    this.thirdPanel.style.display = 'none';
+  }
+
+  console.log('resize');
+
+
+};
+
+module.exports = new canvasSizer();

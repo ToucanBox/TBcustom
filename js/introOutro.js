@@ -5,11 +5,12 @@
 var PIXI = require('pixi.js');
 var anime = require('animejs');
 
-var io = function (init) {
+var io = function (init, canvasSizer) {
 
   var self = this;
 
   this.init = init;
+  this.canvasSizer = canvasSizer;
 
   //fader
   this.fader = document.getElementById('fader');
@@ -63,10 +64,10 @@ var io = function (init) {
   };
 
   this.onOutroClickSave = function(event) {
-  this.doPrintBtn.style.display = 'none';
-  this.doSaveBtn.style.display = 'inline';
-  this.saveTitle.innerHTML = 'Ready to Save';
-  this.saveText.innerHTML = 'Great, your Toucanoo looks fantastic! Type their name in the box below and it will appear on the image. Click save to save the image for printing later. Visit <a href="http://www.toucanbox.com">www.toucanbox.com</a> for more creative adventures!';
+  self.doPrintBtn.style.display = 'none';
+  self.doSaveBtn.style.display = 'inline';
+  self.saveTitle.innerHTML = 'Ready to Save';
+  self.saveText.innerHTML = 'Great, your Toucanoo looks fantastic! Type their name in the box below and it will appear on the image. Click save to save the image for printing later. Visit <a href="http://www.toucanbox.com">www.toucanbox.com</a> for more creative adventures!';
   self.fader.setAttribute('class', 'fade-bk');
   self.printModal.setAttribute('class', 'modal callout');
   self.init.printPipe();
@@ -77,23 +78,26 @@ var io = function (init) {
   this.output = document.getElementById('output');
   this.preview = document.getElementById('preview-output');
 
-  // name text input
-  this.textInput = document.getElementById('text-field');
-  this.useValue = function(event) {
-    var nameValue = self.textInput.value;
-    self.addText(nameValue);
-    self.doPreview();
-  };
-  this.textInput.onchange = this.useValue;
-  this.textInput.onblur = this.useValue;
-  this.textInput.onkeyup = this.useValue;
-
   // Print save and back buttons
   this.doPrintBtn = document.getElementById('print-do');
   this.doPrintBtn.addEventListener( 'click' , function() {self.doPrint();}, false );
   this.doPrint = function(event) {
     self.init.printCanvas(false);
   };
+
+  // name text input
+  this.textInput = document.getElementById('text-field');
+  this.useValue = function(event) {
+    var nameValue = self.textInput.value;
+    self.addText(nameValue);
+    self.doPreview();
+    if (event.keyCode == 13) {
+       self.doPrintBtn.click();
+     }
+  };
+  this.textInput.onchange = this.useValue;
+  this.textInput.onblur = this.useValue;
+  this.textInput.onkeyup = this.useValue;
 
   this.doSaveBtn = document.getElementById('save-do');
   this.doSaveBtn.addEventListener( 'click' , function() {self.doSave();}, false );
@@ -108,10 +112,12 @@ var io = function (init) {
     self.printModal.setAttribute('class', 'modal callout hidden');
     self.fader.setAttribute('class', 'fade-bk hidden');
 
-    this.doPrintBtn.style.display = 'inline';
-    this.doSaveBtn.style.display = 'none';
-    this.saveTitle.innerHTML = 'Ready to Print';
-    this.saveText.innerHTML = 'Great, your Toucanoo looks fantastic! Type their name in the box below and it will appear on the print-out. Click print to send it to your printer. Visit <a href="http://www.toucanbox.com">www.toucanbox.com</a> for more creative adventures!';
+    self.doPrintBtn.style.display = 'inline';
+    self.doSaveBtn.style.display = 'none';
+    self.saveTitle.innerHTML = 'Ready to Print';
+    self.saveText.innerHTML = 'Great, your Toucanoo looks fantastic! Type their name in the box below and it will appear on the print-out. Click print to send it to your printer. Visit <a href="http://www.toucanbox.com">www.toucanbox.com</a> for more creative adventures!';
+
+    self.canvasSizer.resize();
 
   };
 
