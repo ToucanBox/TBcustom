@@ -29,30 +29,99 @@
 <div class="home-bottom"></div>
 
 <div class="home-background">
+  <header role="banner">
+      <div class="container">
+
+          <a href="http://www.toucanbox.com" class="logo" itemscope itemtype="http://schema.org/Organization">toucanBox</a>
+
+          <!-- <a href="http://www.toucanbox.com/account" class="menu-toggle">Login</a> -->
+
+          <!-- <nav>
+              <a class="nav-quiz" href="http://www.toucanbox.com/quiz"><span>Quiz</span></a>
+              <a class="nav-shop" href="http://shop.toucanbox.com"><span>Shop</span></a>
+              <a class="nav-login" href="http://www.toucanbox.com/account"><span>Login</span></a>
+          </nav> -->
+
+      </div>
+
+      <b class="decoration splat-large-yellow"></b>
+      <b class="decoration header-one"></b>
+      <b class="decoration header-two"></b>
+      <b class="decoration header-three"></b>
+      <b class="decoration header-four"></b>
+
+  </header>
   <div class="home-fader"></div>
 </div>
 
 <div class="grid-container">
 
   <div class="home-boxes first-box">
-
+    <blockquote class="home-title">Personalise Your Own Toucanoo Colouring Sheet</blockquote>
+    <p>Choose clothes, hair and accessories, even give them a name. Make something truly yours. Then print it on your home printer or save for later.</p>
   </div>
 
   <div class="home-boxes second-box">
-
+    <div class="home-panel-wrap">
+            <div id="touch-panel" class="home-panel hidden">
+                <div class="callout"><h3>1</h3></div>
+                <div class="img-sizer">
+                <img class="intro-gifs" src="/img/web/touch.gif">
+                </div>
+                <p>Make it your own</p>
+            </div>
+            <div id="mouse-panel" class="home-panel hidden">
+                <div class="callout"><h3>1</h3></div>
+                <div class="img-sizer">
+                <img class="intro-gifs" src="/img/web/mouse.gif">
+                </div>
+                <p>Make it your own</p>
+            </div>
+            <div class="home-panel">
+                <div class="callout"><h3>2</h3></div>
+                <div class="img-sizer">
+                <img class="intro-gifs" src="/img/web/print.gif">
+                </div>
+                <p>Print at home</p>
+            </div>
+        </div>
   </div>
 
   <div class="home-boxes third-box">
-    <h3>Ready?</h3>
-    <h3>Let's get started</h3>
-    <div class="style-block"></div>
-    <a href="#" class="btn default">Girl</a>
-    <a href="#" class="btn default">Boy</a>
+    <div id="CTA">
+      <h3>Ready?</h3>
+      <h3>Let's get started</h3>
+      <div class="style-block"></div>
+      <br>
+    </div>
+    <a href="#" class="btn danger">Girl</a>
+    <a href="#" class="btn danger  ">Boy</a>
   </div>
 
 </div>
 
+<script>
+var touchPanel = document.getElementById('touch-panel');
+var mousePanel = document.getElementById('mouse-panel');
 
+window.addEventListener('resize', checkDevice, false);
+
+checkDevice();
+
+function checkDevice() {
+if (window.innerWidth <= 1024) {
+  touchPanel.className = 'home-panel';
+  mousePanel.className = 'home-panel hidden';
+  console.log('touch');
+} else {
+  mousePanel.className = 'home-panel';
+  touchPanel.className = 'home-panel hidden';
+  console.log('mouse');
+}
+
+}
+
+</script>
 
 
 

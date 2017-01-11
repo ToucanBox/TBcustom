@@ -205,10 +205,6 @@ img {
   padding: 20px 20px 0 20px;
 }
 
-.intro-gifs {
-  /*padding: 0 10px 0 10px;*/
-}
-
 .modal-menu {
   position: absolute;
   left: 0;
@@ -230,7 +226,7 @@ img {
 }
 
 #text-field {
-  max-width: 400px;
+  max-width: 200px;
   margin: 0 auto;
   text-align: center;
 }
