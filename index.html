@@ -105,8 +105,10 @@ var touchPanel = document.getElementById('touch-panel');
 var mousePanel = document.getElementById('mouse-panel');
 
 window.addEventListener('resize', checkDevice, false);
+window.addEventListener('resize', equalHeights, false);
 
 checkDevice();
+equalHeights();
 
 function checkDevice() {
 if (window.innerWidth <= 1024) {
@@ -119,6 +121,25 @@ if (window.innerWidth <= 1024) {
   console.log('mouse');
 }
 
+}
+
+
+function equalHeights(className) {
+  if (window.innerWidth >= 900) {
+    var findClass = document.getElementsByClassName('home-boxes');
+    var tallest = 0;
+  // Loop over matching divs
+  for(i = 0; i < findClass.length; i++)
+  {
+    var ele = findClass[i];
+    var eleHeight = ele.offsetHeight;
+    tallest = (eleHeight>tallest ? eleHeight : tallest);
+  }
+  for(i = 0; i < findClass.length; i++)
+  {
+    findClass[i].style.height = tallest + "px";
+  }
+}
 }
 
 </script>
