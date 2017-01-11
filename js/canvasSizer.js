@@ -40,11 +40,6 @@ canvasSizer.prototype.resize = function() {
     this.canvas.style.transform =  'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
   }
 
-  if (this.width < 600) {
-    this.thirdPanel = document.getElementById('third-panel');
-    this.thirdPanel.style.display = 'none';
-  }
-
   console.log('resize');
 
 

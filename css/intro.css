@@ -1,0 +1,163 @@
+/*! CSS */
+
+html, body {
+  width:  100%;
+  height: 100%;
+  margin: 0px;
+  /*background-color: #f1f1f1;*/
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -ms-overflow-style: hidden;
+  -ms-scroll-chaining: none;
+}
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+header {
+  z-index: 1 !important;
+}
+
+img {
+  border-bottom: 0;
+  margin: 0;
+}
+
+.home-background {
+  background-image: url('../img/web/background.jpg');
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 70%;
+  top: 0;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background-size: cover;
+  background-position: 50% 60%;
+}
+
+.home-fader {
+  background-image: linear-gradient(-180deg, rgba(251,247,243,0.00) 1%, #FBF7F4 97%);
+  height: 200px;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+}
+
+.home-bottom {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: #fbf7f4;
+}
+
+.grid-container {
+  position: absolute;
+  display: block;
+  width: 100%;
+  max-width: 1024px;
+  text-align: center;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  bottom: 10%;
+}
+
+.home-boxes {
+  text-align: center;
+  float: left;
+  display: block;
+  background-color: #fff;
+  border-radius: 6px;
+  border-bottom: 2px solid #d4d2d3;
+  padding: 10px 30px 20px;
+  margin: 20px 0 0;
+  margin: 0 0.8% 0 0.8%;
+}
+
+.first-box {
+  width: 31%;
+}
+
+.second-box {
+  width: 31%;
+}
+
+.third-box {
+  width: 31%;
+}
+
+@media screen and (max-width: 900px) {
+  .home-background {
+    height: 40%;
+    background-position: 50% 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .home-background {
+    background-image: url('../img/web/background-small.jpg');
+    height: 40%;
+    background-position: 50% 80%;
+  }
+}
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.transparent {
+  opacity: 0.5;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}

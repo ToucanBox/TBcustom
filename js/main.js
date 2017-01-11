@@ -45,6 +45,7 @@ function onAssetsLoaded() {
 
   var introOutro = require('/Users/anthonymoles/Documents/TBcustom/js/introOutro.js');
   var io = new introOutro(init, canvasSizer);
+  io.getStarted();
 
   // Remove loader overlay
   var loader = document.getElementById('busy');

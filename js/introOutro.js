@@ -1,7 +1,5 @@
 //Intro Outro controller
 
-// TODO render large size for print - different from preview
-
 var PIXI = require('pixi.js');
 var anime = require('animejs');
 
@@ -15,15 +13,8 @@ var io = function (init, canvasSizer) {
   //fader
   this.fader = document.getElementById('fader');
 
-  //modals
-  this.introModal = document.getElementById('intro-modal');
+  //modal
   this.printModal = document.getElementById('print-modal');
-
-  //intro buttons
-  this.startBtn = document.getElementById('get-started-girl');
-  this.startBtn.addEventListener( 'click' , function() {self.onIntroClickGirl();}, false );
-  this.startBtn = document.getElementById('get-started-boy');
-  this.startBtn.addEventListener( 'click' , function() {self.onIntroClickBoy();}, false );
 
   //outtro buttons
   this.endBtn = document.getElementById('print-btn');
@@ -34,27 +25,6 @@ var io = function (init, canvasSizer) {
   //outro Save modal swaps
   this.saveTitle = document.getElementById('print-modal-title');
   this.saveText = document.getElementById('print-modal-blurb');
-
-  //let's get started
-  this.onIntroClickGirl = function(event) {
-  self.fader.setAttribute('class', 'fade-bk hidden');
-  self.introModal.setAttribute('class', 'modal callout hidden');
-  self.init.startFaceAnimate(); // start face update loop
-  self.init.startAnimate(); // start main update and rendering loops
-  self.init.startGirl();
-
-  // waking scene and animations TODO
-  };
-
-  this.onIntroClickBoy = function(event) {
-  self.fader.setAttribute('class', 'fade-bk hidden');
-  self.introModal.setAttribute('class', 'modal callout hidden');
-  self.init.startFaceAnimate(); // start face update loop
-  self.init.startAnimate(); // start main update and rendering loops
-  self.init.startBoy();
-
-  // waking scene and animations TODO
-  };
 
   this.onOutroClick = function(event) {
   self.fader.setAttribute('class', 'fade-bk');
@@ -132,7 +102,48 @@ io.prototype.doPreview = function() {
 
   this.canvasData = this.init.getCanvasImage();
   this.preview.src = this.canvasData;
+};
 
+//let's get started
+// waking scene and animations TODO
+
+io.prototype.onIntroGirl = function() {
+this.init.startFaceAnimate(); // start face update loop
+this.init.startAnimate(); // start main update and rendering loops
+this.init.startGirl();
+};
+
+io.prototype.onIntroBoy = function() {
+this.init.startFaceAnimate();
+this.init.startAnimate();
+this.init.startBoy();
+};
+
+io.prototype.onIntroNeutralPjs = function() { //TODO
+this.init.startFaceAnimate();
+this.init.startAnimate();
+this.init.startPj();
+};
+
+io.prototype.onIntroNeutralNaked = function() {
+this.init.startFaceAnimate();
+this.init.startAnimate();
+};
+
+
+io.prototype.getStarted = function() {
+
+  this.gender = window.location.search.substring(1);
+  console.log(this.gender);
+  if (this.gender === 'girl') {
+    this.onIntroGirl();
+  } else if (this.gender === 'boy') {
+    this.onIntroBoy();
+  } else if (this.gender === 'pjs') {
+    this.onIntroNeutralPjs();
+  } else {
+    this.onIntroNeutralNaked();
+  }
 };
 
 module.exports = io;

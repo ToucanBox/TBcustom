@@ -225,7 +225,7 @@ var init = function () {
             self.tempStaticIcon.onmouseup = self.onEnd.bind(self);
         }
       }
-
+      return true;
 };
 
   this.onMove = function(event) {
@@ -290,6 +290,8 @@ var init = function () {
         touchY = (event.pageY - displacementY) / scaleFactor + 50;
         self.addItem(id, image, touchX, touchY);
       }
+
+      return true;
 
   };
 
@@ -522,9 +524,6 @@ init.prototype.animate = function () {
   // renderTexture
   this.renderer.render(this.initArm.armCanvas, this.rt);
 
-  // render loop
-  requestAnimationFrame(this.animate.bind(this));
-
   // loop animating toucanoo route
   this.route.rotation = 0.01 * Math.sin(this.count);
   this.route.scale.y = 1 + 0.015 * Math.sin(2.5 * this.count);
@@ -573,6 +572,8 @@ init.prototype.animate = function () {
 
     } // loop all points end
 
+    // render loop
+    requestAnimationFrame(this.animate.bind(this));
 
   // render the stage
   this.renderer.render(this.stage);
@@ -673,7 +674,7 @@ init.prototype.startArmWiggle = function() {
     this.isArmWiggle = true;
     this.isArmSwing = false;
     this.isArmSpiral = false;
-    setTimeout (function() { self.startArmWiggle(); }, 4000);
+    this.outArmWiggle = setTimeout (function() { self.startArmWiggle(); }, 4000);
   } else if (this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && !this.isArmSpiral) {
     // console.log('wiggle off');
     this.isArmWaving = false;
@@ -695,7 +696,7 @@ init.prototype.startArmSwing = function() {
     this.isArmWiggle = false;
     this.isArmSwing = true;
     this.isArmSpiral = false;
-    setTimeout (function() { self.startArmSwing(); }, 5300);
+    this.outArmSwing = setTimeout (function() { self.startArmSwing(); }, 5300);
   } else if (!this.isArmWiggle && !this.isArmWaving && this.isArmSwing && !this.isArmSpiral) {
     // console.log('swing off');
     this.isArmWaving = false;
@@ -722,7 +723,7 @@ init.prototype.startArmSpiral = function() {
     this.isArmWiggle = false;
     this.isArmSwing = false;
     this.isArmSpiral = true;
-    setTimeout (function() { self.startArmSpiral(); }, 10000);
+    this.outArmSpiral = setTimeout (function() { self.startArmSpiral(); }, 10000);
   } else if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && this.isArmSpiral) {
     // console.log('spiral off');
     this.isArmWaving = false;
@@ -875,13 +876,16 @@ init.prototype.printPipe = function() {
   this.animeWaveCompensate2.pause();
   this.animeWaveCompensate3.pause();
   this.animeSkew.pause();
-  clearInterval(this.startWave);
+  clearInterval(this.this);
   clearInterval(this.startWiggle);
   clearInterval(this.startSwing);
+  clearInterval(this.outArmWiggle);
+  clearInterval(this.outArmSwing);
   // Face
   clearInterval(this.startBlink);
   clearInterval(this.startSwapMouth);
   clearInterval(this.startFaceMove);
+  // No clear callbacks for face - avoid blink catch
 
   this.route.position.y -= 65;
   this.route.addChild(this.banner);
@@ -965,24 +969,35 @@ init.prototype.printCanvas = function(isSave) {
 };
 
 init.prototype.startGirl = function(isSave) {
-console.log('I\'m a girl!');
-var touchX = 0;
-var touchY = 0;
-var clothes = new item('5', this.itemTextures[4], 'Clothes', this.cWidth, this.cHeight, touchX, touchY);
-this.accessoriesLayer.addChild(clothes);
-var hair = new item('37', this.itemTextures[36], 'Hair', this.cWidth, this.cHeight, this.cWidth / 2 - 5, this.cHeight / 2 - 70);
-this.accessoriesLayer.addChild(hair);
+  console.log('I\'m a girl!');
+  var touchX = 0;
+  var touchY = 0;
+  var clothes = new item('5', this.itemTextures[4], 'Clothes', this.cWidth, this.cHeight, touchX, touchY);
+  this.accessoriesLayer.addChild(clothes);
+  var hair = new item('37', this.itemTextures[36], 'Hair', this.cWidth, this.cHeight, this.cWidth / 2 - 5, this.cHeight / 2 - 70);
+  this.accessoriesLayer.addChild(hair);
 };
 
 init.prototype.startBoy = function(isSave) {
-console.log('I\'m a boy!');
-var touchX = 0;
-var touchY = 0;
-var clothes = new item('32', this.itemTextures[31], 'Clothes', this.cWidth, this.cHeight, touchX, touchY);
-this.clothesLayer.addChild(clothes);
-this.changeArms('32');
-var hair = new item('18', this.itemTextures[17], 'Hair', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight / 2 - 105 );
-this.accessoriesLayer.addChild(hair);
+  console.log('I\'m a boy!');
+  var touchX = 0;
+  var touchY = 0;
+  var clothes = new item('32', this.itemTextures[31], 'Clothes', this.cWidth, this.cHeight, touchX, touchY);
+  this.clothesLayer.addChild(clothes);
+  this.changeArms('32');
+  var hair = new item('18', this.itemTextures[17], 'Hair', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight / 2 - 105 );
+  this.accessoriesLayer.addChild(hair);
+};
+
+init.prototype.startPj = function(isSave) {
+  console.log('I\'m in Pjs!');
+  var touchX = 0;
+  var touchY = 0;
+  var clothes = new item('40', this.itemTextures[39], 'Clothes', this.cWidth, this.cHeight, touchX, touchY);
+  this.clothesLayer.addChild(clothes);
+  this.changeArms('40');
+  var hair = new item('55', this.itemTextures[54], 'Hats', this.cWidth, this.cHeight, this.cWidth / 2 + 23, this.cHeight / 2 - 133 );
+  this.accessoriesLayer.addChild(hair);
 };
 
 module.exports = new init();
