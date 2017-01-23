@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
 // Load Assets
 var loader = PIXI.loader;
 loader
-    .add('base', './TBcustom/img/canvas/base-arms.json')
-    .add('items', './TBcustom/img/canvas/items.json')
+    .add('base', '/TBcustom/img/canvas/base-arms.json')
+    .add('items', '/TBcustom/img/canvas/items.json')
     .on("progress", loadProgressHandler)
     .load(onAssetsLoaded);
 
