@@ -35,15 +35,16 @@ img {
   height: 30%;
   top: 0;
   left: 50%;
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   background-size: cover;
   background-position: 50% 80%;
 }
 
 .home-fader {
+  background-image: -webkit-linear-gradient(top, rgba(251,247,243,0.00) 1%, #FBF7F4 97%);
   background-image: linear-gradient(-180deg, rgba(251,247,243,0.00) 1%, #FBF7F4 97%);
-  height: 200px;
+  height: 100px;
   bottom: 0;
   width: 100%;
   position: absolute;
@@ -65,8 +66,8 @@ img {
   max-width: 400px;
   text-align: center;
   left: 50%;
-  -ms-transform: translateX(-50.75%);
-  transform: translateX(-50.75%);
+  -webkit-transform: translateX(-50.75%);
+          transform: translateX(-50.75%);
   bottom: 0.5%;
 }
 
@@ -88,7 +89,7 @@ img {
 .home-title {
   font-family: Mr Lucky FillAndOutline;
   font-size: 40px;
-  margin: 0 0 0.5em 0;
+  margin: 0.3em 0 0.5em 0;
 }
 
 .second-box {
@@ -143,34 +144,35 @@ img {
 }
 
 .logo {
-  background: url('../img/web/logo_white-cloud.png') no-repeat 0 0 !important;
-  background-size: 292.5px !important;
-  height: 137px !important;
-  transform: scale(0.75);
-  position: relative;
-  top: -2em;
-  right: 2em;
-}
-
-@media screen and (max-width: 599px) {
-  .logo {
-    display: none !important;
-  }
+  display: none !important;
+  background: transparent !important;
 }
 
 @media screen and (max-width: 360px) {
   .grid-container {
-    -ms-transform: translateX(-50%) translateY(10%) scale(0.8);
-    transform: translateX(-50%) translateY(10%) scale(0.8);
+    -webkit-transform: translateX(-50%) translateY(10%) scale(0.8);
+            transform: translateX(-50%) translateY(10%) scale(0.8);
   }
 }
 
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 599px) {
   .home-background {
     background-image: url('../img/web/background.jpg');
     height: 40%;
     background-position: 50% 90%;
+  }
+
+  .logo {
+    display: block !important;
+    background: url('../img/web/logo_white-cloud.png') no-repeat 0 0 !important;
+    background-size: 292.5px !important;
+    height: 137px !important;
+    -webkit-transform: scale(0.75);
+            transform: scale(0.75);
+    position: relative;
+    top: -2em;
+    right: 2em;
   }
 }
 
@@ -196,12 +198,17 @@ img {
     width: 100%;
     max-width: 1280px;
     bottom: 10%;
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
   }
 
   .logo {
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  .home-fader {
+    height: 200px;
   }
 }
 

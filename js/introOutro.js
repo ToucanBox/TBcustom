@@ -13,46 +13,45 @@ var io = function (init, canvasSizer) {
   //fader
   this.fader = document.getElementById('fader');
 
-  //modal
+  //modals
   this.printModal = document.getElementById('print-modal');
+  this.adviceModal = document.getElementById('advice-modal');
 
-  //outtro buttons
+  //outtro button
   this.endBtn = document.getElementById('print-btn');
-  this.endBtnSave = document.getElementById('save-btn');
   this.endBtn.addEventListener( 'click' , function() {self.onOutroClick();}, false );
-  this.endBtnSave.addEventListener( 'click' , function() {self.onOutroClickSave();}, false );
-
-  //outro Save modal swaps
-  this.saveTitle = document.getElementById('print-modal-title');
-  this.saveText = document.getElementById('print-modal-blurb');
 
   this.onOutroClick = function(event) {
   self.fader.setAttribute('class', 'fade-bk');
-  self.printModal.setAttribute('class', 'modal callout');
+  self.printModal.setAttribute('class', 'modal');
   self.init.printPipe();
   self.doPreview();
   };
 
-  this.onOutroClickSave = function(event) {
-  self.doPrintBtn.style.display = 'none';
-  self.doSaveBtn.style.display = 'inline';
-  self.saveTitle.innerHTML = 'Ready to Save';
-  self.saveText.innerHTML = 'Great, your Toucanoo looks fantastic! Type their name in the box below and it will appear on the image. Click save to save the image for printing later. Visit <a href="http://www.toucanbox.com">www.toucanbox.com</a> for more creative adventures!';
-  self.fader.setAttribute('class', 'fade-bk');
-  self.printModal.setAttribute('class', 'modal callout');
-  self.init.printPipe();
-  self.doPreview();
+  //advice button
+  this.adviceBtn = document.getElementById('print-advice');
+  this.adviceBtn.addEventListener( 'click' , function() {self.showAdvice();}, false );
+
+  this.showAdvice = function() {
+    self.adviceModal.setAttribute('class', 'modal');
+  };
+
+  // advice back
+  this.adviceBack = document.getElementById('advice-back-do');
+  this.adviceBack.addEventListener( 'click' , function() {self.closeAdvice();}, false );
+  this.closeAdvice = function() {
+    self.adviceModal.setAttribute('class', 'modal hidden');
   };
 
   // print preview
   this.output = document.getElementById('output');
   this.preview = document.getElementById('preview-output');
 
-  // Print save and back buttons
+  // Print and back buttons
   this.doPrintBtn = document.getElementById('print-do');
   this.doPrintBtn.addEventListener( 'click' , function() {self.doPrint();}, false );
   this.doPrint = function(event) {
-    self.init.printCanvas(false);
+    self.init.printCanvas();
   };
 
   // name text input
@@ -69,23 +68,14 @@ var io = function (init, canvasSizer) {
   this.textInput.onblur = this.useValue;
   this.textInput.onkeyup = this.useValue;
 
-  this.doSaveBtn = document.getElementById('save-do');
-  this.doSaveBtn.addEventListener( 'click' , function() {self.doSave();}, false );
-  this.doSave = function(event) {
-    self.init.printCanvas(true);
-  };
-
   this.doBackBtn = document.getElementById('back-do');
   this.doBackBtn.addEventListener( 'click' , function() {self.doBack();}, false );
   this.doBack = function(event) {
     self.init.reversePrintPipe();
-    self.printModal.setAttribute('class', 'modal callout hidden');
+    self.printModal.setAttribute('class', 'modal hidden');
     self.fader.setAttribute('class', 'fade-bk hidden');
 
     self.doPrintBtn.style.display = 'inline';
-    self.doSaveBtn.style.display = 'none';
-    self.saveTitle.innerHTML = 'Ready to Print';
-    self.saveText.innerHTML = 'Great, your Toucanoo looks fantastic! Type their name in the box below and it will appear on the print-out. Click print to send it to your printer. Visit <a href="http://www.toucanbox.com">www.toucanbox.com</a> for more creative adventures!';
 
     self.canvasSizer.resize();
 
@@ -108,26 +98,27 @@ io.prototype.doPreview = function() {
 // waking scene and animations TODO
 
 io.prototype.onIntroGirl = function() {
-this.init.startFaceAnimate(); // start face update loop
-this.init.startAnimate(); // start main update and rendering loops
 this.init.startGirl();
+// this.init.startFaceAnimate(); // start face update loop
+// this.init.startAnimate(); // start main update and rendering loops
 };
 
+
 io.prototype.onIntroBoy = function() {
-this.init.startFaceAnimate();
-this.init.startAnimate();
 this.init.startBoy();
+// this.init.startFaceAnimate();
+// this.init.startAnimate();
 };
 
 io.prototype.onIntroNeutralPjs = function() { //TODO
-this.init.startFaceAnimate();
-this.init.startAnimate();
+// this.init.startFaceAnimate();
+// this.init.startAnimate();
 this.init.startPj();
 };
 
 io.prototype.onIntroNeutralNaked = function() {
-this.init.startFaceAnimate();
-this.init.startAnimate();
+// this.init.startFaceAnimate();
+// this.init.startAnimate();
 };
 
 

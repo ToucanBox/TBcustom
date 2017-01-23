@@ -6,18 +6,29 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
+    <title>Personalised colouring page by toucanBox</title>
+    <meta name="description" content="Personalise your Toucanoo colouring sheet on PC or mobile. Add clothes, hair and accessories and give them a name. Then print it on your home printer (you can also save a PDF). Are you ready for your next toucanBox creative adventure?">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
     <meta name="msapplication-tap-highlight" content="no" />
     <link rel="stylesheet" type="text/css" href="https://www.toucanbox.com/css/v3/main.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/app.css">
 
     <meta property="og:title" content="Personalised colouring page by toucanBox"/>
     <meta property="og:image" content="/img/web/touch.gif"/>
     <meta property="og:site_name" content="Personalised colouring page by toucanBox"/>
     <meta property="og:description" content="Personalise your Toucanoo colouring sheet on PC or mobile. Add clothes, hair and accessories and give them a name. Then print it on your home printer (you can also save a PDF). Are you ready for your next toucanBox creative adventure?"/>
 
+        <!-- Hotjar Tracking Code for http://tbcustom.herokuapp.com -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:387095,hjsv:5};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
 
 </head>
 
@@ -94,7 +105,6 @@
             <div class="space"></div>
             <div class="menu">
               <button id="undo-btn" class="danger">Undo</button>
-              <button id="save-btn" class="default">Save</button>
               <button id="print-btn" class="success">Print</button>
             </div>
 
@@ -105,7 +115,7 @@
     </div>
 
     <div id="social-container">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.tbcustom.herokuapp.com" class="social-btns" id="facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.toucanbox.com" class="social-btns" id="facebook">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 51.2 51.2">
           <path d="M20.41,18.47H16.09v7h4.31V46.2h8.3V25.42h5.79l.62-7H28.7v-4c0-1.64.33-2.29,1.91-2.29h4.49V5H29.36c-6.17,0-9,2.72-9,7.92v5.55Z" fill="#fff"/>
         </svg>
@@ -130,7 +140,7 @@
               fill="#fff"/>
         </svg>
       </a>
-      <a href="https://plus.google.com/share?url=http%3A//www.tbcustom.herokuapp.com" class="social-btns" id="googleplus">
+      <a href="https://plus.google.com/share?url=http%3A//www.toucanbox.com" class="social-btns" id="googleplus">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 51.2 51.2">
           <path
               d="M17.21,24.73v4.41h7.3c-.3,1.89-2.21,5.55-7.3,5.55a8.13,8.13,0,0,1,0-16.25,7.26,7.26,0,0,1,5.13,2l3.49-3.36a12.34,12.34,0,0,0-8.62-3.36,12.87,12.87,0,0,0,0,25.74c7.43,0,12.36-5.22,12.36-12.58a11.83,11.83,0,0,0-.2-2.13Zm31.26,3.68H43v5.52H39.28V28.41H33.76V24.73h5.52V19.21H43v5.52h5.52v3.68"
@@ -143,16 +153,18 @@
 
 <div id="fader" class="fade-bk hidden"></div>
 
-<div id="print-modal" class="modal callout hidden">
+<div id="print-modal" class="modal hidden">
     <div class="modal-contents">
         <div class="preview">
           <img src="" id="preview-output">
         </div>
-        <h2 id="print-modal-title">Ready to print</h2>
-        <p id="print-modal-blurb">Great, your Toucanoo looks fantastic! Type their name in the box below and it will appear on the print-out. Click print to send it to your printer. Visit <a href="http://www.toucanbox.com">www.toucanbox.com</a> for more creative adventures!</p>
+        <h2>AMAZING WORK!</h2>
+        <p>Woah, your toucanoo looks incredible! Nice one! Pop your name in below and it will appear on your design. Click <a id="print-advice" href="#">here</a> for advice on printing.</p>
+
         <div class="panel-wrap">
+          <div class="style-block"></div>
         <div class="input-wrap panel">
-          <label for="text_field">Name your toucanoo:</label>
+          <label for="text_field">My toucanoo is called:</label>
           <input type="text" id="text-field">
         </div>
       </div>
@@ -160,8 +172,27 @@
     <div class="modal-menu">
       <button id="back-do" class="danger">Back</button>
       <button id="print-do" class="success">Print</button>
-      <button id="save-do" class="success">Save</button>
       </div>
+</div>
+
+<div id="advice-modal" class="modal hidden">
+    <div class="modal-contents">
+      <h2 id="print-modal-title">Printing advice</h2>
+      <br>
+      <div class="modal-ul">
+        <p>We know it’s not always easy to get printing working on your phone, tablet and even your desktop! Here’s some advice to give you a helping hand:</p>
+      <ul>
+        <li>If your device supports it, you can print to a digital PDF document. You can then email this document to yourself and print later. </li>
+        <li>Some printers even support printing email attachments directly, you just need to find the email address of the printer.</li>
+        <li>If you don’t have the option to print, or to save a PDF you can save an image. On a touch device, touch and hold the image until a menu appears (right click if using a mouse). Choose the option to save/download the image. </li>
+        <li>If none of the above work you can save the print preview image on the previous page. Even though the image looks small it’s the same as the full size image, just scaled down.</li>
+        <li>Any questions or troubleshooting (or praise) please email <a href="mailto:ant@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">ant@toucanbox.com</a></li>
+      </ul>
+    </div>
+    </div>
+    <div class="modal-menu">
+      <button id="advice-back-do" class="danger">Back</button>
+    </div>
 </div>
 
     <a href="http://www.toucanbox.com/account" class="over-icon"> </a>

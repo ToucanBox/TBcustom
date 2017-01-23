@@ -75,6 +75,10 @@ var init = function () {
   this.armLayer = new PIXI.Container();
   this.route.addChild(this.armLayer);
 
+  // Dress layer
+  this.dressLayer = new PIXI.Container();
+  this.route.addChild(this.dressLayer);
+
   // Accessories layer
   this.accessoriesLayer = new PIXI.Container();
   this.route.addChild(this.accessoriesLayer);
@@ -138,7 +142,7 @@ var init = function () {
 
       else if ( id === '5' || id === '45' ) {
         // CLOTHES 2
-        self.removeChildId(self.accessoriesLayer, id);
+        self.removeChildId(self.dressLayer, id);
       }
 
       else if ( id === '1' || id === '8' || id === '18' || id === '22' || id === '29' || id === '37' || id === '46' || id === '52' ) {
@@ -197,21 +201,9 @@ var init = function () {
         self.startY = event.pageY;
         console.log('click! startX:' + self.startX + ' startY: ' + self.startY);
 
-        // allow mouse drag
-        // setTimeout(function() {
-        //   try {
-        //     var tempIcon = document.querySelector('.gu-mirror');
-        //     tempIcon.addEventListener('mouseup', self.onEnd.bind(self), false);
-        //   }  catch(err) {
-        //         console.log('click, not drag: ' + err.message);
-        //     }
-        //
-        // }, 300);
-
         // mouse drag robust
         try {
           var body = document.getElementsByTagName('body')[0];
-          // body.addEventListener('mouseup', self.onEnd.bind(self), false);
           body.onmouseup = self.onEnd.bind(self);
         }  catch(err) {
               console.log('mouse drag error: ' + err.message);
@@ -259,17 +251,10 @@ var init = function () {
     var touchX = 0;
     var touchY = 0;
 
-    // set last id for undo
-    self.lastId = id;
-
-    // toucanoo reactions
-    self.initBody.oMouth();
-    setTimeout (function() { self.initBody.sEyes(); }, 700);
-
     console.log('dX:' + self.dX + ' dY: ' + self.dY);
 
-    if (event.type === 'mouseup') {
     // remove temp mouseup from body
+    if (event.type === 'mouseup') {
     var body = document.getElementsByTagName('body')[0];
     body.onmouseup = null;
     }
@@ -278,20 +263,49 @@ var init = function () {
       touchX = (event.changedTouches[0].pageX - displacementX) / scaleFactor;
       touchY = (event.changedTouches[0].pageY - displacementY) / scaleFactor + 50;
       // only do anything if not a horizontal menu drag.
-      if (self.dY > 100 && 4 * self.dY > Math.abs(self.dX)) {
+      if (self.dY > 85) {
+
+        // set last id for undo
+        self.lastId = id;
+        // toucanoo reactions
+        self.initBody.oMouth();
+        setTimeout (function() { self.initBody.sEyes(); }, 700);
+
         self.addItem(id, image, touchX, touchY);
+
       } else if (Math.abs(self.dX) < 5 && Math.abs(self.dY) < 5) { // touch non-drag
+
+        // set last id for undo
+        self.lastId = id;
+        // toucanoo reactions
+        self.initBody.oMouth();
+        setTimeout (function() { self.initBody.sEyes(); }, 700);
+
         self.addItem(id, image, touchX, touchY);
+
       } else if (self.dX === 0) { // touch non-drag 2
+
+        // set last id for undo
+        self.lastId = id;
+        // toucanoo reactions
+        self.initBody.oMouth();
+        setTimeout (function() { self.initBody.sEyes(); }, 700);
+
         self.addItem(id, image, touchX, touchY);
+
       } // else do nothing on touch
-    } else {
+    } else { // mouse event
+
+        // set last id for undo
+        self.lastId = id;
+        // toucanoo reactions
+        self.initBody.oMouth();
+        setTimeout (function() { self.initBody.sEyes(); }, 700);
+
         touchX = (event.pageX - displacementX) / scaleFactor;
         touchY = (event.pageY - displacementY) / scaleFactor + 50;
         self.addItem(id, image, touchX, touchY);
       }
-
-      return true;
 
   };
 
@@ -310,7 +324,7 @@ init.prototype.addItem = function (id, image, touchX, touchY) {
       type = 'Clothes';
       add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
       this.removeChildType(this.clothesLayer, 'Clothes');
-      this.removeChildType(this.accessoriesLayer, 'Clothes');
+      this.removeChildType(this.dressLayer, 'Clothes');
       this.clothesLayer.addChild(add);
       add.startIntro();
       this.changeArms(id);
@@ -320,9 +334,9 @@ init.prototype.addItem = function (id, image, touchX, touchY) {
       // CLOTHES 2
       type = 'Clothes';
       add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
-      this.removeChildType(this.accessoriesLayer, 'Clothes');
+      this.removeChildType(this.dressLayer, 'Clothes');
       this.removeChildType(this.clothesLayer, 'Clothes');
-      this.accessoriesLayer.addChild(add);
+      this.dressLayer.addChild(add);
       add.startIntro();
       this.changeArms(id);
     }
@@ -439,20 +453,20 @@ init.prototype.initSlider = function (width, height) {
     if (400 >= width) {
 
     slider = lory(multiSlides, {
-        enableMouseEvents: true,
+        enableMouseEvents: false,
         slidesToScroll: 3,
         rewind: true
     });
 
   } else if (800 >= width && width >= 400) {
       slider = lory(multiSlides, {
-          enableMouseEvents: true,
+          enableMouseEvents: false,
           slidesToScroll: 4,
           rewind: true
       });
     } else if (width >= 800){
       slider = lory(multiSlides, {
-          enableMouseEvents: true,
+          enableMouseEvents: false,
           slidesToScroll: 8,
           rewind: true
       });
@@ -478,6 +492,8 @@ init.prototype.makeTestFrame = function () {
 
   //TESTING frame
 
+  this.stage.removeChild(this.viewport);
+
   this.graphics = new PIXI.Graphics();
   // this.graphics.lineStyle(1, 0xffd900, 1);
   this.graphics.beginFill(0xFFFFFF);
@@ -488,8 +504,9 @@ init.prototype.makeTestFrame = function () {
   this.graphics.lineTo(0, 720);
   this.graphics.lineTo(0, 0);
 
-  this.viewport.addChild(this.graphics);
-
+  this.stage.addChild(this.graphics);
+  this.stage.addChild(this.viewport);
+  console.log('adding frame');
 };
 
 init.prototype.startAnimate = function () {
@@ -500,9 +517,9 @@ init.prototype.startAnimate = function () {
   this.animateWave();
   }
   var init = this;
-  init.startWave = setInterval(function() { init.animateWave(); }, anime.random(16000, 22000));
-  init.startWiggle = setInterval(function() { init.startArmWiggle(); }, anime.random(10000, 14000));
-  init.startSwing = setInterval(function() { init.startArmSwing(); }, anime.random(20000, 25000));
+  this.startWave = setInterval(function() { init.animateWave(); }, anime.random(16000, 22000));
+  this.startWiggle = setInterval(function() { init.startArmWiggle(); }, anime.random(10000, 14000));
+  this.startSwing = setInterval(function() { init.startArmSwing(); }, anime.random(20000, 25000));
   // setInterval(function() { init.startArmSpiral(); }, 100000);
 
 };
@@ -869,6 +886,7 @@ init.prototype.removeChildId = function(parent, id) {
 };
 
 init.prototype.printPipe = function() {
+  this.makeTestFrame();
   // allow animations - pause armcount - set armcount to paused value
   this.isCounting = false;
   this.animeWave1.pause();
@@ -876,7 +894,7 @@ init.prototype.printPipe = function() {
   this.animeWaveCompensate2.pause();
   this.animeWaveCompensate3.pause();
   this.animeSkew.pause();
-  clearInterval(this.this);
+  clearInterval(this.startWave);
   clearInterval(this.startWiggle);
   clearInterval(this.startSwing);
   clearInterval(this.outArmWiggle);
@@ -913,11 +931,11 @@ init.prototype.printPipe = function() {
 init.prototype.reversePrintPipe = function() {
   // restart wave animation is stuck
     if (this.isArmWaving) {
-    this.animeWave1.play();
-    this.animeWaveCompensate.play();
-    this.animeWaveCompensate2.play();
-    this.animeWaveCompensate3.play();
-    this.animeSkew.play();
+    this.animeWave1.restart();
+    this.animeWaveCompensate.restart();
+    this.animeWaveCompensate2.restart();
+    this.animeWaveCompensate3.restart();
+    this.animeSkew.restart();
   }
 
     this.route.position.y += 65;
@@ -943,7 +961,7 @@ init.prototype.reversePrintPipe = function() {
 
     // Restor anchors to draggables TODO
 
-    this.viewport.removeChild(this.graphics);
+    this.stage.removeChild(this.graphics);
 };
 
 init.prototype.setNameText = function(name) {
@@ -957,14 +975,15 @@ init.prototype.getCanvasImage = function() {
  return this.canvasData;
 };
 
-init.prototype.printCanvas = function(isSave) {
+init.prototype.printCanvas = function() {
 
     var openWindow = window.open();
+    openWindow.document.open();
     openWindow.document.write('<img src="' + this.canvasData + '" style="display: block; position: absolute; left:54%; top:50%; transform: scale(1.1) translate(-50%, -50%); -webkit-transform: transform: scale(1.1) translate(-50%, -50%);"/>');
-    if (!isSave) {
+    openWindow.document.close();
+    openWindow.focus();
     openWindow.print();
     // openWindow.location.reload();
-  }
 
 };
 
@@ -973,7 +992,7 @@ init.prototype.startGirl = function(isSave) {
   var touchX = 0;
   var touchY = 0;
   var clothes = new item('5', this.itemTextures[4], 'Clothes', this.cWidth, this.cHeight, touchX, touchY);
-  this.accessoriesLayer.addChild(clothes);
+  this.dressLayer.addChild(clothes);
   var hair = new item('37', this.itemTextures[36], 'Hair', this.cWidth, this.cHeight, this.cWidth / 2 - 5, this.cHeight / 2 - 70);
   this.accessoriesLayer.addChild(hair);
 };

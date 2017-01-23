@@ -8,17 +8,11 @@ var anime = require('animejs');
 
 document.addEventListener('DOMContentLoaded', function(event) {
 
-// logo or not
-if (599 >= window.innerWidth) {
-  var logo = document.querySelector('.logo');
-  logo.style.opacity = 0;
-}
-
 // Load Assets
 var loader = PIXI.loader;
 loader
-    .add('base', '../img/canvas/base-arms.json')
-    .add('items', '../img/canvas/items.json')
+    .add('base', '/TBcustom/img/canvas/base-arms.json')
+    .add('items', '/TBcustom/img/canvas/items.json')
     .on("progress", loadProgressHandler)
     .load(onAssetsLoaded);
 
@@ -31,7 +25,6 @@ function onAssetsLoaded() {
   // Screen size event
   var canvasSizer = require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
   canvasSizer.resize();
-  window.addEventListener('resize', canvasSizer.resize);
 
   // Initialiser object (module exports new init)
   var init = require('/Users/anthonymoles/Documents/TBcustom/js/init.js');
@@ -47,12 +40,18 @@ function onAssetsLoaded() {
   var io = new introOutro(init, canvasSizer);
   io.getStarted();
 
-  // Remove loader overlay
-  var loader = document.getElementById('busy');
-  loader.style.display = 'none';
-
-  // refire resize - unpredictable results from single firing
   canvasSizer.resize();
+  setTimeout(function(){
+    init.startFaceAnimate();
+    init.startAnimate();
+
+    // Remove loader overlay
+    var loader = document.getElementById('busy');
+    loader.style.display = 'none';
+
+    console.log('its new');
+  }, 500);
+
 
   } // end load init ------------------------------------------------------
 
