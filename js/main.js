@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 var loader = PIXI.loader;
 loader
     .add('base', '../img/canvas/base-arms.json')
-    .add('items', '../img/canvas/items.json')
+    .add('items', '../img/canvas/items.json') 
     .on("progress", loadProgressHandler)
     .load(onAssetsLoaded);
 
