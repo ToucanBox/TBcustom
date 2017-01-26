@@ -162,7 +162,7 @@ var init = function () {
         self.removeChildId(self.accessoriesLayer, id);
       }
 
-      else if ( id === '3' || id === '27' || id === '33' || id === '38' || id === '47' ) {
+      else if ( id === '3' || id === '27' || id === '33' || id === '38' || id === '47' || id === '13') {
         // FACELAYER
         self.removeChildId(self.faceLayer, id);
       }
@@ -368,7 +368,7 @@ init.prototype.addItem = function (id, image, touchX, touchY) {
       add.startIntro();
     }
 
-    else if ( id === '3' || id === '27' || id === '33' || id === '38' || id === '47' ) {
+    else if ( id === '3' || id === '27' || id === '33' || id === '38' || id === '47' || id === '13') {
       // FACELAYER
       type = 'FaceLayer';
       add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
@@ -402,13 +402,13 @@ init.prototype.addItem = function (id, image, touchX, touchY) {
     add.startIntro();
   }
 
-  // ACCESSORIES 4,7,9,12,13,14,15,16,17,19,23,24,34,36,41,43,44,50,51,53,56,57,58,59,60,61
+  // ACCESSORIES 4,7,9,12,14,15,16,17,19,23,24,34,36,41,43,44,50,51,53,56,57,58,59,60,61
   // LOW ACCESSORIES 39
   // CLOTHES 40,30,32,35,45
   // HAIR 1,8,18,22,29,37,46,52
   // HATS 2,11,21,25,48,55
   // SHOES 6,10,20,31
-  // FACELAYER 3,27,33,38,47
+  // FACELAYER 3,27,33,38,47 13(eye)
   // FACELAYERGLASSES 5,26,28,42,49,54
 };
 

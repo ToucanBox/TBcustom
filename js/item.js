@@ -61,7 +61,7 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
         this.drawHit = new PIXI.Graphics();
         this.drawHit.beginFill(0xFFE448);
         this.drawHit.drawShape(this.visualHit);
-        this.drawHit.alpha = 0.5;
+        this.drawHit.alpha = 0;
         this.addChild(this.drawHit);
 
       } else {
@@ -78,7 +78,7 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
         this.drawHit = new PIXI.Graphics();
         this.drawHit.beginFill(0xFFE448);
         this.drawHit.drawShape(this.visualHit);
-        this.drawHit.alpha = 0.5;
+        this.drawHit.alpha = 0;
         this.addChild(this.drawHit);
 
     }
@@ -99,6 +99,7 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
 
 
     requestAnimationFrame(this.animate.bind(this));
+    this.fadeHit();
   };
 
   item.prototype = Object.create(PIXI.Sprite.prototype);
@@ -187,9 +188,9 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
       if (!this.dragging && this.anchors)
       {
         // occasionally fade in drag targets
-        if (this.type !== 'Clothes' && this.type !== 'Low Accessories' ) {
-        this.drawHit.alpha = 0 - 0.5 * Math.sin(4 * this.count);
-        }
+        // if (this.type !== 'Clothes' && this.type !== 'Low Accessories' ) {
+        // this.drawHit.alpha = 0 - 0.5 * Math.sin(2 * this.count);
+        // }
     }
 
       // if id=13, googly eyes, rotate
@@ -215,6 +216,19 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
 
   this.intro.play();
 
+};
+
+item.prototype.fadeHit = function() {
+  this.fader = anime({
+  targets: this.drawHit,
+  alpha: 0.5,
+  duration: 1000,
+  autoplay: true,
+  delay: 3000,
+  easing: 'easeInOutQuad',
+  direction: 'alternate',
+  loop: true
+  });
 };
 
 

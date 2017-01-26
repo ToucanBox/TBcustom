@@ -82,6 +82,10 @@ var io = function (init, canvasSizer) {
   };
 
 
+  // intro demoSequence
+  setTimeout(function() { self.demoSequence(); }, 4000);
+
+
 };
 
 io.prototype.addText = function(text) {
@@ -119,6 +123,70 @@ this.init.startPj();
 io.prototype.onIntroNeutralNaked = function() {
 // this.init.startFaceAnimate();
 // this.init.startAnimate();
+};
+
+io.prototype.demoSequence = function () {
+
+  console.log('hello demo');
+
+  var self = this;
+
+  this.indicator = document.getElementById('indicator');
+  this.indicator.style.display = 'block';
+
+  // calc transform to move to center of screen
+  var centreX = window.innerWidth / 2;
+  var centreY = window.innerHeight / 2;
+  var origX = this.indicator.offsetLeft;
+  var origY = this.indicator.offsetTop;
+  var xTransition = centreX - origX;
+  var yTransition = centreY - origY;
+
+  var intro = anime({
+  targets: this.indicator,
+  scale: {
+    value: 0.97,
+    duration: 300,
+    delay: 800,
+    easing: 'easeInOutExpo'
+  },
+  translateX: {
+    value: xTransition,
+    duration: 1800,
+    delay: 1100,
+    easing: 'easeInOutQuad'
+  },
+  translateY: {
+    value: yTransition,
+    duration: 1800,
+    delay: 1100,
+    easing: 'easeInOutQuad'
+  },
+  opacity: {
+    value: 1,
+    duration: 900,
+    easing: 'easeInOutExpo'
+  },
+  complete: function() {
+    anime.remove(intro);
+    var introEnd = anime({
+      targets: '.indicatorImg',
+      opacity: 0,
+      duration: 1100,
+      easing: 'easeInOutExpo',
+      scale: {
+        value: 1.03,
+        duration: 300,
+        easing: 'easeInOutExpo'
+      },
+      autoplay: true,
+      complete: function() {self.indicator.style.display = 'none';}
+    });
+}
+});
+
+
+
 };
 
 

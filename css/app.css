@@ -294,6 +294,30 @@ background-color: #517fa4;
 background-color: #d34836;
 }
 
+#indicator {
+  display: none;
+  z-index: 99;
+  position: absolute;
+  bottom: -40px;
+  right: 20%;
+  opacity: 0;
+}
+
+#mouse {
+  display: none;
+  transform: scale(0.5);
+}
+
+@media screen and (min-width: 1050px) {
+  #mouse {
+    display: block;
+  }
+
+  #finger {
+    display: none;
+  }
+}
+
    /* ==========================================================================
      LORY
      ========================================================================== */

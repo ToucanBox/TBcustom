@@ -148,11 +148,23 @@ img {
   background: transparent !important;
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 350px) {
   .grid-container {
     -webkit-transform: translateX(-50%) translateY(10%) scale(0.8);
             transform: translateX(-50%) translateY(10%) scale(0.8);
   }
+}
+
+@media screen and (max-width: 450px) {
+#CTA {
+  display: none;
+}
+.third-box {
+  background-color: transparent;
+  border-bottom: none;
+  padding: 0;
+  margin: 0;
+}
 }
 
 
@@ -180,6 +192,11 @@ img {
   .home-background {
     height: 70%;
     background-position: 50% 60%;
+  }
+
+  .intro-text {
+    font-size: 14pt;
+    margin: 0;
   }
 
   .third-box {
@@ -212,16 +229,48 @@ img {
   }
 }
 
-@media screen and (max-height: 760px) {
-#CTA {
+#social-container {
   display: none;
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  z-index: 99;
 }
-.third-box {
-  background-color: transparent;
-  border-bottom: none;
-  padding: 0;
-  margin: 0;
+
+.social-btns {
+  position: relative;
+  display: block;
+  border-radius: 50%;
+  background-color: #F4821F;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 0 0 #D1D1CF;
+  padding: 4px;
+  margin-bottom: 5px;
 }
+
+.social-btns:hover{
+    opacity: 0.75;
+ }
+
+#facebook {
+background-color: #3b5998;
+}
+
+#twitter {
+background-color: #55ACEE;
+}
+
+#pinterest {
+background-color: #cb2027;
+}
+
+#instagram {
+background-color: #517fa4;
+}
+
+#googleplus {
+background-color: #d34836;
 }
 
 
