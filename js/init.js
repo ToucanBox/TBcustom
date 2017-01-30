@@ -118,6 +118,9 @@ var init = function () {
   // last added id
   this.lastId = 0;
 
+  // current MS id
+  this.currentId = 0;
+
   // name
   this.name = 'toucanoo\'s name';
 
@@ -201,6 +204,10 @@ var init = function () {
         self.startY = event.pageY;
         console.log('click! startX:' + self.startX + ' startY: ' + self.startY);
 
+        // backup handling of MS glitch
+        self.currentId = event.target.id.toString();
+        console.log('setting MS backup ID to: ' + self.currentId);
+
         // mouse drag robust
         try {
           var body = document.getElementsByTagName('body')[0];
@@ -237,6 +244,10 @@ var init = function () {
 
     var viewport = self.viewport;
     var id = event.target.id.toString();
+    if (id === undefined) {
+      id = self.currentId;
+      console.log('MS backup triggered, ID:' + id);
+    }
     console.log('clicked item ID: ' + id);
     var index = id - 1;
     var image = self.itemTextures[index];
