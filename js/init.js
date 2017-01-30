@@ -194,6 +194,9 @@ var init = function () {
         self.dX = 0;
         self.dy = 0;
 
+        self.currentId = event.target.id.toString();
+        console.log('setting global ID: ' + self.currentId);
+
         // set initial event position for dx dy
         if (event.type === 'touchstart') {
         self.startX = event.touches[0].pageX;
@@ -204,10 +207,6 @@ var init = function () {
         self.startY = event.pageY;
         console.log('click! startX:' + self.startX + ' startY: ' + self.startY);
 
-        // backup handling of MS glitch
-        self.currentId = event.target.id.toString();
-        console.log('setting MS backup ID to: ' + self.currentId);
-
         // mouse drag robust
         try {
           var body = document.getElementsByTagName('body')[0];
@@ -215,7 +214,6 @@ var init = function () {
         }  catch(err) {
               console.log('mouse drag error: ' + err.message);
           }
-
 
         // allow mouse click
         self.tempStaticIcon = document.getElementById(event.target.id);
@@ -243,11 +241,7 @@ var init = function () {
     event.preventDefault();
 
     var viewport = self.viewport;
-    var id = event.target.id.toString();
-    if (id === undefined) {
-      id = self.currentId;
-      console.log('MS backup triggered, ID:' + id);
-    }
+    var id = self.currentId;
     console.log('clicked item ID: ' + id);
     var index = id - 1;
     var image = self.itemTextures[index];
