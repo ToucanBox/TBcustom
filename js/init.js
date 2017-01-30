@@ -7,6 +7,7 @@ var dragula = require('dragula');
 var body = require('/Users/anthonymoles/Documents/TBcustom/js/body.js');
 var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
 var arm = require('/Users/anthonymoles/Documents/TBcustom/js/arm.js');
+var jsPDF = require('jspdf');
 
 
 
@@ -218,7 +219,6 @@ var init = function () {
             self.tempStaticIcon.onmouseup = self.onEnd.bind(self);
         }
       }
-      return true;
 };
 
   this.onMove = function(event) {
@@ -256,8 +256,8 @@ var init = function () {
 
     // remove temp mouseup from body
     if (event.type === 'mouseup') {
-    var body = document.getElementsByTagName('body')[0];
-    body.onmouseup = null;
+    // var body = document.getElementsByTagName('body')[0];
+    document.body.onmouseup = null;
     }
 
       if (event.type === 'touchend') {
@@ -978,13 +978,35 @@ init.prototype.getCanvasImage = function() {
 
 init.prototype.printCanvas = function() {
 
+
+    console.log('print canvas');
+
     var openWindow = window.open();
     openWindow.document.open();
-    openWindow.document.write('<img src="' + this.canvasData + '" style="display: block; position: absolute; left:54%; top:50%; transform: scale(1.1) translate(-50%, -50%); -webkit-transform: transform: scale(1.1) translate(-50%, -50%);"/>');
+    openWindow.document.write('<img src="' + this.canvasData + '" style=" display: block; width: 660px; height: 792; margin: 0 auto;"/>');
     openWindow.document.close();
     openWindow.focus();
     openWindow.print();
     // openWindow.location.reload();
+
+    // left:54%; top:50%; transform: scale(1.1) translate(-50%, -50%); -webkit-transform: transform: scale(1.1) translate(-50%, -50%);
+
+      // var print = new jsPDF();
+      // console.log(print);
+      // print.addImage(this.canvasData, 'JPEG', 15, 30, 180, 216);
+      // print.autoPrint();
+
+
+};
+
+init.prototype.saveCanvas = function() {
+
+      console.log('save canvas');
+
+      var save = new jsPDF();
+      console.log(save);
+      save.addImage(this.canvasData, 'JPEG', 24, 30, 162, 194.4);
+      save.save('mytoucanoo.pdf');
 
 };
 

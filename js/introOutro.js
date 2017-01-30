@@ -47,11 +47,17 @@ var io = function (init, canvasSizer) {
   this.output = document.getElementById('output');
   this.preview = document.getElementById('preview-output');
 
-  // Print and back buttons
+  // Print, PDF and back buttons
   this.doPrintBtn = document.getElementById('print-do');
   this.doPrintBtn.addEventListener( 'click' , function() {self.doPrint();}, false );
   this.doPrint = function(event) {
     self.init.printCanvas();
+  };
+
+  this.doPDFBtn = document.getElementById('save-do');
+  this.doPDFBtn.addEventListener( 'click' , function() {self.doPDF();}, false );
+  this.doPDF = function(event) {
+    self.init.saveCanvas();
   };
 
   // name text input
@@ -74,8 +80,6 @@ var io = function (init, canvasSizer) {
     self.init.reversePrintPipe();
     self.printModal.setAttribute('class', 'modal hidden');
     self.fader.setAttribute('class', 'fade-bk hidden');
-
-    self.doPrintBtn.style.display = 'inline';
 
     self.canvasSizer.resize();
 
