@@ -208,12 +208,8 @@ var init = function () {
         console.log('click! startX:' + self.startX + ' startY: ' + self.startY);
 
         // mouse drag robust
-        try {
-          var body = document.getElementsByTagName('body')[0];
-          body.onmouseup = self.onEnd.bind(self);
-        }  catch(err) {
-              console.log('mouse drag error: ' + err.message);
-          }
+        var body = document.getElementById('app');
+        body.onmouseup = self.onEnd.bind(self);
 
         // allow mouse click
         self.tempStaticIcon = document.getElementById(event.target.id);
