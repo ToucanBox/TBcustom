@@ -183,7 +183,7 @@ var init = function () {
 
   // register undo click handler
   this.undoButton = document.getElementById('undo-btn');
-  this.undoButton.addEventListener( 'click' , this.removeLast.bind(this) , false );
+  this.undoButton.addEventListener( 'click' , function(event) { this.removeLast(); }.bind(this) , false );
 
   this.onStart = function(event) {
         event.preventDefault();
@@ -434,10 +434,10 @@ init.prototype.populatePalette = function () {
     var node = document.createElement("li");
     node.className = 'js_slide sprite-icons icons-' + i;
     node.id = i;
-    node.addEventListener( 'touchstart' , this.onStart.bind(this) , false );
-    node.addEventListener( 'touchmove' , this.onMove.bind(this) , false );
-    node.addEventListener( 'touchend' , this.onEnd.bind(this) , false );
-    node.addEventListener( 'mousedown' , this.onStart.bind(this) , false );
+    node.addEventListener( 'touchstart' , function(event) { this.onStart(event); }.bind(this) , false );
+    node.addEventListener( 'touchmove' , function(event) { this.onMove(event); }.bind(this) , false );
+    node.addEventListener( 'touchend' , function(event) { this.onEnd(event); }.bind(this) , false );
+    node.addEventListener( 'mousedown' , function(event) { this.onStart(event); }.bind(this) , false );
     this.iconList.appendChild( node );
   }
 
@@ -482,7 +482,7 @@ init.prototype.initSlider = function (width, height) {
       }
     };
 
-    multiSlides.addEventListener( 'after.lory.slide' , this.noBk.bind(this));
+    multiSlides.addEventListener( 'after.lory.slide' , function(event) { this.noBk(); }.bind(this));
 
 
 

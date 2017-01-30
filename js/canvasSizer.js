@@ -75,8 +75,8 @@ var canvasSizer = function () {
 
   };
 
-  window.addEventListener('resize', this.resize.bind(this, event));
-  window.addEventListener('orientationchange', this.resize.bind(this, event));
+  window.addEventListener('resize', function(event) { this.resize(); }.bind(this));
+  window.addEventListener('orientationchange', function(event) { this.resize(); }.bind(this));
 
 
 };

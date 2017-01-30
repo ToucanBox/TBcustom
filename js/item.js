@@ -182,7 +182,7 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
       if (this.dragging)
       {
           //wiggling until first drag and release, maybe text 'put me somewhere'
-          this.rotation = 0.1 * Math.sin(10 * this.count);
+          this.rotation = 0.05 * Math.sin(20 * this.count);
       }
 
       if (!this.dragging && this.anchors)
