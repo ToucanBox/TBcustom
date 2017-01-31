@@ -8,6 +8,7 @@ var body = require('/Users/anthonymoles/Documents/TBcustom/js/body.js');
 var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
 var arm = require('/Users/anthonymoles/Documents/TBcustom/js/arm.js');
 var jsPDF = require('jspdf');
+var FileSaver = require('filesaver.js-npm');
 
 
 var init = function () {
@@ -1009,9 +1010,13 @@ init.prototype.saveCanvas = function() {
       	subject: 'Your very own toucanoo',
       	author: 'toucanBox'
       });
-      saver.addImage(this.canvasData, 'png', 24, 30, 162, 194.4);
-      setTimeout(function(){ saver.save(this.name + '.pdf'); }.bind(this), 2000 );
-      
+      saver.addImage(this.canvasData, 'PNG', 24, 30, 162, 194.4);
+      var blob = saver.output('blob');
+
+      FileSaver.saveAs(blob, this.name + '.pdf');
+
+      // setTimeout(function(){ saver.save(this.name + '.pdf'); }.bind(this), 2000 );
+
 
 };
 
