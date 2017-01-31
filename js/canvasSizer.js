@@ -24,6 +24,10 @@ var canvasSizer = function () {
       this.logo.style.transform =  'scale(0.75)';
     }
 
+    if (660 >= window.innerHeight) {
+      this.logo.style.visibility = 'hidden';
+    }
+
 
     this.height = window.innerHeight;
     this.width = window.innerWidth;

@@ -9,6 +9,7 @@ var item = require('/Users/anthonymoles/Documents/TBcustom/js/item.js');
 var arm = require('/Users/anthonymoles/Documents/TBcustom/js/arm.js');
 var jsPDF = require('jspdf');
 var FileSaver = require('filesaver.js-npm');
+var detectIe = require('detectie');
 
 
 var init = function () {
@@ -1003,12 +1004,20 @@ init.prototype.saveCanvas = function() {
 
       console.log('save canvas');
 
+      if (detectIe()) {
+        // revert to image save on IE
+        this.renderer.render(this.stage);
+        this.canvasBlob = this.renderer.view.toBlob(
+          function(blob) { FileSaver.saveAs(blob, 'mytoucanoo.png'); }, 'image/png', 1);
+
+      } else {
+
       var saver = new jsPDF();
-      // save.text(20, 20, 'MS test!');
+      saver.text(20, 20, 'MS test!');
       saver.setProperties({
-      	title: this.name,
-      	subject: 'Your very own toucanoo',
-      	author: 'toucanBox'
+        title: this.name,
+        subject: 'Your very own toucanoo',
+        author: 'toucanBox'
       });
       saver.addImage(this.canvasData, 'PNG', 24, 30, 162, 194.4);
       var blob = saver.output('blob');
@@ -1016,6 +1025,8 @@ init.prototype.saveCanvas = function() {
       FileSaver.saveAs(blob, this.name + '.pdf');
 
       // setTimeout(function(){ saver.save(this.name + '.pdf'); }.bind(this), 2000 );
+
+    }
 
 
 };

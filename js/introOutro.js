@@ -31,10 +31,11 @@ var io = function (init, canvasSizer) {
   //advice button
   this.adviceBtn = document.getElementById('print-advice');
   this.adviceBtn.addEventListener( 'click' , function() {self.showAdvice();}, false );
-
   this.showAdvice = function() {
     self.adviceModal.setAttribute('class', 'modal');
     self.printModal.setAttribute('class', 'modal hidden');
+    self.imgAdvice = document.getElementById('img-indicator');
+    self.imgAdvice.setAttribute('class', ' ');
   };
 
   // advice back
