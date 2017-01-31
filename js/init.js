@@ -1003,26 +1003,49 @@ init.prototype.printCanvas = function() {
 init.prototype.saveCanvas = function() {
 
       console.log('save canvas');
+      // detectIe()
+      if (detectIe()) { 
+        console.log('IE');
 
-      if (detectIe()) {
         // revert to image save on IE
-        this.renderer.render(this.stage);
-        this.canvasBlob = this.renderer.view.toBlob(
-          function(blob) { FileSaver.saveAs(blob, 'mytoucanoo.png'); }, 'image/png', 1);
+
+        var dataURI = this.canvasData;
+        // convert base64 to raw binary data held in a string
+        // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+        var byteString = atob(dataURI.split(',')[1]);
+
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+        // write the bytes of the string to an ArrayBuffer
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+
+        // write the ArrayBuffer to a blob, and you're done
+        var blobIMG = new Blob([ab], {type: mimeString});
+
+        FileSaver.saveAs(blobIMG, (this.name + '.png'));
+
+        // OLD
+        // this.renderer.render(this.stage);
+        // this.canvasBlob = this.renderer.view.toBlob(
+        //   function(blob) { FileSaver.saveAs(blob, 'mytoucanoo.png'); }, 'image/png', 1);
 
       } else {
 
       var saver = new jsPDF();
-      saver.text(20, 20, 'MS test!');
       saver.setProperties({
         title: this.name,
         subject: 'Your very own toucanoo',
         author: 'toucanBox'
       });
       saver.addImage(this.canvasData, 'PNG', 24, 30, 162, 194.4);
-      var blob = saver.output('blob');
+      var blobPDF = saver.output('blob');
 
-      FileSaver.saveAs(blob, this.name + '.pdf');
+      FileSaver.saveAs(blobPDF, this.name + '.pdf');
 
       // setTimeout(function(){ saver.save(this.name + '.pdf'); }.bind(this), 2000 );
 
