@@ -1010,7 +1010,8 @@ init.prototype.saveCanvas = function() {
       	author: 'toucanBox'
       });
       saver.addImage(this.canvasData, 'png', 24, 30, 162, 194.4);
-      saver.save('mytoucanoo.pdf');
+      setTimeout(function(){ saver.save(this.name + '.pdf'); }.bind(this), 2000 );
+      
 
 };
 
