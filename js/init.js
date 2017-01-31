@@ -1005,6 +1005,7 @@ init.prototype.saveCanvas = function() {
 
       var save = new jsPDF();
       console.log(save);
+      save.text(20, 20, 'MS test!');
       save.addImage(this.canvasData, 'JPEG', 24, 30, 162, 194.4);
       save.save('mytoucanoo.pdf');
 

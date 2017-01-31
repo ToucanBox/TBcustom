@@ -34,6 +34,7 @@ var io = function (init, canvasSizer) {
 
   this.showAdvice = function() {
     self.adviceModal.setAttribute('class', 'modal');
+    self.printModal.setAttribute('class', 'modal hidden');
   };
 
   // advice back
@@ -41,6 +42,7 @@ var io = function (init, canvasSizer) {
   this.adviceBack.addEventListener( 'click' , function() {self.closeAdvice();}, false );
   this.closeAdvice = function() {
     self.adviceModal.setAttribute('class', 'modal hidden');
+    self.printModal.setAttribute('class', 'modal');
   };
 
   // print preview
