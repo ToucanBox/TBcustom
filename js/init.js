@@ -10,7 +10,6 @@ var arm = require('/Users/anthonymoles/Documents/TBcustom/js/arm.js');
 var jsPDF = require('jspdf');
 
 
-
 var init = function () {
 
   // init
@@ -1003,11 +1002,15 @@ init.prototype.saveCanvas = function() {
 
       console.log('save canvas');
 
-      var save = new jsPDF();
-      console.log(save);
-      save.text(20, 20, 'MS test!');
-      save.addImage(this.canvasData, 'JPEG', 24, 30, 162, 194.4);
-      save.save('mytoucanoo.pdf');
+      var saver = new jsPDF();
+      // save.text(20, 20, 'MS test!');
+      saver.setProperties({
+      	title: this.name,
+      	subject: 'Your very own toucanoo',
+      	author: 'toucanBox'
+      });
+      saver.addImage(this.canvasData, 'png', 24, 30, 162, 194.4);
+      saver.save('mytoucanoo.pdf');
 
 };
 
