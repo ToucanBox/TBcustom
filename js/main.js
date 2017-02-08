@@ -22,12 +22,6 @@ function loadProgressHandler(loader, loadedResource) {
 
 function onAssetsLoaded() {
 
-  var event = undefined;
-
-  // Screen size event
-  var canvasSizer = require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
-  canvasSizer.resize(event);
-
   // Initialiser object (module exports new init)
   var init = require('/Users/anthonymoles/Documents/TBcustom/js/init.js');
   init.loadTextures();
@@ -41,6 +35,9 @@ function onAssetsLoaded() {
   var io = new introOutro(init, canvasSizer);
   io.getStarted();
 
+  var event = undefined;
+  // Screen size event
+  var canvasSizer = require('/Users/anthonymoles/Documents/TBcustom/js/canvasSizer.js');
   canvasSizer.resize(event);
 
   setTimeout(function(){

@@ -72,6 +72,30 @@ var canvasSizer = function () {
           }
 
       }
+  } else {
+        console.log('intitial canvas resize ');
+
+        if (this.screenRatio > 0.7) {
+          this.resetScale = this.scale;
+          this.canvas.style.webkitTransform = 'scale(' + this.scale + ',' + this.scale + ')';
+          this.canvas.style.MozTransform = 'scale(' + this.scale + ',' + this.scale + ')';
+          this.canvas.style.msTransform = 'scale(' + this.scale + ',' + this.scale + ')';
+          this.canvas.style.OTransform = 'scale(' + this.scale + ',' + this.scale + ')';
+          this.canvas.style.transform =  'scale(' + this.scale + ',' + this.scale + ')';
+        }
+
+        // handles iphone 4 size screens
+
+        this.smallScreenScale = 0.78;
+
+        if (this.screenRatio > 0.65 && window.innerWidth <= 320) {
+          this.resetScale = this.smallScreenScale;
+          this.canvas.style.webkitTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
+          this.canvas.style.MozTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
+          this.canvas.style.msTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
+          this.canvas.style.OTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
+          this.canvas.style.transform =  'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
+        }
   }
 
 
