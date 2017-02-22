@@ -37,7 +37,7 @@ var canvasSizer = function () {
       this.logo.style.visibility = 'visible';
     }
 
-    this.intendedHeight = window.innerHeight - 180;
+    this.intendedHeight = window.innerHeight - 180; //(0.25 * window.innerHeight); Proportional if needed
 
     this.scale = this.intendedHeight/720;
 
@@ -68,7 +68,7 @@ var canvasSizer = function () {
             this.canvas.style.msTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
             this.canvas.style.OTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
             this.canvas.style.transform =  'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
-          } else if (this.screenRatio > 0.7) {
+          } else if (this.screenRatio > 0.72 /*mostly want to affect wide screens*/) {
                   this.canvas.style.webkitTransform = 'scale(' + this.scale + ',' + this.scale + ')';
                   this.canvas.style.MozTransform = 'scale(' + this.scale + ',' + this.scale + ')';
                   this.canvas.style.msTransform = 'scale(' + this.scale + ',' + this.scale + ')';
@@ -93,7 +93,7 @@ var canvasSizer = function () {
           this.canvas.style.msTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
           this.canvas.style.OTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
           this.canvas.style.transform =  'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
-        } else if (this.screenRatio > 0.7) {
+        } else if (this.screenRatio > 0.72) {
                 this.canvas.style.webkitTransform = 'scale(' + this.scale + ',' + this.scale + ')';
                 this.canvas.style.MozTransform = 'scale(' + this.scale + ',' + this.scale + ')';
                 this.canvas.style.msTransform = 'scale(' + this.scale + ',' + this.scale + ')';
