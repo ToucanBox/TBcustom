@@ -24,7 +24,8 @@
     "serve": "beefy js/main.js --browserify $(which browserify) --live",
     "dev": "watchify --debug js/main.js -o js/bundle.js -v",
     "build": "browserify js/main.js -d -p [minifyify --no-map] > js/bundle.js",
-    "compress": "uglifyjs js/bundle.js --compress drop_console,conditionals,booleans,dead_code,loops,unused,join_vars --mangle --screw-ie8 --output js/bundle.js"
+    "compress": "uglifyjs js/bundle.js --compress drop_console,conditionals,booleans,dead_code,loops,unused,join_vars --mangle --screw-ie8 --output js/bundle.js",
+    "buildc": "browserify js/main.js -d -p [minifyify --no-map] > js/bundle.js && uglifyjs js/bundle.js --compress drop_console,conditionals,booleans,dead_code,loops,unused,join_vars --mangle --screw-ie8 --output js/bundle.js"
   },
   "author": "Ant",
   "license": "ISC",

@@ -203,6 +203,17 @@ io.prototype.getStarted = function() {
     this.onIntroBoy();
   } else if (this.gender === 'pjs') {
     this.onIntroNeutralPjs();
+  } else if (this.gender === 'debug') {
+    this.onIntroNeutralNaked();
+    this.testCanvasTarget = document.getElementById('canvas-main');
+    this.testOutputParent = document.getElementsByClassName('space')[0];
+    this.testOutput = document.createElement('div');
+    setTimeout(function() {
+      this.testScale = this.testCanvasTarget.style.transform;
+      console.log(this.testScale);
+      this.testOutput.innerHTML = 'height: ' + window.innerHeight + ', width: ' + window.innerWidth + ', canvas transform: ' + this.testScale;
+      this.testOutputParent.appendChild(this.testOutput);
+    }.bind(this), 5000);
   } else {
     this.onIntroNeutralNaked();
   }
