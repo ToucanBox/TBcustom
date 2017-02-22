@@ -32,7 +32,7 @@ function onAssetsLoaded() {
   init.makeArms();
 
   var introOutro = require('/Users/anthonymoles/Documents/TBcustom/js/introOutro.js');
-  var io = new introOutro(init, canvasSizer);
+  var io = new introOutro(init);
   io.getStarted();
 
   var event = undefined;

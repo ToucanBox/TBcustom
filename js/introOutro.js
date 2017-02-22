@@ -3,12 +3,11 @@
 var PIXI = require('pixi.js');
 var anime = require('animejs');
 
-var io = function (init, canvasSizer) {
+var io = function (init) {
 
   var self = this;
 
   this.init = init;
-  this.canvasSizer = canvasSizer;
 
   //fader
   this.fader = document.getElementById('fader');
@@ -83,9 +82,6 @@ var io = function (init, canvasSizer) {
     self.init.reversePrintPipe();
     self.printModal.setAttribute('class', 'modal hidden');
     self.fader.setAttribute('class', 'fade-bk hidden');
-
-    self.canvasSizer.resize();
-
   };
 
 
