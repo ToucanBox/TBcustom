@@ -77,13 +77,13 @@ var init = function () {
   this.armLayer = new PIXI.Container();
   this.route.addChild(this.armLayer);
 
-  // Skirt layer
-  this.skirtLayer = new PIXI.Container();
-  this.route.addChild(this.skirtLayer);
-
   // Dress layer
   this.dressLayer = new PIXI.Container();
   this.route.addChild(this.dressLayer);
+
+  // Skirt layer
+  this.skirtLayer = new PIXI.Container();
+  this.route.addChild(this.skirtLayer);
 
   // Accessories layer
   this.accessoriesLayer = new PIXI.Container();
