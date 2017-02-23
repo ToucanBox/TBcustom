@@ -306,11 +306,11 @@
 },
 "39.png":
 {
-	"frame": {"x":1,"y":233,"w":408,"h":264},
+	"frame": {"x":1,"y":384,"w":408,"h":113},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":408,"h":264},
-	"sourceSize": {"w":408,"h":264}
+	"spriteSourceSize": {"x":0,"y":0,"w":408,"h":113},
+	"sourceSize": {"w":408,"h":113}
 },
 "40.png":
 {
@@ -487,6 +487,22 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":57,"h":61},
 	"sourceSize": {"w":57,"h":61}
+},
+"62.png":
+{
+	"frame": {"x":60,"y":309,"w":348,"h":74},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":348,"h":74},
+	"sourceSize": {"w":348,"h":74}
+},
+"kilt.png":
+{
+	"frame": {"x":60,"y":234,"w":348,"h":74},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":348,"h":74},
+	"sourceSize": {"w":348,"h":74}
 }},
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",

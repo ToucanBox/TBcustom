@@ -62,7 +62,7 @@ var init = function () {
   this.cape.anchor.set(0.5, 0.5);
   this.cape.alpha = 0;
   this.route.addChild(this.cape);
-  this.cape.position.set(300, 520);
+  this.cape.position.set(300, 600);
 
 
   // Body layer
@@ -76,6 +76,10 @@ var init = function () {
   // Arms layer
   this.armLayer = new PIXI.Container();
   this.route.addChild(this.armLayer);
+
+  // Skirt layer
+  this.skirtLayer = new PIXI.Container();
+  this.route.addChild(this.skirtLayer);
 
   // Dress layer
   this.dressLayer = new PIXI.Container();
@@ -180,7 +184,14 @@ var init = function () {
       else if ( id === '39' ) {
         // LOW ACCESSORIES
         self.cape.alpha = 0;
-      } else {
+      }
+
+      else if ( id === '62' ) {
+        // SKIRT
+        self.removeChildId(self.skirtLayer, id);
+      }
+
+      else {
       // ACCESSORIES
       self.removeChildId(self.accessoriesLayer, id);
     }
@@ -395,6 +406,13 @@ init.prototype.addItem = function (id, image, touchX, touchY) {
       this.cape.alpha = 1;
 
     }
+    else if ( id === '62' ) {
+      // LOW ACCESSORIES
+      type = 'Skirt';
+      add = new item(id, image, type, this.cWidth, this.cHeight, touchX, touchY);
+      this.skirtLayer.addChild(add);
+      add.startIntro();
+      }
 
   else {
     // ACCESSORIES
@@ -417,7 +435,7 @@ init.prototype.addItem = function (id, image, touchX, touchY) {
 
 init.prototype.loadTextures = function () {
 
-  for (var i = 1; i <= 61; i++)
+  for (var i = 1; i <= 62; i++)
     {
        var texture = PIXI.Texture.fromFrame( i + '.png' );
        this.itemTextures.push(texture);
@@ -432,7 +450,7 @@ init.prototype.populatePalette = function () {
    removeOnSpill: true
   });
 
-  for (var i = 1; i <= 61; i++) {
+  for (var i = 1; i <= 62; i++) {
     var node = document.createElement("li");
     node.className = 'js_slide sprite-icons icons-' + i;
     node.id = i;
@@ -522,7 +540,9 @@ init.prototype.startAnimate = function () {
   this.startWave = setInterval(function() { init.animateWave(); }, anime.random(16000, 22000));
   this.startWiggle = setInterval(function() { init.startArmWiggle(); }, anime.random(10000, 14000));
   this.startSwing = setInterval(function() { init.startArmSwing(); }, anime.random(20000, 25000));
-  // setInterval(function() { init.startArmSpiral(); }, 100000);
+  if (window.location.search.substring(1) === 'debug') {
+  setInterval(function() { init.startArmSpiral(); }, 6000);
+  }
 
 };
 
@@ -742,7 +762,7 @@ init.prototype.startArmSpiral = function() {
     this.isArmWiggle = false;
     this.isArmSwing = false;
     this.isArmSpiral = true;
-    this.outArmSpiral = setTimeout (function() { self.startArmSpiral(); }, 10000);
+    this.outArmSpiral = setTimeout (function() { self.startArmSpiral(); }, 30000);
   } else if (!this.isArmWiggle && !this.isArmWaving && !this.isArmSwing && this.isArmSpiral) {
     // console.log('spiral off');
     this.isArmWaving = false;
@@ -1004,7 +1024,7 @@ init.prototype.saveCanvas = function() {
 
       console.log('save canvas');
       // detectIe()
-      if (detectIe()) { 
+      if (detectIe()) {
         console.log('IE');
 
         // revert to image save on IE
@@ -1084,6 +1104,28 @@ init.prototype.startPj = function(isSave) {
   this.changeArms('40');
   var hair = new item('55', this.itemTextures[54], 'Hats', this.cWidth, this.cHeight, this.cWidth / 2 + 23, this.cHeight / 2 - 133 );
   this.accessoriesLayer.addChild(hair);
+};
+
+init.prototype.startScottish = function(isSave) {
+  console.log('I\'m Scottish!');
+  var touchX = 0;
+  var touchY = 0;
+  var kiltFrame = new PIXI.Texture.fromFrame('kilt.png');
+  var kilt = new item('kilt', kiltFrame, 'Skirt', this.cWidth, this.cHeight, this.cWidth / 2 - 4, this.cHeight - 120);
+  this.skirtLayer.addChild(kilt);
+  var clothes = new item('7', this.itemTextures[6], 'Clothes', this.cWidth, this.cHeight, touchX, touchY);
+  this.clothesLayer.addChild(clothes);
+  this.changeArms('7');
+  var hair = new item('18', this.itemTextures[17], 'Hair', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight / 2 - 105 );
+  this.accessoriesLayer.addChild(hair);
+  var hat = new item('2', this.itemTextures[1], 'Hats', this.cWidth, this.cHeight, this.cWidth / 2 - 30, this.cHeight / 2 - 160 );
+  this.accessoriesLayer.addChild(hat);
+  var sporran = new item('17', this.itemTextures[16], 'Accessories', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight - 105 );
+  this.accessoriesLayer.addChild(sporran);
+  var belt = new item('35', this.itemTextures[34], 'Accessories', this.cWidth, this.cHeight, this.cWidth / 2 - 3, this.cHeight - 190 );
+  this.accessoriesLayer.addChild(belt);
+  var beard = new item('47', this.itemTextures[46], 'Facelayer', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight / 2 + 10 );
+  this.faceLayer.addChild(beard);
 };
 
 module.exports = new init();

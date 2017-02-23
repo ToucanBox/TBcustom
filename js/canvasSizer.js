@@ -60,8 +60,8 @@ var canvasSizer = function () {
       } else {
           console.log('resize');
 
-          if (this.screenRatio > 0.65 && window.innerWidth <= 320) {
-            // handles iphone 4 size screens
+          if (this.screenRatio > 0.65 && window.innerWidth <= 360) {
+            // handles iphone 4 size screens, and awkward squat screens on android
             this.resetScale = this.smallScreenScale; // for reorient
             this.canvas.style.webkitTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
             this.canvas.style.MozTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
@@ -85,8 +85,8 @@ var canvasSizer = function () {
       }
   } else {
         console.log('intitial canvas resize ');
-        if (this.screenRatio > 0.65 && window.innerWidth <= 320) {
-          // handles iphone 4 size screens
+        if (this.screenRatio > 0.65 && window.innerWidth <= 360) {
+          // handles iphone 4 size screens, and awkward squat screens on android
           this.resetScale = this.smallScreenScale; // for reorient
           this.canvas.style.webkitTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';
           this.canvas.style.MozTransform = 'scale(' + this.smallScreenScale + ',' + this.smallScreenScale + ')';

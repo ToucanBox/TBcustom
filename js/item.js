@@ -146,11 +146,11 @@ var item = function (id, image, type, cWidth, cHeight, touchX, touchY) {
 
       if (this.position.x >= 560 || this.position.x <= 40) {
         this.destroy();
+      } else if (this.position.y >= 760 || this.position.y <= 40) {
+              this.destroy();
       }
 
-      if (this.position.y >= 760 || this.position.y <= 40) {
-        this.destroy();
-      }
+
 
     }
   };

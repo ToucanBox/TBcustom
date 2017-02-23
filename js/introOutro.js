@@ -123,6 +123,12 @@ io.prototype.onIntroNeutralPjs = function() { //TODO
 this.init.startPj();
 };
 
+io.prototype.onIntroScottish = function() { //TODO
+// this.init.startFaceAnimate();
+// this.init.startAnimate();
+this.init.startScottish();
+};
+
 io.prototype.onIntroNeutralNaked = function() {
 // this.init.startFaceAnimate();
 // this.init.startAnimate();
@@ -214,6 +220,8 @@ io.prototype.getStarted = function() {
       this.testOutput.innerHTML = 'height: ' + window.innerHeight + ', width: ' + window.innerWidth + ', canvas transform: ' + this.testScale;
       this.testOutputParent.appendChild(this.testOutput);
     }.bind(this), 5000);
+  } else if (this.gender === 'scottish') {
+    this.onIntroScottish();
   } else {
     this.onIntroNeutralNaked();
   }
