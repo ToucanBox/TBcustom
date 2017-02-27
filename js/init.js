@@ -1120,8 +1120,8 @@ init.prototype.startScottish = function(isSave) {
   this.accessoriesLayer.addChild(hair);
   var hat = new item('2', this.itemTextures[1], 'Hats', this.cWidth, this.cHeight, this.cWidth / 2 - 30, this.cHeight / 2 - 160 );
   this.accessoriesLayer.addChild(hat);
-  var sporran = new item('17', this.itemTextures[16], 'Accessories', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight - 105 );
-  this.accessoriesLayer.addChild(sporran);
+  var shoes = new item('6', this.itemTextures[5], 'Accessories', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight - 20 );
+  this.accessoriesLayer.addChild(shoes);
   var belt = new item('35', this.itemTextures[34], 'Accessories', this.cWidth, this.cHeight, this.cWidth / 2 - 3, this.cHeight - 190 );
   this.accessoriesLayer.addChild(belt);
   var beard = new item('47', this.itemTextures[46], 'Facelayer', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight / 2 + 10 );
