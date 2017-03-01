@@ -1,2 +1,2 @@
 # TBcustom
-Make a customisable colouring sheet
+A customisable colouring sheet for home printing
