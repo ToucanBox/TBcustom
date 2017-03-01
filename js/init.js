@@ -1082,6 +1082,10 @@ init.prototype.startGirl = function(isSave) {
   this.dressLayer.addChild(clothes);
   var hair = new item('37', this.itemTextures[36], 'Hair', this.cWidth, this.cHeight, this.cWidth / 2 - 5, this.cHeight / 2 - 70);
   this.accessoriesLayer.addChild(hair);
+  var shoes = new item('31', this.itemTextures[30], 'Shoes', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight - 10);
+  this.accessoriesLayer.addChild(shoes);
+  var buttons = new item('19', this.itemTextures[18], 'Accessories', this.cWidth, this.cHeight, this.cWidth / 2 + 8, this.cHeight / 2 + 115);
+  this.accessoriesLayer.addChild(buttons);
 };
 
 init.prototype.startBoy = function(isSave) {
@@ -1093,6 +1097,10 @@ init.prototype.startBoy = function(isSave) {
   this.changeArms('32');
   var hair = new item('18', this.itemTextures[17], 'Hair', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight / 2 - 105 );
   this.accessoriesLayer.addChild(hair);
+  var shoes = new item('6', this.itemTextures[5], 'Shoes', this.cWidth, this.cHeight, this.cWidth / 2, this.cHeight - 20);
+  this.accessoriesLayer.addChild(shoes);
+  var pocket = new item('17', this.itemTextures[16], 'Accessories', this.cWidth, this.cHeight, this.cWidth / 2 + 80, this.cHeight / 2 + 110);
+  this.accessoriesLayer.addChild(pocket);
 };
 
 init.prototype.startPj = function(isSave) {
