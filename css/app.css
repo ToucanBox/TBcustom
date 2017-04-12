@@ -134,7 +134,6 @@ img {
    }
 
    .menu {
-     height: 80px;
      padding-top: 16px;
      text-align: center;
    }
@@ -270,8 +269,15 @@ img {
   width: 40px;
   height: 40px;
   box-shadow: 0 2px 0 0 #D1D1CF;
-  padding: 4px;
   margin-bottom: 5px;
+}
+
+.social-btns svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .social-btns:hover{

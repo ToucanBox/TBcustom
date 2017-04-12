@@ -78,8 +78,7 @@ img {
   background-color: #fff;
   border-radius: 6px;
   border-bottom: 2px solid #d4d2d3;
-  padding: 10px 20px 20px;
-  margin: 0 0.8% 2% 0.8%;
+  margin: 0 0.8% 6% 0.8%;
 }
 
 .first-box {
@@ -97,20 +96,23 @@ img {
   max-height: 400px;
 }
 
-.callout {
-  right: 3em;
+.callout-number {
+  position: relative;
+  top: 11px;
   height: 50px;
   width: 50px;
+  margin-bottom: 1.4em;
   background: #1BBEBF;
   box-shadow: 2px 3px 0 0 rgba(0,0,0,.2);
-  text-align: center;
   border-radius: 50%;
 }
 
-.callout h3 {
+.callout-number h3 {
   color: #fff;
-  margin: 0;
-  line-height: 0.9;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  -webkit-transform: translate(-50%, -50%);  transform: translate(-50%, -50%);
 }
 
 .third-box {
@@ -122,7 +124,7 @@ img {
   top: -2.4em;
   float: left;
   width: 50%;
-  margin-bottom: -4em;
+  margin-bottom: -3em;
 }
 
 .home-panel p {
@@ -146,6 +148,14 @@ img {
 .logo {
   display: none !important;
   background: transparent !important;
+}
+
+#CTA h3:first-child {
+  margin: 0.5em 0 0 0;
+}
+
+#CTA p {
+  margin: 0 0.5em 0.5em 0.5em;
 }
 
 @media screen and (max-width: 350px) {
@@ -196,7 +206,7 @@ img {
 
   .intro-text {
     font-size: 14pt;
-    margin: 0;
+    margin: 0.7em;
   }
 
   .third-box {
@@ -245,13 +255,16 @@ img {
   width: 40px;
   height: 40px;
   box-shadow: 0 2px 0 0 #D1D1CF;
-  padding: 4px;
   margin-bottom: 5px;
 }
 
-.social-btns:hover{
-    opacity: 0.75;
- }
+.social-btns svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
 
 #facebook {
 background-color: #3b5998;
