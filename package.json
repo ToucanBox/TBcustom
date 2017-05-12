@@ -13,11 +13,12 @@
     "dragula": "^3.7.2",
     "filesaver.js-npm": "^1.0.1",
     "jspdf": "^1.3.2",
-    "pixi.js": "^4.2.2"
+    "pixi.js": "^4.5.1"
   },
   "devDependencies": {
     "browserify": "^13.3.0",
-    "minifyify": "^7.3.4"
+    "minifyify": "^7.3.4",
+    "uglifyjs": "^2.4.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
