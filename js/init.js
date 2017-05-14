@@ -16,7 +16,7 @@ var init = function () {
 
   // init
   this.canvas = document.getElementById('Pcanvas');
-    this.renderer = PIXI.autoDetectRenderer(600, 720, { transparent: true, antialias: true });
+    this.renderer = PIXI.autoDetectRenderer(600, 720, { transparent: true, antialias: false });
   this.canvas.appendChild(this.renderer.view);
   this.renderer.view.setAttribute('class', 'canvas-class');
   this.renderer.view.setAttribute('id', 'output');
