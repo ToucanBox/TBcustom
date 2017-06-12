@@ -21,15 +21,15 @@ var canvasSizer = function () {
     }
 
     // logo or not
-    if (599 >= window.innerWidth) {
-      this.logo.style.position = 'relative';
-      this.logo.style.top = '-40px';
-      this.logo.style.webkitTransform = 'scale(0.75)';
-      this.logo.style.MozTransform = 'scale(0.75)';
-      this.logo.style.msTransform = 'scale(0.75)';
-      this.logo.style.OTransform = 'scale(0.75)';
-      this.logo.style.transform =  'scale(0.75)';
-    }
+    // if (599 >= window.innerWidth) {
+    //   this.logo.style.position = 'relative';
+    //   this.logo.style.top = '-40px';
+    //   this.logo.style.webkitTransform = 'scale(0.75)';
+    //   this.logo.style.MozTransform = 'scale(0.75)';
+    //   this.logo.style.msTransform = 'scale(0.75)';
+    //   this.logo.style.OTransform = 'scale(0.75)';
+    //   this.logo.style.transform =  'scale(0.75)';
+    // }
 
     if (660 >= window.innerHeight) {
       this.logo.style.visibility = 'hidden';
