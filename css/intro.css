@@ -78,7 +78,8 @@ img {
   background-color: #fff;
   border-radius: 6px;
   border-bottom: 2px solid #d4d2d3;
-  margin: 0 0.8% 6% 0.8%;
+  margin: 0 0.8% 4% 0.8%;
+  
 }
 
 .first-box {
@@ -117,6 +118,10 @@ img {
 
 .third-box {
   width: 100%;
+}
+
+.third-box a {
+  width: 60px;
 }
 
 .home-panel {
@@ -207,6 +212,7 @@ img {
   .intro-text {
     font-size: 14pt;
     margin: 0.7em;
+    padding: 0 10px;
   }
 
   .third-box {
