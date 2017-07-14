@@ -154,9 +154,12 @@ var socialBtns = document.getElementById('social-container');
 
 window.addEventListener('resize', checkDevice, false);
 window.addEventListener('resize', equalHeights, false);
-
+window.addEventListener('load', init, false );
+    
+function init() {    
 checkDevice();
 equalHeights();
+)
 
 function checkDevice() {
 if (window.innerWidth <= 1024) {
