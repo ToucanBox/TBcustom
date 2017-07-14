@@ -121,7 +121,7 @@ img {
 }
 
 .third-box a {
-  width: 60px;
+  width: 60px !important;
 }
 
 .home-panel {
@@ -191,15 +191,14 @@ img {
   }
 
   .logo {
-    display: block !important;
-    background: url('../img/web/logo_white-cloud.png') no-repeat 0 0 !important;
-    background-size: 292.5px !important;
-    height: 137px !important;
+    display: block!important;
+    background: url(../img/web/logo_white-cloud.png) no-repeat 0 0!important;
+    background-size: 222px!important;
+    height: 137px!important;
     -webkit-transform: scale(0.75);
-            transform: scale(0.75);
+    transform: scale(0.75);
     position: relative;
     top: -2em;
-    right: 2em;
   }
 }
 
