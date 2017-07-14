@@ -184,7 +184,12 @@ function equalHeights(className) {
   if (window.innerWidth >= 900) {
     var findClass = document.getElementsByClassName('home-boxes');
     var tallest = 0;
-  // Loop over matching divs
+      
+  for(i = 0; i < findClass.length; i++)
+  {
+    findClass[i].style.height = 'auto';
+  }
+  
   for(i = 0; i < findClass.length; i++)
   {
     var ele = findClass[i];
