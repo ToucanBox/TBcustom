@@ -2,13 +2,9 @@
 
 html, body {
   width:  100%;
-  height: 100%;
   margin: 0px;
-  /*background-color: #f1f1f1;*/
   overflow-x: hidden;
-  overflow-y: hidden;
-  -ms-overflow-style: hidden;
-  -ms-scroll-chaining: none;
+  background: #fbf7f4;
 }
 
 .browserupgrade {
@@ -18,17 +14,29 @@ html, body {
     padding: 0.2em 0;
 }
 
-header {
-  z-index: 1 !important;
+header[role=banner] {
+  z-index: 1;
+  padding-top: 25px;
 }
+
 
 img {
   border-bottom: 0;
   margin: 0;
 }
 
+.clearfix {
+    overflow: auto;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 .home-background {
-  background-image: url('../img/web/background-small.jpg');
+  background: #FBF7F4;
   position: absolute;
   display: block;
   width: 100%;
@@ -50,40 +58,27 @@ img {
   position: absolute;
 }
 
-.home-bottom {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  background: #fbf7f4;
-}
-
 .grid-container {
-  position: absolute;
-  display: block;
+  position: relative;
   width: 100%;
   max-width: 400px;
   text-align: center;
-  left: 50%;
-  -webkit-transform: translateX(-50.75%);
-          transform: translateX(-50.75%);
-  bottom: 0.5%;
+  margin: 0 auto;
+  padding-bottom: 30px;
 }
 
 .home-boxes {
   text-align: center;
-  float: left;
   display: block;
   background-color: #fff;
   border-radius: 6px;
   border-bottom: 2px solid #d4d2d3;
-  margin: 0 0.8% 4% 0.8%;
-  
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .first-box {
-  width: 100%;
 }
 
 .home-title {
@@ -93,7 +88,6 @@ img {
 }
 
 .second-box {
-  width: 100%;
   max-height: 400px;
 }
 
@@ -117,11 +111,18 @@ img {
 }
 
 .third-box {
-  width: 100%;
 }
 
 .third-box a {
   width: 60px !important;
+}
+
+.third-box h3:first-child {
+  margin: 0.5em 0 0 0;
+}
+
+.third-box p {
+  margin: 0 0.5em 0.5em 0.5em;
 }
 
 .home-panel {
@@ -132,15 +133,12 @@ img {
   margin-bottom: -3em;
 }
 
-.home-panel p {
-  position: relative;
-  top: -0.5em;
+.home-panel .second {
+  float: right;
 }
 
 .home-panel-wrap {
-  display: block;
-  clear: both;
-  width: 100%;
+  overflow: visible;
 }
 
 .img-sizer {
@@ -150,62 +148,36 @@ img {
   margin: 0 auto;
 }
 
-.logo {
-  display: none !important;
-  background: transparent !important;
+.home-background header[role=banner] a.logo {
+  background: url(../img/web/logo_white-cloud.png) no-repeat 0 0;
+  background-size: 222px;
+  height: 110px;
 }
 
-#CTA h3:first-child {
-  margin: 0.5em 0 0 0;
-}
-
-#CTA p {
-  margin: 0 0.5em 0.5em 0.5em;
-}
-
-@media screen and (max-width: 350px) {
-  .grid-container {
-    -webkit-transform: translateX(-50%) translateY(10%) scale(0.8);
-            transform: translateX(-50%) translateY(10%) scale(0.8);
-  }
-}
-
-@media screen and (max-width: 450px) {
-#CTA {
-  display: none;
-}
-.third-box {
-  background-color: transparent;
-  border-bottom: none;
-  padding: 0;
-  margin: 0;
-}
-}
-
-
-@media screen and (min-width: 599px) {
-  .home-background {
-    background-image: url('../img/web/background.jpg');
-    height: 40%;
-    background-position: 50% 90%;
-  }
-
-  .logo {
-    display: block!important;
-    background: url(../img/web/logo_white-cloud.png) no-repeat 0 0!important;
-    background-size: 222px!important;
-    height: 137px!important;
+@media screen and (min-width: 900px) {
+  .home-background header[role=banner] a.logo {
+    display: block;
+    height: 137px;
     -webkit-transform: scale(0.75);
     transform: scale(0.75);
     position: relative;
     top: -2em;
+    background-size: 280px;
+    width: 285px;
   }
-}
 
-@media screen and (min-width: 900px) {
   .home-background {
+    background-image: url('../img/web/background.jpg');
     height: 70%;
     background-position: 50% 60%;
+  }
+
+  .grid-container {
+    overflow: visible;
+  }
+
+  .home-boxes {
+    float: left;
   }
 
   .intro-text {
@@ -215,28 +187,23 @@ img {
   }
 
   .third-box {
-    width: 25%;
+    width: calc(25% - 20px);
   }
 
   .second-box {
-    width: 35.05%;
+    width:calc(40% - 20px);
   }
 
   .first-box {
-    width: 35.05%;
+    width: calc(35% - 20px);
   }
 
   .grid-container {
-    width: 100%;
     max-width: 1280px;
-    bottom: 10%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-  }
-
-  .logo {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -40%;
   }
 
   .home-fader {
