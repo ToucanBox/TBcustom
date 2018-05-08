@@ -18,15 +18,15 @@
   "devDependencies": {
     "browserify": "^13.3.0",
     "minifyify": "^7.3.4",
-    "uglifyjs": "^2.4.10"
+    "uglify-js": "^3.3.24"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "beefy js/main.js --browserify $(which browserify) --live",
-    "dev": "watchify --debug js/main.js -o js/bundle.js -v",
-    "build": "browserify js/main.js -d -p [minifyify --no-map] > js/bundle.js",
-    "compress": "uglifyjs js/bundle.js --compress drop_console,conditionals,booleans,dead_code,loops,unused,join_vars --mangle --screw-ie8 --output js/bundle.js",
-    "buildc": "browserify js/main.js -d -p [minifyify --no-map] > js/bundle.js && uglifyjs js/bundle.js --compress drop_console,conditionals,booleans,dead_code,loops,unused,join_vars --mangle --screw-ie8 --output js/bundle.js"
+    "serve": "beefy assets/js/main.js --browserify $(which browserify) --live",
+    "dev": "watchify --debug assets/js/main.js -o assets/js/bundle.js -v",
+    "build": "browserify assets/js/main.js -d -p [minifyify --no-map] > assets/js/bundle.js",
+    "compress": "uglifyjs assets/js/bundle.js --compress drop_console,conditionals,booleans,dead_code,loops,unused,join_vars --mangle --screw-ie8 --output assets/js/bundle.js",
+    "buildc": "npm run build && npm run compress"
   },
   "author": "Ant",
   "license": "ISC",

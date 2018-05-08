@@ -1,0 +1,41 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Personalised colouring page by toucanBox
+description: > # this means to ignore newlines until "baseurl:"
+  Personalise your very own toucanoo! Choose clothes,
+  hair and accessories to invent a completely unique character.
+  Finally give them a name, then print it off and get colouring!
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://create.toucanbox.com" # the base hostname & protocol for your site
+
+# Markdown settings
+markdown: kramdown
+
+# Sass settings
+sass:
+  add_charset: true
+  sass_dir: assets/sass
+  style: :compressed
+
+# Build settings
+exclude:
+  - package.json
+  - README.md
+  - CNAME
+  - assets/sass
+  - node_modules
+
+# Plugin settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Translation
+languages: ["en", "de", "fr", "it"]
+exclude_from_localizations: ["assets", "node_modules", "main.scss"]

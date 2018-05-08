@@ -1,0 +1,43 @@
+<head>
+
+  <script>
+  dataLayer = [{"countryCode":"GB","languageCode":"en"}];
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P4GB6D');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+
+  <link rel="stylesheet" href="{{ "/assets/css/main.css" | prepend: site.baseurl_root }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+
+  <meta property="og:title" content="Personalised colouring page by toucanBox"/>
+  <meta property="og:image" content="/img/web/tbtouch.jpg"/>
+  <meta property="og:site_name" content="Personalised colouring page by toucanBox"/>
+  <meta property="og:description" content="Personalise your very own toucanoo! Choose clothes, hair and accessories to invent a completely unique character. Finally give them a name, then print it off and get colouring!"/>
+
+  <!-- Google Analytics -->
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+
+   ga('create', 'UA-26352718-1', 'auto');
+   ga('send', 'pageview', location.pathname);
+
+   </script>
+   <script async src='https://www.google-analytics.com/analytics.js'></script>
+   <!-- End Google Analytics -->
+
+  {% feed_meta %}
+</head>
