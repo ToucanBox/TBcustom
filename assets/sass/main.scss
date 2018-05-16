@@ -1,21 +1,29 @@
 // main imports
 
+
 @import "base/root";
-@import "vendor/bulma/sass/utilities/_all.sass";
-@import "vendor/bulma/sass/base/_all.sass";
 
 // base
 @import "base/variables";
 @import "base/fonts";
 
 // vendor
+@import "vendor/bulma/sass/utilities/_all.sass";
+@import "vendor/bulma/sass/base/_all.sass";
 @import "vendor/bulma/sass/grid/columns.sass";
 @import "vendor/bulma/sass/elements/button.sass";
 @import "vendor/bulma/sass/elements/image.sass";
 @import "vendor/bulma/sass/components/navbar.sass";
 
+@import "custom/mixins";
+
 // sitewide
+@import "custom/typography";
 @import "custom/navbar";
+@import "custom/button-toucan";
+@import "custom/decoration";
+@import "custom/backgrounds";
+@import "custom/forms";
 
 // app
 @import "custom/app/app";

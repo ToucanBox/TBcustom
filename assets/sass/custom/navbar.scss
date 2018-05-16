@@ -11,6 +11,10 @@
   pointer-events: all;
 }
 
+.navbar-burger.is-active span {
+  color: $blue;
+}
+
 .navbar-burger span {
   pointer-events: none;
   height: 6px;
@@ -22,6 +26,10 @@
   top: calc(50% - 15px);
 }
 
+.navbar-burger.is-active span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+
 .navbar-burger span:nth-child(2) {
   top: calc(50% - 4px);
 }
@@ -30,18 +38,18 @@
   top: calc(50% + 7px);
 }
 
+.navbar-burger.is-active span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+}
+
 @media screen and (min-width: 1088px) {
   .navbar-burger {
       display: block;
   }
 }
 
-#social-container {
+.nav-menu-active {
   display: none;
-  position: absolute;
-  top: 50%;
-  left: 6px;
-  z-index: 99;
 }
 
 .social-btns {

@@ -9,7 +9,6 @@ $heading-line-height: 1.2;
 $base-border-radius: 12px;
 $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
-$base-z-index: 0;
 
 // Colours
 $red-light: #EE3D3E;
@@ -47,9 +46,9 @@ $blue-dark: #284081;
 $body: #777c7f; // Light Grey
 $bg-darker: #f7f2ee;
 $bg: #fbf7f4; // Beige
-$main: $turq-dark;
 
 $border: #d4d2d3; // Border Grey
+$border-darker: #A6A6A6;
 
 // Social Colours
 $facebook: #3b5998;
@@ -57,24 +56,34 @@ $twitter: #55ACEE;
 $instagram: #8a3ab9;
 $pinterest: #cb2027;
 
-// Border
-$base-border-color: $border;
-$base-border: 1px dashed $base-border-color;
-
-// Button shadow
-$btn-shadow: 4px 6px 0 0 rgba(0,0,0,0.10);
-$btn-shadow-slim: 0 4px 0 0 rgba(0,0,0,0.10);
-
-// Forms
-$form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
-$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($turq, $lightness: -5%, $alpha: -0.3);
-$form-box-shadow-error: $form-box-shadow, 0 0 5px adjust-color($red, $lightness: -5%, $alpha: -0.3);
-
-// Site Width
-$base-site-width: 1240px;
-
-
 //// Bulma overrides
+
+$orange: $orange-light;
+$yellow: $yellow-dark;
+$green: $green-dark;
+$turquoise: $turq;
+$cyan: $pink-dark;
+$blue: $blue-light;
+$purple: $purple-dark;
+$red: $red-light;
+$grey: $grey-medium;
+
+$primary: $turq;
+$info: $yellow-dark;
+$success: $green-dark;
+$warning: $orange-light;
+$danger: $red-light;
+
+$link: $turq;
+$link-hover: $turq-dark;
+$link-focus: $turq-dark;
+$link-active: $turq-dark;
+$link-focus-border: $yellow-dark;
 
 // Navbar
 $navbar-background-color: transparent;
+
+// Buttons
+$radius-small: 0;
+$radius: 0;
+$radius-large: 0;

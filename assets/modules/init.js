@@ -792,7 +792,7 @@ init.prototype.startAnimeFace = function() {
     return anime.random(6, 9);
   },
     y: function(el, index) {
-    return -anime.random(0, 2);
+    return anime.random(0, -2);
   },
     autoplay: false,
     duration: function(el, index) {
@@ -812,10 +812,10 @@ init.prototype.startAnimeFace = function() {
   this.animeFace2 = anime({
     targets: this.faceLayer.position,
     x: function(el, index) {
-    return -anime.random(4, 6);
+    return anime.random(-4, -6);
   },
     y: function(el, index) {
-    return -anime.random(0, 2);
+    return anime.random(0, 2);
   },
     autoplay: false,
     duration: function(el, index) {

@@ -8,11 +8,28 @@
  */
 
 .slider {
-   background-color: #FBF7F4;
+   background-color: transparent;
    position: relative;
    height: 100px;
-   box-shadow: 0 2px 0 0 rgba(0,0,0,0.15);
    -ms-touch-action: none;
+}
+
+.slider-background-up, .slider-background-down {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.slider-background-up {
+  bottom: 6px;
+  height: 44px;
+  background-color: $blue-light;
+}
+
+.slider-background-down {
+  bottom: 0px;
+  height: 6px;
+  background-color: $blue-dark;
 }
 
 .frame {
@@ -44,10 +61,11 @@ li {
   margin-top: -40px;
   display: block;
   cursor: pointer;
+  transition: transform 1s ease;
 }
 
 .next:hover, .prev:hover {
-  opacity: 0.75;
+  transform: scale(1.2);
 }
 
 .next {

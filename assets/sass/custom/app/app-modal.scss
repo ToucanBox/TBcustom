@@ -1,126 +1,122 @@
 .modal {
-position: absolute;
-text-align: center;
-background-color: #fbf7f4;
-max-width: 555px;
-max-height: 720px;
-z-index: 99;
-left: 50%;
-top: 50%;
--webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-width: 100%;
-height: 100%;
-box-shadow: 0 0.35em 25px 0 rgba(0,0,0,.15 );
-border-bottom: 3px solid #d4d2d3;
-border-radius: 4px 4px 4px 4px;
-margin: 0px 0px 20px;
-padding: 0 !important;
-overflow-x: hidden;
-overflow-y: scroll;
--ms-overflow-style: hidden;
--ms-scroll-chaining: none;
-}
-
-.modal-ul {
-text-align: left;
-}
-
-.modal-photo {
-color: rgb(67, 74, 84);
-height: 200px;
-width: 555px;
-overflow: hidden;
-}
-
-.preview {
-margin: 0 auto;
-width: 280px;
-height: 380px;
-background: white;
-border-bottom: 2.5px solid #d4d2d3;
-}
-
-.preview > img {
-position: relative;
-height: 324px;
-width: 270px;
-top: 50%;
--webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-}
-
-.modal-photo > img {
-vertical-align: middle;
-border-radius: 4px 4px 0 0;
-}
-
-.modal-contents {
-padding: 20px 20px 0 20px;
-}
-
-.modal-menu {
-position: absolute;
-left: 0;
-right: 0;
-}
-
-.fade-bk {
-background-color: rgba(255,255,255,.9);
-z-index: 99;
-position: fixed;
-bottom: 0;
-right: 0;
-left: 0;
-top: 0;
-}
-
-#text-field {
-max-width: 200px;
-margin: 0 auto;
-text-align: center;
-}
-
-@media screen and (max-width: 599px) {
-.modal {
+  position: absolute;
   left: 0;
   top: 0;
-  -webkit-transform: translate(0);
-          transform: translate(0);
+  background-color: $orange-light;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(240,90,34,0.5) 10px, rgba(240,90,34,0.5)15px);
+  max-width: 555px;
+  z-index: 99;
   width: 100%;
   height: 100%;
-  max-width: none;
-  max-height: none;
-  margin: 0;
-  padding: 0 !important;
   overflow-x: hidden;
   overflow-y: scroll;
   -ms-overflow-style: hidden;
   -ms-scroll-chaining: none;
+  text-align: center;
+  @media screen and (min-width: $tablet) {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
+
+.modal-ul {
+  text-align: left;
+}
+
+.content-group-a {
+  h2 {
+    color: $white;
+  }
+  p {
+    padding: 0.75em;
+    color: $white;
+    background-color: $turq;
+    margin-bottom: 1em;
+  }
+  a {
+    color: $pink-dark;
+  }
+}
+
+.content-group-b {
+
+}
+
+.preview {
+  margin: 0 auto;
+  width: 280px;
+  height: 380px;
+  background: white;
+  border-bottom: 2.5px solid #d4d2d3;
+  margin-bottom: 1em;
+}
+
+.preview > img {
+  position: relative;
+  height: 324px;
+  width: 270px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.modal-contents {
+  padding: 20px 20px 0;
+}
+
+.modal-menu {
+  background-color: $green-light;
+  .options-wrap {
+    button {
+      padding: 0;
+    }
+  }
+}
+
+.name-input-wrap {
+  padding: 0.5em 1em;
+  label {
+    @include heading-sans();
+    color: $white;
+    font-size: 1.5em;
+    margin-bottom: 0.3em;
+    display: block;
+  }
+  input {
+    margin-bottom: 0.5em;
+  }
+}
+
+
+.fade-bk {
+  background-color: rgba(255,255,255,.9);
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
 }
 
 #img-indicator {
   position: absolute;
-height: 75px;
- width: 75px;
- bottom: 50%;
- right: 23%;
- -webkit-transform: rotate(3deg);
- transform: rotate(3deg);
- background: #ff3939;
- box-shadow: 2px 3px 0 0 rgba(0,0,0,.2);
- color: #fff;
- font-family: Kent4F,Open Sans Bold Italic,Helvetica Neue,Helvetica,Arial,sans-serif;
- font-size: 9pt;
- text-align: center;
- border-radius: 50%;
+  height: 75px;
+  width: 75px;
+  bottom: 50%;
+  right: 23%;
+  transform: rotate(3deg);
+  background: $red-dark;
+  box-shadow: 2px 3px 0 0 rgba(0,0,0,.2);
+  color: $white;
+  font-family: Kent4F,Open Sans Bold Italic,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 9pt;
+  text-align: center;
+  border-radius: 50%;
 }
 
 #img-indicator > span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
