@@ -1,0 +1,80 @@
+// Font Sizes
+$base-font-size: 16px;
+
+// Line height
+$base-line-height: 1.4;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$base-border-radius: 12px;
+$base-spacing: $base-line-height * 1em;
+$small-spacing: $base-spacing / 2;
+$base-z-index: 0;
+
+// Colours
+$red-light: #EE3D3E;
+$red-dark: #BD232B;
+
+$turq: #1EBCBD;
+$turq-light: #83D1E1;
+$turq-dark: #098C9A;
+
+$yellow-light: #FFE546;
+$yellow-dark: #FEC10E;
+
+$grey-dark: #3F4C4E;
+$grey-medium: #566565;
+
+$green-light: #A5CD38;
+$green-dark: #50B748;
+
+$orange-light: #F58A1E;
+$orange-dark: #F05A22;
+
+$brown-light: #C49A6C;
+$brown-dark: #6C4C36;
+
+$pink-light: #F186B6;
+$pink-dark: #ED3D95;
+
+$purple-light: #A787BD;
+$purple-dark: #723995;
+
+$blue-light: #0071BB;
+$blue-dark: #284081;
+
+// Site Colours
+$body: #777c7f; // Light Grey
+$bg-darker: #f7f2ee;
+$bg: #fbf7f4; // Beige
+$main: $turq-dark;
+
+$border: #d4d2d3; // Border Grey
+
+// Social Colours
+$facebook: #3b5998;
+$twitter: #55ACEE;
+$instagram: #8a3ab9;
+$pinterest: #cb2027;
+
+// Border
+$base-border-color: $border;
+$base-border: 1px dashed $base-border-color;
+
+// Button shadow
+$btn-shadow: 4px 6px 0 0 rgba(0,0,0,0.10);
+$btn-shadow-slim: 0 4px 0 0 rgba(0,0,0,0.10);
+
+// Forms
+$form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($turq, $lightness: -5%, $alpha: -0.3);
+$form-box-shadow-error: $form-box-shadow, 0 0 5px adjust-color($red, $lightness: -5%, $alpha: -0.3);
+
+// Site Width
+$base-site-width: 1240px;
+
+
+//// Bulma overrides
+
+// Navbar
+$navbar-background-color: transparent;

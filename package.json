@@ -17,14 +17,20 @@
   },
   "devDependencies": {
     "browserify": "^13.3.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-csso": "^3.0.1",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
     "minifyify": "^7.3.4",
     "uglify-js": "^3.3.24"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "beefy assets/js/main.js --browserify $(which browserify) --live",
-    "dev": "watchify --debug assets/js/main.js -o assets/js/bundle.js -v",
-    "build": "browserify assets/js/main.js -d -p [minifyify --no-map] > assets/js/bundle.js",
+    "serve": "beefy assets/modules/main.js --browserify $(which browserify) --live",
+    "dev": "watchify --debug assets/modules/main.js -o assets/js/bundle.js -v",
+    "build": "browserify assets/modules/main.js -d -p [minifyify --no-map] > assets/js/bundle.js",
     "compress": "uglifyjs assets/js/bundle.js --compress drop_console,conditionals,booleans,dead_code,loops,unused,join_vars --mangle --screw-ie8 --output assets/js/bundle.js",
     "buildc": "npm run build && npm run compress"
   },

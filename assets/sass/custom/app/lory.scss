@@ -1,0 +1,64 @@
+/* ==========================================================================
+  LORY
+  ========================================================================== */
+
+/**
+ * (optional) define here the style definitions which should be applied on the slider container
+ * e.g. width including further controls like arrows etc.
+ */
+
+.slider {
+   background-color: #FBF7F4;
+   position: relative;
+   height: 100px;
+   box-shadow: 0 2px 0 0 rgba(0,0,0,0.15);
+   -ms-touch-action: none;
+}
+
+.frame {
+    /**
+     * (optional) wrapper width, specifies width of the slider frame.
+     */
+     position: relative;
+     font-size: 0;
+     line-height: 0;
+     overflow: hidden;
+     white-space: nowrap;
+     -ms-touch-action: none;
+}
+
+.slides {
+    display: inline-block;
+    -ms-touch-action: none;
+}
+
+li {
+    position: relative;
+    display: inline-block;
+    -ms-touch-action: none;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  margin-top: -40px;
+  display: block;
+  cursor: pointer;
+}
+
+.next:hover, .prev:hover {
+  opacity: 0.75;
+}
+
+.next {
+    right: 0;
+}
+
+.prev {
+    left: 0;
+    visibility: hidden;
+}
+
+.next svg, .prev svg {
+    width: 50px;
+}

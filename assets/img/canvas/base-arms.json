@@ -10,7 +10,7 @@
 },
 "a2.png":
 {
-	"frame": {"x":308,"y":76,"w":196,"h":72},
+	"frame": {"x":308,"y":76,"w":196,"h":72}, 
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":196,"h":72},
