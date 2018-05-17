@@ -17,6 +17,7 @@ Watch js modules for changes `npm run dev`
 
 Build main.css for production `gulp css`
 Watch scss modules for changes `gulp`
+(watch out for Jekyll clobbering your css if you change a Jekyll watched file, save a scss module to put it back)
 
 
 

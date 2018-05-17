@@ -2,13 +2,83 @@
 layout: default
 ---
 
-<h1>Hello world!</h1>
+<div class="landing-page">
 
-<p>Test string: {% t test %} <strong>bold font too</strong></p>
+  <div class="splat-background">
+    <b class="decoration splat-yellow"></b>
+    <b class="decoration splat-pink"></b>
+  </div>
 
-<p>Test base url: {{ site.baseurl_root }} : {{ site.lang }}</p>
+  <div class="container">
 
-<div class="name-input-wrap">
-  <label for="text_field">My toucanoo is called:</label>
-  <input type="text" id="text-field">
-</div>
+    <div class="tile is-ancestor">
+
+      <div class="tile is-vertical is-parent">
+        <div class="tile is-child turq-stripe">
+          <a href="#" class="toucanoo-logo">Toucanoo Yourself</a>
+          <div class="intro-image image is-3by2">
+            <img src="{{ "/assets/img/web/background-small.jpg" | prepend: site.baseurl_root }}" alt="">
+          </div>
+          <div class="intro-blurb">
+            <h1>What is it?</h1>
+            <p>Personalise your very own toucanoo! Choose clothes,
+              hair and accessories to invent a completely unique character.
+              Finally give them a name, then print it off and get colouring!
+            </p>
+          </div>
+        </div>
+
+        <div class="tile is-child box">
+          <div class="steps columns is-mobile">
+            <div class="column touch">
+              <div class="home-panel">
+                <!-- <div class="image is-square">
+                  <img class="intro-gifs" src="{{ "assets/img/web/touch.gif" | prepend: site.baseurl_root }}">
+                </div> -->
+                <p>Get designing</p>
+              </div>
+            </div>
+            <div class="column mouse">
+              <div class="home-panel">
+                <!-- <div class="image is-square">
+                  <img class="intro-gifs" src="{{ "assets/img/web/mouse.gif" | prepend: site.baseurl_root }}">
+                </div> -->
+                <p>Get designing</p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="home-panel">
+                <!-- <div class="image is-square">
+                  <img class="intro-gifs" src="{{ "assets/img/web/print.gif" | prepend: site.baseurl_root }}">
+                </div> -->
+                <p>Print at home or save PDF</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tile is-child cta-tile box">
+          <a class="button is-warning">Get Started</a>
+        </div>
+
+      </div>
+
+      <div class="desktop-support tile is-parent">
+        <div class="tile is-child box">
+          <div class="hero">
+            <div class="hero-label">
+              Go from Screen to Paper
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+  </div>
+
+<script src="{{ "assets/js/landing.js" | prepend: site.baseurl_root }}"></script>

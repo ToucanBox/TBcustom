@@ -28,27 +28,7 @@ layout: default
 
     <div class="home-boxes second-box">
       <div class="home-panel-wrap clearfix">
-              <div id="touch-panel" class="home-panel hidden">
-                  <div class="callout-number"><h3>1</h3></div>
-                  <div class="img-sizer">
-                  <img class="intro-gifs" src="{{ "assets/img/web/touch.gif" | prepend: site.baseurl_root }}">
-                  </div>
-                  <p>Get designing</p>
-              </div>
-              <div id="mouse-panel" class="home-panel second hidden">
-                  <div class="callout-number"><h3>1</h3></div>
-                  <div class="img-sizer">
-                  <img class="intro-gifs" src="{{ "assets/img/web/mouse.gif" | prepend: site.baseurl_root }}">
-                  </div>
-                  <p>Get designing</p>
-              </div>
-              <div class="home-panel second">
-                  <div class="callout-number"><h3>2</h3></div>
-                  <div class="img-sizer">
-                  <img class="intro-gifs" src="{{ "assets/img/web/print.gif" | prepend: site.baseurl_root }}">
-                  </div>
-                  <p>Print at home or save PDF</p>
-              </div>
+
           </div>
     </div>
 
@@ -118,22 +98,15 @@ doEqHeights()
 }
 
 function checkDevice() {
-if (window.innerWidth <= 1024) {
-  touchPanel.className = 'home-panel';
-  mousePanel.className = 'home-panel hidden';
-  console.log('touch');
-} else {
-  mousePanel.className = 'home-panel';
-  touchPanel.className = 'home-panel hidden';
-  console.log('mouse');
-}
-// if (window.innerWidth >= 900  ) {
-//   socialBtns.style.display = 'block';
-//
-//   // Share container position
-//   socialBtns.style.top = window.innerHeight / 2 - 105 - 100 + 'px';
-//
-// }
+  if (window.innerWidth <= 1024) {
+    touchPanel.className = 'home-panel';
+    mousePanel.className = 'home-panel hidden';
+    console.log('touch');
+  } else {
+    mousePanel.className = 'home-panel';
+    touchPanel.className = 'home-panel hidden';
+    console.log('mouse');
+  }
 }
 
 function doEqHeights() {

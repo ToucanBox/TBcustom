@@ -1,0 +1,25 @@
+.desktop-support {
+  display: none;
+  @media screen and (min-width: $desktop) {
+    display: flex;
+  }
+  .tile {
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    justify-content: space-between;
+  }
+}
+
+.hero {
+  flex-grow: 1;
+  flex-shrink: 0;
+  background-color: $white-ter;
+}
+
+.hero-label {
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: $green-light;
+}

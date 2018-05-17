@@ -1,7 +1,7 @@
 .navbar {
   border-top: 9px solid $blue-light;
   pointer-events: none;
-  position: fixed;
+  position: absolute;
   width: 100%;
   transition: border-top 0.2s ease-in-out;
 }
@@ -79,7 +79,9 @@
 }
 
 .nav-menu-active {
-  background-color: $blue-light;
+  @media screen and (min-width: $desktop) {
+    background-color: $blue-light;
+  }
   color: $white;
   height: 100%;
   width: 100%;
@@ -90,7 +92,7 @@
   visibility: hidden;
   padding: 1em;
   @media screen and (min-width: $desktop) {
-    top: 4.25em;
+    top: $navbar-offset;
   }
 }
 

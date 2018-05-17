@@ -3,3 +3,9 @@
   font-family: $heading-sans, "BlinkMacSystemFont", "-apple-system", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   letter-spacing: 1px;
 }
+
+@mixin background-image-replacement{
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+}

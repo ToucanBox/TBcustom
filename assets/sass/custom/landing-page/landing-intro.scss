@@ -1,0 +1,30 @@
+.toucanoo-logo {
+  @include background-image-replacement()
+  background-repeat: no-repeat;
+  background-image: url('../img/web/toucanoo-yourself-logo.svg');
+  width: 240px;
+  height: 68px;
+  display: block;
+  margin: 1em auto;
+}
+
+.intro-image {
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
+}
+
+.intro-blurb {
+  position: relative;
+  background-color: $white;
+  padding: 0.5em;
+  h1 {
+    position: absolute;
+    top: -2px;
+    left: 5px;
+    padding: 0.1em 1em;
+    font-size: 20px;
+    background-color: $orange-light;
+    color: $white;
+  }
+}

@@ -1,9 +1,16 @@
+.splat-background {
+  pointer-events: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 .decoration {
   display: block;
   position: absolute;
-  text-indent: -119988px;
-  overflow: hidden;
-  text-align: left;
+  @include background-image-replacement()
   background-repeat: no-repeat;
   pointer-events: none;
   -ms-touch-action: none;

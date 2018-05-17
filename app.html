@@ -14,7 +14,7 @@ layout: default
 
 <div id="content">
 
-  <div class="customiser-background">
+  <div class="splat-background">
     <b class="decoration splat-orange-light"></b>
     <b class="decoration splat-yellow"></b>
     <b class="decoration splat-pink"></b>
@@ -68,8 +68,8 @@ layout: default
 </div>
 
 <div id="indicator">
-  <img class="indicatorImg" id="finger" src="/assets/img/web/finger.png">
-  <img class="indicatorImg" id="mouse" src="/assets/img/web/mouse.png">
+  <img class="indicatorImg" id="finger" src="{{ "assets/img/web/finger.png" | prepend: site.baseurl_root }}">
+  <img class="indicatorImg" id="mouse" src="{{ "assets/img/web/mouse.png" | prepend: site.baseurl_root }}">
 </div>
 
 <div id="fader" class="fade-bk hidden"></div>
@@ -134,4 +134,4 @@ layout: default
   <button id="advice-back-do" class="button is-info">Back</button>
 </div>
 
-<script src="/assets/js/bundle.js"></script>
+<script src="{{ "assets/js/bundle.js" | prepend: site.baseurl_root }}"></script>

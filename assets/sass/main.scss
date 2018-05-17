@@ -11,6 +11,7 @@
 @import "vendor/bulma/sass/utilities/_all.sass";
 @import "vendor/bulma/sass/base/_all.sass";
 @import "vendor/bulma/sass/grid/columns.sass";
+@import "vendor/bulma/sass/grid/tiles.sass";
 @import "vendor/bulma/sass/elements/button.sass";
 @import "vendor/bulma/sass/elements/image.sass";
 @import "vendor/bulma/sass/components/navbar.sass";
@@ -32,6 +33,11 @@
 @import "custom/app/app-indicator";
 @import "custom/app/app-drag";
 @import "custom/app/app-busy";
-@import "custom/app/app-decoration";
 @import "custom/app/lory";
 @import "custom/app/sprites";
+
+// landing page
+@import "custom/landing-page/landing-structure";
+@import "custom/landing-page/landing-intro";
+@import "custom/landing-page/landing-steps";
+@import "custom/landing-page/landing-hero";
