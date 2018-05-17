@@ -75,8 +75,9 @@ layout: default
 <div id="fader" class="fade-bk hidden"></div>
 
 <div id="print-modal" class="modal hidden">
-  <div class="modal-cancel-button">
-
+  <div class="modal-cancel-button back-do">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
   </div>
 
   <div class="modal-contents">
@@ -103,10 +104,15 @@ layout: default
       <input type="text" placeholder="toucanoo's name" id="text-field">
     </div>
 
-    <div class="options-wrap columns is-gapless is-mobile">
-      <button id="back-do" class="button is-danger column">Back</button>
-      <button id="print-do" class="button is-success column">Print</button>
-      <button id="save-do" class="button is-primary column">Save</button>
+    <div class="options-wrap-desktop">
+      <button class="button is-warning print-do">Print</button>
+      <button class="button is-info save-do">Save</button>
+    </div>
+
+    <div class="options-wrap-mobile columns is-gapless is-mobile">
+      <button class="button is-danger column back-do">Back</button>
+      <button class="button is-success column print-do">Print</button>
+      <button class="button is-info column save-do">Save</button>
     </div>
 
   </div>
@@ -114,8 +120,8 @@ layout: default
 
 <div id="advice-modal" class="modal hidden">
   <div class="modal-contents">
-    <h2 id="print-modal-title">Printing advice</h2>
-    <div class="modal-ul">
+    <div class="print-blurb">
+      <h2>Printing advice</h2>
       <p>We know it’s not always easy to get printing working on your phone, tablet or even your desktop! Here’s some advice to give you a helping hand:</p>
       <ul>
         <li>Try saving for printing later, either choose to print as a PDF or use our save button.</li>
@@ -125,9 +131,7 @@ layout: default
       </ul>
     </div>
   </div>
-  <div class="modal-menu">
-    <button id="advice-back-do" class="danger">Back</button>
-  </div>
+  <button id="advice-back-do" class="button is-info">Back</button>
 </div>
 
 <script src="/assets/js/bundle.js"></script>

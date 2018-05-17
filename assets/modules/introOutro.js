@@ -50,17 +50,21 @@ var io = function (init) {
   this.preview = document.getElementById('preview-output');
 
   // Print, PDF and back buttons
-  this.doPrintBtn = document.getElementById('print-do');
-  this.doPrintBtn.addEventListener( 'click' , function() {self.doPrint();}, false );
-  this.doPrint = function(event) {
-    self.init.printCanvas();
-  };
+  this.doPrintBtn = document.querySelectorAll('.print-do');
+  for (var i = 0; i < this.doPrintBtn.length; i++) {
+    this.doPrintBtn[i].addEventListener( 'click' , function() {self.doPrint();}, false );
+      this.doPrint = function(event) {
+        self.init.printCanvas();
+      };
+  }
 
-  this.doPDFBtn = document.getElementById('save-do');
-  this.doPDFBtn.addEventListener( 'click' , function() {self.doPDF();}, false );
-  this.doPDF = function(event) {
-    self.init.saveCanvas();
-  };
+  this.doPDFBtn = document.querySelectorAll('.save-do');
+  for (var i = 0; i < this.doPDFBtn.length; i++) {
+    this.doPDFBtn[i].addEventListener( 'click' , function() {self.doPDF();}, false );
+    this.doPDF = function(event) {
+      self.init.saveCanvas();
+    };
+  }
 
   // name text input
   this.textInput = document.getElementById('text-field');
@@ -76,8 +80,10 @@ var io = function (init) {
   this.textInput.onblur = this.useValue;
   this.textInput.onkeyup = this.useValue;
 
-  this.doBackBtn = document.getElementById('back-do');
-  this.doBackBtn.addEventListener( 'click' , function() {self.doBack();}, false );
+  this.doBackBtn = document.querySelectorAll('.back-do');
+  for (var i = 0; i < this.doBackBtn.length; i++) {
+    this.doBackBtn[i].addEventListener( 'click' , function() {self.doBack();}, false );
+  }
   this.doBack = function(event) {
     self.init.reversePrintPipe();
     self.printModal.setAttribute('class', 'modal hidden');

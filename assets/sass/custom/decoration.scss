@@ -1,0 +1,60 @@
+.decoration {
+  display: block;
+  position: absolute;
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  -ms-touch-action: none;
+  width: 180px;
+  height: 180px;
+}
+
+.splat-orange-light {
+  background-image: url('../img/web/splat-orange-light.svg');
+  left: -90px;
+  top: -25px;
+  transform: scale(1);
+  @media screen and (min-width: $desktop) {
+    transform: scale(2.5) rotate(85deg);
+    left: -110px;
+    top: 100px;
+  }
+}
+
+.splat-orange-dark {
+  background-image: url('../img/web/splat-orange-dark.svg');
+  left: 0;
+  top: 20%;
+  transform: scale(2);
+  @media screen and (min-width: $desktop) {
+    transform: scale(4);
+    left: 0;
+    top: 20%;
+  }
+}
+
+.splat-yellow {
+  background-image: url('../img/web/splat-yellow.svg');
+  left: 10%;
+  top: 20%;
+  transform: scale(1.8) rotate(-68deg);
+  @media screen and (min-width: $desktop) {
+    transform: scale(3.8) rotate(120deg);
+    left: 35%;
+    top: 30%;
+  }
+}
+
+.splat-pink {
+  background-image: url('../img/web/splat-pink.svg');
+  right: -90px;
+  bottom: 40%;
+  transform: scale(1.2) rotate(-20deg);
+  @media screen and (min-width: $desktop) {
+    transform: scale(4);
+    right: -20px;
+    bottom: 15%;
+  }
+}

@@ -5,6 +5,8 @@
 html, body {
   -ms-overflow-style: hidden;
   -ms-scroll-chaining: none;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 // Helper classes

@@ -1,0 +1,60 @@
+// Forms
+
+input {
+  background-color: $white;
+  border: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-family: $font-base;
+  font-size: 18px;
+  padding: 10px 10px 8px;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: 0 0 0 1px $border;
+  transition: box-shadow 0.3s ease-in-out;
+  color: $dark;
+
+  &::-webkit-input-placeholder {
+    color: $grey-light;
+  }
+  &::-moz-placeholder {
+    color: $grey-light;
+  }
+  &:-ms-input-placeholder {
+    color: $grey-light;
+  }
+  &:-moz-placeholder {
+    color: $grey-light;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 1px $border-darker;
+  }
+
+  &:focus, &:active {
+    outline: none;
+    box-shadow: 0 0 0 1px $turq-dark;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+    background: $border;
+  }
+
+}
+
+.input-wrap {
+  &.valid {
+    input, select, textarea {
+      box-shadow: 0 0 0 1px $green-light;
+    }
+  }
+  &.error {
+    input, select, textarea {
+      box-shadow: 0 0 0 1px $red;
+    }
+  }
+}

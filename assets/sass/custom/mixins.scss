@@ -1,0 +1,5 @@
+// We use a mixin for the Kent4F font for setting the letter spacing consistantly
+@mixin heading-sans{
+  font-family: $heading-sans, "BlinkMacSystemFont", "-apple-system", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  letter-spacing: 1px;
+}

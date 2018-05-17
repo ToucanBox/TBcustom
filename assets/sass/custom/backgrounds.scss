@@ -1,0 +1,10 @@
+.turq-stripe {
+  background-color: $turq;
+  background-image: linear-gradient(transparent 70%, rgba(0,163,172,1) 50%);
+  background-size: 50px 20px;
+}
+
+.orange-diagonal {
+  background-color: $orange-light;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(240,90,34,0.5) 10px, rgba(240,90,34,0.5)15px);
+}

@@ -1,7 +1,11 @@
 .modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   background-color: $orange-light;
   background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(240,90,34,0.5) 10px, rgba(240,90,34,0.5)15px);
   max-width: 555px;
@@ -14,17 +18,46 @@
   -ms-scroll-chaining: none;
   text-align: center;
   @media screen and (min-width: $tablet) {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    overflow-y: hidden;
+    max-width: 768px;
+    max-height: 540px;
   }
 }
 
-.modal-ul {
-  text-align: left;
+.modal-cancel-button {
+  display: none;
+  @media screen and (min-width: $tablet) {
+    display: block;
+  }
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  right: -1px;
+  top: -1px;
+  background-color: $turq;
+  cursor: pointer;
+  &:hover, &:focus, &:active {
+    background-color: darken($turq, 2%);
+  }
+  span {
+    position: absolute;
+    height: 6px;
+    width: 34px;
+    left: calc(50% - 17px);
+    display: block;
+    background-color: $white;
+    &:nth-child(1) {
+      top: calc(50% - 14px);
+      transform: translateY(11px) rotate(45deg);
+    }
+    &:nth-child(2) {
+      top: calc(50% + 8px);
+      transform: translateY(-11px) rotate(-45deg);
+    }
+  }
 }
 
-.content-group-a {
+.print-blurb {
   h2 {
     color: $white;
   }
@@ -37,13 +70,27 @@
   a {
     color: $pink-dark;
   }
+  ul {
+    text-align: left;
+    padding: 0.75em;
+    color: $white;
+    background-color: $turq;
+    margin-bottom: 1em;
+  }
 }
 
-.content-group-b {
-
+.content-group-a,
+.content-group-b,
+.name-input-wrap,
+.options-wrap-desktop {
+  @media screen and (min-width: $tablet) {
+    flex-grow: 1;
+    width: 50%;
+  }
 }
 
 .preview {
+  position: relative;
   margin: 0 auto;
   width: 280px;
   height: 380px;
@@ -62,11 +109,33 @@
 
 .modal-contents {
   padding: 20px 20px 0;
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
 }
 
 .modal-menu {
   background-color: $green-light;
-  .options-wrap {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .options-wrap-desktop {
+    display: none;
+    @media screen and (min-width: $tablet) {
+      display: block;
+    }
+    .print-do {
+      margin-right: 10px;
+    }
+  }
+  .options-wrap-mobile {
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
     button {
       padding: 0;
     }
@@ -79,7 +148,7 @@
     @include heading-sans();
     color: $white;
     font-size: 1.5em;
-    margin-bottom: 0.3em;
+    margin-bottom: 0.5em;
     display: block;
   }
   input {
@@ -103,9 +172,9 @@
   height: 75px;
   width: 75px;
   bottom: 50%;
-  right: 23%;
+  right: -25px;
   transform: rotate(3deg);
-  background: $red-dark;
+  background: $red;
   box-shadow: 2px 3px 0 0 rgba(0,0,0,.2);
   color: $white;
   font-family: Kent4F,Open Sans Bold Italic,Helvetica Neue,Helvetica,Arial,sans-serif;

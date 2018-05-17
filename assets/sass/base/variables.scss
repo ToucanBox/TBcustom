@@ -58,6 +58,8 @@ $pinterest: #cb2027;
 
 //// Bulma overrides
 
+$body-size: 18px;
+
 $orange: $orange-light;
 $yellow: $yellow-dark;
 $green: $green-dark;
@@ -69,10 +71,11 @@ $red: $red-light;
 $grey: $grey-medium;
 
 $primary: $turq;
-$info: $yellow-dark;
+$info: $purple-dark;
 $success: $green-dark;
-$warning: $orange-light;
+$warning: $pink-dark;
 $danger: $red-light;
+$warning-invert: #FFFFFF;
 
 $link: $turq;
 $link-hover: $turq-dark;
