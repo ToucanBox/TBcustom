@@ -9,3 +9,11 @@
   overflow: hidden;
   text-align: left;
 }
+
+
+// Override rem on tiles
+.tile.is-parent {
+  @media screen and (max-width: $tablet) {
+    padding: 1em;
+  }
+}

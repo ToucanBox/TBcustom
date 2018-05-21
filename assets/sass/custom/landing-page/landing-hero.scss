@@ -16,10 +16,29 @@
   flex-grow: 1;
   flex-shrink: 0;
   background-color: $white-ter;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .hero-label {
   flex-grow: 0;
   flex-shrink: 0;
   background-color: $green-light;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  color: $white;
+  padding: 0 1em 0.15em;
+  @include heading-sans();
+}
+
+.hero-image {
+  background-image: url('/assets/img/web/background.jpg');
+  flex-grow: 1;
+  flex-shrink: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
 }

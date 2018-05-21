@@ -36,3 +36,18 @@ strong, b, .bold, a {
   font-family: $font-bold, "BlinkMacSystemFont", "-apple-system", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
 }
+
+ul.bulleted {
+  font-size: 18px;
+  li {
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+    &::before {
+      content: "•";
+      color: $grey-medium;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+  }
+}

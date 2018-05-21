@@ -1,3 +1,36 @@
+.intro {
+  position: relative;
+  @media screen and (max-width: $tablet) {
+    background-image: none;
+    background-color: transparent;
+  }
+}
+
+.mobile-intro-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: scale(1.5, 1.03) rotate(-2.5deg) translate(0, 12px);
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
+}
+
+.yellow-block {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  background-color: $yellow-light;
+}
+
+.logo-container {
+  padding: 1em;
+}
+
 .toucanoo-logo {
   @include background-image-replacement()
   background-repeat: no-repeat;
@@ -5,7 +38,8 @@
   width: 240px;
   height: 68px;
   display: block;
-  margin: 1em auto;
+  margin: 0 auto;
+  position: relative;
 }
 
 .intro-image {
@@ -17,14 +51,17 @@
 .intro-blurb {
   position: relative;
   background-color: $white;
-  padding: 0.5em;
+  padding: 0.7em;
   h1 {
     position: absolute;
-    top: -2px;
-    left: 5px;
-    padding: 0.1em 1em;
+    top: -10px;
+    left: 10px;
+    padding: 0.2em 0.6em 0.4em;
     font-size: 20px;
     background-color: $orange-light;
     color: $white;
+  }
+  p {
+    margin-top: 30px;
   }
 }

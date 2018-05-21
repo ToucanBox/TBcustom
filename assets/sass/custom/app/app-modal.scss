@@ -34,16 +34,15 @@
   position: absolute;
   right: -1px;
   top: -1px;
-  background-color: $turq;
   cursor: pointer;
   &:hover, &:focus, &:active {
-    background-color: darken($turq, 2%);
+    background-color: $turq;
   }
   span {
     position: absolute;
     height: 6px;
     width: 34px;
-    left: calc(50% - 17px);
+    left: calc(50% - 18px);
     display: block;
     background-color: $white;
     &:nth-child(1) {
@@ -66,6 +65,7 @@
     color: $white;
     background-color: $turq;
     margin-bottom: 1em;
+    font-size: 1.2em;
   }
   a {
     color: $pink-dark;

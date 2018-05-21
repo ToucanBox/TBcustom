@@ -20,6 +20,12 @@
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
 
+  <style>
+    .zEWidget-launcher {
+      display: none !important;
+    }
+  </style>
+
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | prepend: site.baseurl_root }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 

@@ -6,7 +6,7 @@ layout: default
 
   <div class="splat-background">
     <b class="decoration splat-yellow"></b>
-    <b class="decoration splat-pink"></b>
+    <b class="decoration splat-orange-dark"></b>
   </div>
 
   <div class="container">
@@ -14,8 +14,13 @@ layout: default
     <div class="tile is-ancestor">
 
       <div class="tile is-vertical is-parent">
-        <div class="tile is-child turq-stripe">
-          <a href="#" class="toucanoo-logo">Toucanoo Yourself</a>
+        <div class="tile is-child turq-stripe intro">
+          <div class="mobile-intro-background turq-stripe">
+            <div class="yellow-block"></div>
+          </div>
+          <div class="logo-container">
+            <a href="#" class="toucanoo-logo">Toucanoo Yourself</a>
+          </div>
           <div class="intro-image image is-3by2">
             <img src="{{ "/assets/img/web/background-small.jpg" | prepend: site.baseurl_root }}" alt="">
           </div>
@@ -32,33 +37,33 @@ layout: default
           <div class="steps columns is-mobile">
             <div class="column touch">
               <div class="home-panel">
-                <!-- <div class="image is-square">
-                  <img class="intro-gifs" src="{{ "assets/img/web/touch.gif" | prepend: site.baseurl_root }}">
-                </div> -->
+                <div class="image-sizer">
+                    <img class="intro-gifs" src="{{ "assets/img/web/touch.gif" | prepend: site.baseurl_root }}">
+                </div>
                 <p>Get designing</p>
               </div>
             </div>
             <div class="column mouse">
               <div class="home-panel">
-                <!-- <div class="image is-square">
-                  <img class="intro-gifs" src="{{ "assets/img/web/mouse.gif" | prepend: site.baseurl_root }}">
-                </div> -->
+                <div class="image-sizer">
+                    <img class="intro-gifs" src="{{ "assets/img/web/mouse.gif" | prepend: site.baseurl_root }}">
+                </div>
                 <p>Get designing</p>
               </div>
             </div>
-            <div class="column">
+            <div class="column print">
               <div class="home-panel">
-                <!-- <div class="image is-square">
-                  <img class="intro-gifs" src="{{ "assets/img/web/print.gif" | prepend: site.baseurl_root }}">
-                </div> -->
+                <div class="image-sizer">
+                    <img class="intro-gifs" src="{{ "assets/img/web/print.gif" | prepend: site.baseurl_root }}">
+                </div>
                 <p>Print at home or save PDF</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="tile is-child cta-tile box">
-          <a class="button is-warning">Get Started</a>
+        <div class="tile is-child cta-tile box home-cta-desktop">
+          <a href="/app?pjs" class="button is-warning">Get Started</a>
         </div>
 
       </div>
@@ -69,14 +74,17 @@ layout: default
             <div class="hero-label">
               Go from Screen to Paper
             </div>
+            <div class="hero-image"></div>
           </div>
         </div>
       </div>
 
     </div>
 
+  </div>
 
-
+  <div class="tile is-child cta-tile box home-cta-mobile">
+    <a href="/app?pjs" class="button is-warning">Get Started</a>
   </div>
 
   </div>
