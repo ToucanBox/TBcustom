@@ -19,10 +19,6 @@ permalink: pretty
 markdown: kramdown
 
 # Sass settings
-sass:
-  add_charset: true
-  sass_dir: assets/sass
-  style: :compressed
 
 # Build settings
 exclude:
