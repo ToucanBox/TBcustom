@@ -11,7 +11,7 @@ gulp.task('sass', function () {
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
+            browsers: ['last 4 versions'],
             cascade: false
         }))
     .pipe(sourcemaps.write('/', {
@@ -29,7 +29,7 @@ gulp.task('sass:prod', function () {
   return gulp.src('./assets/sass/main.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
+            browsers: ['last 4 versions'],
             cascade: false
         }))
     .pipe(cleanCSS({compatibility: 'ie8'}))
