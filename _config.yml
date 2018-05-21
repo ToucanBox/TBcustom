@@ -11,8 +11,8 @@ description: > # this means to ignore newlines until "baseurl:"
   Personalise your very own toucanoo! Choose clothes,
   hair and accessories to invent a completely unique character.
   Finally give them a name, then print it off and get colouring!
-baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://create.toucanbox.com" # the base hostname & protocol for your site
+baseurl: "/" # the subpath of your site, e.g. /blog
 permalink: pretty
 
 # Markdown settings
