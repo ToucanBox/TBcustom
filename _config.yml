@@ -35,6 +35,6 @@ plugins:
   - jekyll-sitemap
 
 # Translation
-languages: ["en"]
+# languages: ["en"]
 # languages: ["en", "de", "fr", "it"]
-exclude_from_localizations: ["assets", "node_modules", "main.scss"]
+# exclude_from_localizations: ["assets", "node_modules", "main.scss"]
