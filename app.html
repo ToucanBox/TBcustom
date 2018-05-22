@@ -51,8 +51,8 @@ layout: default
       </div>
 
       <div class="menu columns is-gapless is-mobile">
-        <button id="undo-btn" class="button is-danger column">Undo</button>
-        <button id="print-btn" class="button is-success column">Print</button>
+        <button id="undo-btn" class="button is-danger column">{% t app.undo %}</button>
+        <button id="print-btn" class="button is-success column">{% t app.print %}</button>
       </div>
 
     </div>
@@ -62,8 +62,8 @@ layout: default
 </div>
 
 <div id="indicator">
-  <img class="indicatorImg" id="finger" src="assets/img/web/finger.png">
-  <img class="indicatorImg" id="mouse" src="assets/img/web/mouse.png">
+  <img class="indicatorImg" id="finger" src="{{ "/assets/img/web/finger.png" | prepend: site.baseurl_root }}">
+  <img class="indicatorImg" id="mouse" src="{{ "/assets/img/web/mouse.png" | prepend: site.baseurl_root }}">
 </div>
 
 <div id="fader" class="fade-bk hidden">
@@ -78,15 +78,15 @@ layout: default
 
       <div class="content-group-a">
         <div class="print-blurb">
-          <h2>AMAZING WORK!</h2>
-          <p>Woah, your toucanoo looks incredible! Nice one! Pop your name in the box below and it will appear on your design. Click <a id="print-advice" href="#">here</a> for advice on printing.</p>
+          <h2>{% t app.modaltitle %}</h2>
+          <p>{% t app.modalblurb %}</p>
         </div>
       </div>
 
       <div class="content-group-b">
         <div class="preview">
           <img src="" id="preview-output">
-          <div id="img-indicator" class="hidden"><span>Try saving this image</span></div>
+          <div id="img-indicator" class="hidden"><span>{% t app.saveimage %}</span></div>
         </div>
       </div>
 
@@ -94,19 +94,19 @@ layout: default
 
     <div class="modal-menu">
       <div class="name-input-wrap">
-        <label for="text_field">My toucanoo is called:</label>
-        <input type="text" placeholder="toucanoo's name" id="text-field">
+        <label for="text_field">{% t app.namefield %}</label>
+        <input type="text" placeholder="{% t app.nameplaceholder %}" id="text-field">
       </div>
 
       <div class="options-wrap-desktop">
-        <button class="button is-warning print-do">Print</button>
-        <button class="button is-info save-do">Save</button>
+        <button class="button is-warning print-do">{% t app.print %}</button>
+        <button class="button is-info save-do">{% t app.save %}</button>
       </div>
 
       <div class="options-wrap-mobile columns is-gapless is-mobile">
-        <button class="button is-danger column back-do">Back</button>
-        <button class="button is-success column print-do">Print</button>
-        <button class="button is-info column save-do">Save</button>
+        <button class="button is-danger column back-do">{% t app.back %}</button>
+        <button class="button is-success column print-do">{% t app.print %}</button>
+        <button class="button is-info column save-do">{% t app.save %}</button>
       </div>
 
     </div>
@@ -115,19 +115,19 @@ layout: default
   <div id="advice-modal" class="modal hidden">
     <div class="modal-contents">
       <div class="print-blurb">
-        <h2>Printing advice</h2>
-        <p>We know it’s not always easy to get printing working on your phone, tablet or even your desktop! Here’s some advice to give you a helping hand:</p>
+        <h2>{% t printadvice.maintitle %}</h2>
+        <p>{% t printadvice.adviceblurb %}</p>
         <ul class="bulleted">
-          <li>Try saving for printing later, either choose to print as a PDF or use our save button.</li>
-          <li>Some printers allow you to email attachments to them for printing, you just need the address.</li>
-          <li>As a last resort you can save the preview image in the previous menu (right click or touch-hold to save). It may look small but it's actually full size.</li>
-          <li>Any questions please email <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a></li>
+          <li>{% t printadvice.li1 %}</li>
+          <li>{% t printadvice.li2 %}</li>
+          <li>{% t printadvice.li3 %}</li>
+          <li>{% t printadvice.li4 %}</li>
         </ul>
       </div>
     </div>
-    <button id="advice-back-do" class="button is-info">Back</button>
+    <button id="advice-back-do" class="button is-info">{% t app.back %}</button>
   </div>
 
 </div>
 
-<script src="assets/js/bundle.js"></script>
+<script src="{{ "/assets/js/bundle.js" | prepend: site.baseurl_root }}"></script>

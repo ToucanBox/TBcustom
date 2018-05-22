@@ -12,7 +12,7 @@ description: > # this means to ignore newlines until "baseurl:"
   hair and accessories to invent a completely unique character.
   Finally give them a name, then print it off and get colouring!
 url: "http://create.toucanbox.com" # the base hostname & protocol for your site
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 
 # Markdown settings
 markdown: kramdown
@@ -35,5 +35,5 @@ plugins:
 
 # Translation
 # languages: ["en"]
-# languages: ["en", "de", "fr", "it"]
-# exclude_from_localizations: ["assets", "node_modules", "main.scss"]
+languages: ["en", "de", "fr", "it"]
+exclude_from_localizations: ["assets", "node_modules", "main.scss"]

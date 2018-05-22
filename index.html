@@ -19,17 +19,14 @@ layout: default
             <div class="yellow-block"></div>
           </div>
           <div class="logo-container">
-            <a href="#" class="toucanoo-logo">Toucanoo Yourself</a>
+            <a href="#" class="toucanoo-logo">{% t index.maintitle %}</a>
           </div>
           <div class="intro-image image is-16by9">
-            <img src="/assets/img/web/background-small.jpg" alt="make a toucanoo">
+            <img src="{{ "/assets/img/web/background-small.jpg" | prepend: site.baseurl_root }}" alt="{% t index.alt %}">
           </div>
           <div class="intro-blurb">
-            <h1>What is it?</h1>
-            <p>Personalise your very own toucanoo! Choose clothes,
-              hair and accessories to invent a completely unique character.
-              Finally give them a name, then print it off and get colouring!
-            </p>
+            <h1>{% t index.subtitle %}</h1>
+            <p>{% t index.blurb %}</p>
           </div>
         </div>
 
@@ -38,32 +35,32 @@ layout: default
             <div class="column touch">
               <div class="home-panel">
                 <div class="image-sizer">
-                    <img class="intro-gifs" src="assets/img/web/touch.gif">
+                    <img class="intro-gifs" src="{{ "/assets/img/web/touch.gif" | prepend: site.baseurl_root }}">
                 </div>
-                <p>Get designing</p>
+                <p>{% t index.introa %}</p>
               </div>
             </div>
             <div class="column mouse">
               <div class="home-panel">
                 <div class="image-sizer">
-                    <img class="intro-gifs" src="assets/img/web/mouse.gif">
+                    <img class="intro-gifs" src="{{ "/assets/img/web/mouse.gif" | prepend: site.baseurl_root }}">
                 </div>
-                <p>Get designing</p>
+                <p>{% t index.introa %}</p>
               </div>
             </div>
             <div class="column print">
               <div class="home-panel">
                 <div class="image-sizer">
-                    <img class="intro-gifs" src="assets/img/web/print.gif">
+                    <img class="intro-gifs" src="{{ "/assets/img/web/print.gif" | prepend: site.baseurl_root }}">
                 </div>
-                <p>Print at home or save PDF</p>
+                <p>{% t index.introb %}</p>
               </div>
             </div>
           </div>
         </div>
 
         <div class="tile is-child cta-tile box home-cta-desktop">
-          <a href="/app?pjs" class="button is-warning">Get Started</a>
+          <a href="{% t index.cta %}" class="button is-warning">{% t index.ctatext %}</a>
         </div>
 
       </div>
@@ -72,7 +69,7 @@ layout: default
         <div class="tile is-child box">
           <div class="hero">
             <div class="hero-label">
-              Go from Screen to Paper
+              {% t index.imgtext %}
             </div>
             <div class="hero-image"></div>
           </div>
@@ -84,9 +81,9 @@ layout: default
   </div>
 
   <div class="tile is-child cta-tile box home-cta-mobile">
-    <a href="/app?pjs" class="button is-warning">Get Started</a>
+    <a href="{% t index.cta %}" class="button is-warning">{% t index.ctatext %}</a>
   </div>
 
   </div>
 
-<script src="assets/js/landing.js"></script>
+<script src="{{ "/assets/js/landing.js" | prepend: site.baseurl_root }}"></script>
