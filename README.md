@@ -29,7 +29,7 @@ Watch html files for changes `bundle exec jekyll serve`
 
 Unfortunately Github pages doesn't support the translation plugin, so deployment is a bit convoluted. After making a build with latest changes follow these steps to push to the serving branch:
 
-1. `cp CNAME /_site` to ensure we have a cname record in the route of the site
+1. `cp CNAME ./_site/` to ensure we have a cname record in the route of the site
 2. `cd _site`
 3. `touch .nojekyll`, this file tells gh-pages that there is no need to build
 4. `git init` init the repository
@@ -40,6 +40,7 @@ Unfortunately Github pages doesn't support the translation plugin, so deployment
 9. `git push origin gh-pages`
 
 Jekyll build will overwrite the `_site` directory on each build so you need to do these steps on each deploy :/
+You can omit steps 4 - 6 if git is still active in the `_site` directory
 
 ## Translations
 
