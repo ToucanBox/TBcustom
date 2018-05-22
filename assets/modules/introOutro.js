@@ -21,8 +21,10 @@ var io = function (init) {
   this.endBtn.addEventListener( 'click' , function() {self.onOutroClick();}, false );
 
   this.onOutroClick = function(event) {
-  self.fader.setAttribute('class', 'fade-bk');
-  self.printModal.setAttribute('class', 'modal');
+  self.fader.classList.toggle('hidden');
+  self.fader.classList.toggle('fade-in');
+  self.printModal.classList.toggle('hidden');
+  self.printModal.classList.toggle('bounce-in');
   self.init.printPipe();
   self.doPreview();
   };
@@ -31,8 +33,11 @@ var io = function (init) {
   this.adviceBtn = document.getElementById('print-advice');
   this.adviceBtn.addEventListener( 'click' , function() {self.showAdvice();}, false );
   this.showAdvice = function() {
-    self.adviceModal.setAttribute('class', 'modal');
-    self.printModal.setAttribute('class', 'modal hidden');
+    self.adviceModal.classList.toggle('hidden');
+    self.adviceModal.classList.toggle('bounce-in');
+
+    self.printModal.classList.toggle('hidden');
+    self.printModal.classList.toggle('bounce-in');
     self.imgAdvice = document.getElementById('img-indicator');
     self.imgAdvice.setAttribute('class', ' ');
   };
@@ -41,8 +46,10 @@ var io = function (init) {
   this.adviceBack = document.getElementById('advice-back-do');
   this.adviceBack.addEventListener( 'click' , function() {self.closeAdvice();}, false );
   this.closeAdvice = function() {
-    self.adviceModal.setAttribute('class', 'modal hidden');
-    self.printModal.setAttribute('class', 'modal');
+    self.adviceModal.classList.toggle('hidden');
+    self.adviceModal.classList.toggle('bounce-in');
+    self.printModal.classList.toggle('hidden');
+    self.printModal.classList.toggle('bounce-in');
   };
 
   // print preview
@@ -86,8 +93,16 @@ var io = function (init) {
   }
   this.doBack = function(event) {
     self.init.reversePrintPipe();
-    self.printModal.setAttribute('class', 'modal hidden');
-    self.fader.setAttribute('class', 'fade-bk hidden');
+    self.fader.classList.toggle('fade-in');
+    self.fader.classList.toggle('fade-out');
+    self.printModal.classList.toggle('bounce-out');
+    window.setTimeout(function(){
+      self.fader.classList.toggle('hidden');
+      self.fader.classList.toggle('fade-out');
+      self.printModal.classList.toggle('hidden');
+      self.printModal.classList.toggle('bounce-out');
+      self.printModal.classList.toggle('bounce-in');
+    }, 400);
   };
 
 

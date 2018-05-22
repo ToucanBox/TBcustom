@@ -30,6 +30,12 @@
    z-index: 98;
  }
 
+ @media screen and (max-width: $tablet) {
+   .canvas-container {
+     bottom: 162px;
+   }
+ }
+
  .sizer {
   position: relative;
   width: 100%;
@@ -59,4 +65,13 @@
    text-align: center;
    height: 74px;
    width: 100%;
+ }
+
+ @media screen and (max-width: $tablet) {
+   .menu {
+     height: 60px;
+   }
+   .menu > .button {
+     min-height: 60px;
+   }
  }

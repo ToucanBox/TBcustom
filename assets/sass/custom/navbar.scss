@@ -6,17 +6,6 @@
   transition: border-top 0.2s ease-in-out;
 }
 
-.navbar.is-active {
-  .menu-circle {
-    transform: scale(60);
-  }
-  .nav-menu-active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
-  }
-}
-
 .navbar-brand {
   width: 100%;
 }
@@ -59,9 +48,10 @@
   transform: translateY(-11px) rotate(-45deg);
 }
 
-@media screen and (min-width: $desktop) {
-  .navbar-burger {
-      display: block;
+.navbar-burger {
+  z-index: 1;
+  @media screen and (min-width: $desktop) {
+    display: block;
   }
 }
 
@@ -75,25 +65,39 @@
   position: absolute;
   border-radius: 50%;
   transform: scale(1);
-  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.4s ease-in-out;
+}
+// cubic-bezier(0.19, 1, 0.22, 1)
+
+.menu-circle.is-active {
+  transform: scale(40);
+  @media screen and (min-width: $tablet) {
+    transform: scale(50);
+  }
+  @media screen and (min-width: $desktop) {
+    transform: scale(60);
+  }
 }
 
 .nav-menu-active {
-  @media screen and (min-width: $desktop) {
-    background-color: $blue-light;
-  }
+  display: none;
+  opacity: 0;
+  background-color: $blue-light;
   color: $white;
   height: 100%;
   width: 100%;
   position: fixed;
+  top: 0;
   text-align: center;
   transition: opacity 0.2s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
   padding: 1em;
-  @media screen and (min-width: $desktop) {
-    top: $navbar-offset;
-  }
+  padding-top: 5em;
+  pointer-events: none;
+}
+
+.nav-menu-active.is-active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .goto-toucan, .social-container {
@@ -102,6 +106,7 @@
   max-width: 400px;
   margin: 0 auto;
   margin-bottom: 1em;
+  pointer-events: all;
 }
 
 .goto-toucan {
