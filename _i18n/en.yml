@@ -7,9 +7,9 @@ index:
   subtitle: 'what is it?'
   alt: Make a colouring sheet
   blurb: >
-    'Personalise your very own toucanoo! Choose clothes,
+    Personalise your very own toucanoo! Choose clothes,
     hair and accessories to invent a completely unique character.
-    Finally give them a name, then print it off and get colouring!'
+    Finally give them a name, then print it off and get colouring!
   introa: Create a design
   introb: Print at home or save a PDF
   imgtext: Go from screen to paper
@@ -22,37 +22,37 @@ app:
   back: Back
   modaltitle: 'AMAZING WORK!'
   modalblurb: >
-    'Woah, your toucanoo looks incredible!
+    Woah, your toucanoo looks incredible!
     Nice one! Pop your name in the box below and it will
     appear on your design. Click <a id="print-advice">here</a>
-    for advice on printing.'
+    for advice on printing.
   saveimage: Try saving this image
   namefield: 'My toucanoo is called:'
   nameplaceholder: "toucanoo's name"
 printadvice:
   maintitle: Printing advice
   adviceblurb: >
-    'We know it’s not always easy to get
+    We know it’s not always easy to get
     printing working on your phone, tablet or even your
     desktop! Here’s some advice to give you a helping
-    hand:'
+    hand:
   li1: >
-    'Try saving for printing later, either choose to
-    print as a PDF or use our save button.'
+    Try saving for printing later, either choose to
+    print as a PDF or use our save button.
   li2: >
-    'Some printers allow you to email attachments to them
-    for printing, you just need the address.'
+    Some printers allow you to email attachments to them
+    for printing, you just need the address.
   li3: >
-    'As a last resort you can save the preview image in
+    As a last resort you can save the preview image in
     the previous menu (right click or touch-hold to save).
-    It may look small but it's actually full size.'
+    It may look small but it's actually full size.
   li4: >
-    'Any questions please email
-    <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>'
+    Any questions please email
+    <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>
 social:
   title: Personalised colouring page by toucanBox
   twitter: >
-    '#mytoucanoo http://create.toucanbox.com make your own
-    personalised colouring sheet with toucanBox!'
+    #mytoucanoo http://create.toucanbox.com make your own
+    personalised colouring sheet with toucanBox!
   instagram: 'http://instagram.com/toucanbox'
   facebook: 'https://www.facebook.com/toucanbox'

@@ -7,11 +7,11 @@ index:
   subtitle: 'Was ist das?'
   alt: 'Kreiere dein eigenes Bild zum Ausmalen'
   blurb: >
-    'Gestalte deinen eigenen Toucanoo! Bestimme,
+    Gestalte deinen eigenen Toucanoo! Bestimme,
     welche Haare, Kleidung und Accessoires er trägt und
     erfinde so deinen einzigartigen Toucanoo. Denke dir
     noch einen Namen für ihn aus, drucke ihn aus und male
-    in an!'
+    in an!
   introa: 'Gestalte dein Design'
   introb: 'Drucke das Bild aus oder speichere es als PDF'
   imgtext: 'Vom Bildschirm auf Papier'
@@ -24,36 +24,36 @@ app:
   back: Zurück
   modaltitle: 'Toll gemacht!'
   modalblurb: >
-    'Boaaah, dein Toucanoo sieht genial aus! Grandios!
+    Boaaah, dein Toucanoo sieht genial aus! Grandios!
     Füge einen Namen hinzu, der in deinem Bild erscheint.
     Klicke <a id="print-advice">hier</a> um Hilfe fürs Ausdrucken
-    zu erhalten.'
+    zu erhalten.
   saveimage: Versuche das Bild zu speichern
   namefield: 'Mein Toucanoo heißt:'
   nameplaceholder: name des toucanoo
 printadvice:
   maintitle: Hilfestellung Drucken
   adviceblurb: >
-    'Manchmal ist es schwierig, den Drucker übers Smartphone, Tablet
+    Manchmal ist es schwierig, den Drucker übers Smartphone, Tablet
     oder sogar den Laptop zur Arbeit zu bewegen. Hier ein paar Tipps,
-    wie es funktionieren kann:'
+    wie es funktionieren kann:
   li1: >
-    'Versuche das Bild zu speichern, um es später zu drucken.
-    Entweder als PDF oder benutze den “Speichern” Button..'
+    Versuche das Bild zu speichern, um es später zu drucken.
+    Entweder als PDF oder benutze den “Speichern” Button..
   li2: >
-    'Manche Drucker erlauben, ihnen E-Mails mit Anhängen zu senden.
-    Du brauchst nur die Adresse deines Druckers.'
+    Manche Drucker erlauben, ihnen E-Mails mit Anhängen zu senden.
+    Du brauchst nur die Adresse deines Druckers.
   li3: >
-    'Als letzte Möglichkeit bleibt, die Vorschau in der vorherigen Ansicht zu speichern.
+    Als letzte Möglichkeit bleibt, die Vorschau in der vorherigen Ansicht zu speichern.
     Einfach rechts-klicken oder auf das Bild drücken und halten, um es zu speichern.
-    Es sieht klein aus, ist aber tatsächlich die volle Größe.'
+    Es sieht klein aus, ist aber tatsächlich die volle Größe.
   li4: >
-    'Bei Fragen schreibe bitte
-    <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>'
+    Bei Fragen schreibe bitte
+    <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>
 social:
   title: Personalisierte Ausmalseite von toucanBox
   twitter: >
-    '#mytoucanoo http://create.toucanbox.com make your own
-    personalised colouring sheet with toucanBox!'
+    #mytoucanoo http://create.toucanbox.com make your own
+    personalised colouring sheet with toucanBox!
   instagram: 'http://instagram.com/toucanbox'
   facebook: 'https://www.facebook.com/toucanbox'

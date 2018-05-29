@@ -7,9 +7,9 @@ index:
   subtitle: 'De quoi s’agit-il ?'
   alt: 'Crée ton coloriage'
   blurb: >
-    'Personnalise ton propre toucanoo ! Choisis des vêtements, une coupe de
+    Personnalise ton propre toucanoo ! Choisis des vêtements, une coupe de
     cheveux et des accessoires et invente un personnage unique. Donne lui un
-    prénom, imprime le et commence à colorier !'
+    prénom, imprime le et commence à colorier !
   introa: 'Créer mon toucanoo'
   introb: 'Imprimer ou enregistrer en format PDF'
   imgtext: 'De ton écran... à tes crayons !'
@@ -22,35 +22,35 @@ app:
   back: Retour
   modaltitle: 'Super travail !'
   modalblurb: >
-    'Hourra ! Ton toucanoo est magnifique ! Super ! Donne lui prénom, il
+    Hourra ! Ton toucanoo est magnifique ! Super ! Donne lui prénom, il
     apparaîtra sur ton dessin. Clique <a id="print-advice">ici</a> pour voir nos
-    conseils pour imprimer ton dessin'
+    conseils pour imprimer ton dessin
   saveimage: Essayer d’enregistrer cette image
   namefield: 'Mon toucanoo s’appelle :'
   nameplaceholder: Nom de ton toucanoo
 printadvice:
   maintitle: Nos Conseils D’Impression
   adviceblurb: >
-    'Nous savons que ce n’est pas toujours facile de faire fonctionner les
+    Nous savons que ce n’est pas toujours facile de faire fonctionner les
     imprimantes à partir d’un téléphone, d’une tablette ou même d’un ordinateur !
-    Voici quelques pistes pour vous aider :'
+    Voici quelques pistes pour vous aider :
   li1: >
-    'Essayez d’enregistrer votre dessin pour l’imprimer plus tard en cliquant sur
-    enregistrer en tant que PDF ou en utilisant le bouton enregistrer.'
+    Essayez d’enregistrer votre dessin pour l’imprimer plus tard en cliquant sur
+    enregistrer en tant que PDF ou en utilisant le bouton enregistrer.
   li2: >
-    'Certaines imprimantes vous permettent de leur envoyer un email en ajoutant votre
-    dessin en pièce jointe. Vous aurez simplement besoin de l’adresse email de votre imprimante.'
+    Certaines imprimantes vous permettent de leur envoyer un email en ajoutant votre
+    dessin en pièce jointe. Vous aurez simplement besoin de l’adresse email de votre imprimante.
   li3: >
-    'En dernier recours, vous pouvez enregistrer l'aperçu de votre image à partir du menu précédant.
+    En dernier recours, vous pouvez enregistrer l'aperçu de votre image à partir du menu précédant.
     Faîtes un clic droit ou maintenez votre doigt sur l’écran pour enregistrer l’image. Celle-ci peut
-    paraître petite mais sera en fait en taille réelle.'
+    paraître petite mais sera en fait en taille réelle.
   li4: >
-    'Si vous avez des questions, n’hésitez pas à nous contacter :
-    <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>'
+    Si vous avez des questions, n’hésitez pas à nous contacter :
+    <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>
 social:
   title: Ton propre coloriage toucanBox
   twitter: >
-    '#mytoucanoo http://create.toucanbox.com make your own
-    personalised colouring sheet with toucanBox!'
+    #mytoucanoo http://create.toucanbox.com make your own
+    personalised colouring sheet with toucanBox!
   instagram: 'http://instagram.com/toucanboxfr'
   facebook: 'https://www.facebook.com/toucanboxfr'

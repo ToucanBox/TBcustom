@@ -7,9 +7,9 @@ index:
   subtitle: 'Cos’è?'
   alt: 'Realizza la tua pagina da colorare'
   blurb: >
-    'Personalizza il tuo toucanù! Scegli vestiti, capelli
+    Personalizza il tuo toucanù! Scegli vestiti, capelli
     e accessori e assegna un nome al tuo personaggio. Infine,
-    stampa la pagina e divertiti a colorare!'
+    stampa la pagina e divertiti a colorare!
   introa: 'Crea il tuo personaggio'
   introb: 'Stampa o salva in formato PDF'
   imgtext: 'Dallo schermo... alla carta!'
@@ -22,39 +22,39 @@ app:
   back: Torna indietro
   modaltitle: 'Ottimo lavoro!'
   modalblurb: >
-    'Urrà, il tuo toucanù è pronto! Fantastico! Aggiungi il nome del
+    Urrà, il tuo toucanù è pronto! Fantastico! Aggiungi il nome del
     personaggio nella casella in basso, che apparirà sul tuo disegno.
     Clicca <a id="print-advice">qui</a> per i nostri consigli su come
-    stampare l’immagine.'
+    stampare l’immagine.
   saveimage: 'Salva l’immagine'
   namefield: 'Il mio toucanù si chiama:'
   nameplaceholder: 'Nome del toucanù'
 printadvice:
   maintitle: I NOSTRI CONSIGLI PER STAMPARE
   adviceblurb: >
-    'Sappiamo che non è sempre facile avere una stampante a portata di mano
+    Sappiamo che non è sempre facile avere una stampante a portata di mano
     quando si lavora dal proprio telefono, da un tablet o anche dal computer.
-    Ecco dunque alcuni consigli utili:'
+    Ecco dunque alcuni consigli utili:
   li1: >
-    'Prova a salvare la stampa per dopo. Scegli “Stampa in PDF” e “Salva”, oppure
-    usa il pulsante “Salva”.'
+    Prova a salvare la stampa per dopo. Scegli “Stampa in PDF” e “Salva”, oppure
+    usa il pulsante “Salva”.
   li2: >
-    'Alcune stampanti sono dotate di una funzione per ricevere allegati di posta
+    Alcune stampanti sono dotate di una funzione per ricevere allegati di posta
     elettronica per la stampa. In questo caso, avrai solo bisogno dell'indirizzo
-    della tua stampante.'
+    della tua stampante.
   li3: >
-    'Infine, è possibile salvare l’anteprima dell’immagine nel menu precedente.
+    Infine, è possibile salvare l’anteprima dell’immagine nel menu precedente.
     Clicca sul tasto destro del tuo mouse o se stai disegnando da un tablet o da
     uno smartphone, tieni premuto il dito sulla pagina per un paio di secondi, e comparirà
     l’opzione per salvarla. Anche se l’immagine sembra piccola, verrà stampata a grandezza
-    regolare.'
+    regolare.
   li4: >
-    'Per qualsiasi domanda, invia un’email a:
-    <a href="mailto:ciao@toucanbox.it?Subject=Ive%20just%20toucanooed%20myself">ciao@toucanbox.it</a>'
+    Per qualsiasi domanda, invia un’email a:
+    <a href="mailto:ciao@toucanbox.it?Subject=Ive%20just%20toucanooed%20myself">ciao@toucanbox.it</a>
 social:
   title: La tua pagina da colorare toucanBox
   twitter: >
-    '#mytoucanoo http://create.toucanbox.com make your own
-    personalised colouring sheet with toucanBox!'
+    #mytoucanoo http://create.toucanbox.com make your own
+    personalised colouring sheet with toucanBox!
   instagram: 'https://www.instagram.com/toucanboxitalia/'
   facebook: 'https://www.facebook.com/toucanboxitalia'
