@@ -20,11 +20,14 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
   <meta name="msapplication-tap-highlight" content="no" />
 
-  <title>Personalised colouring page by toucanBox</title>
-  <meta name="description" content="Personalise your very own toucanoo! Choose clothes, hair and accessories to invent a completely unique character. Finally give them a name, then print it off...">
+  <title>Personalisierte Ausmalseite von toucanBox</title>
+  <meta name="description" content="">
 
   <style>
     .zEWidget-launcher {
+      display: none !important;
+    }
+    .optanon-show-settings-popup-wrapper {
       display: none !important;
     }
   </style>
@@ -32,10 +35,11 @@
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="canonical" href="http://create.toucanbox.com/de/app.html">
 
-  <meta property="og:title" content="Personalised colouring page by toucanBox"/>
+  <meta property="og:title" content="Personalisierte Ausmalseite von toucanBox"/>
   <meta property="og:image" content="/assets/img/web/tbtouch.jpg"/>
-  <meta property="og:site_name" content="Personalised colouring page by toucanBox"/>
-  <meta property="og:description" content="Personalise your very own toucanoo! Choose clothes, hair and accessories to invent a completely unique character. Finally give them a name, then print it off and get colouring!"/>
+  <meta property="og:site_name" content="Personalisierte Ausmalseite von toucanBox"/>
+  <meta property="og:description" content="'Gestalte deinen eigenen Toucanoo! Bestimme, welche Haare, Kleidung und Accessoires er trägt und erfinde so deinen einzigartigen Toucanoo. Denke dir noch einen Namen für ihn aus, drucke ihn aus und male in an!'
+"/>
 
   <!-- Google Analytics -->
   <script>
@@ -59,10 +63,12 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <div class="body-volume"></div>
+
     <nav class="navbar" role="navigation" aria-label="main navigation">
 
   <div class="navbar-brand">
-    <a class="navbar-item" href="/">
+    <a class="navbar-item" href="/de">
       <img src="/assets/img/web/logo.svg" alt="toucanBox">
     </a>
 
@@ -77,10 +83,10 @@
 
   <div class="nav-menu-active">
 
-    <a class="goto-toucan" href="http://www.toucanbox.com">Got to toucanBox.com</a>
+    <a class="goto-toucan" href="http://www.toucanbox.de">Gehe zu toucanbox.de</a>
 
     <div class="social-container">
-      <h4>Share the experience</h4>
+      <h4>Teile den Spaß mit Freunden</h4>
 
       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//create.toucanbox.com/" target="_blank" class="social-btns" id="facebook">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 51.2 51.2">
@@ -166,8 +172,8 @@
       </div>
 
       <div class="menu columns is-gapless is-mobile">
-        <button id="undo-btn" class="button is-danger column">Undo</button>
-        <button id="print-btn" class="button is-success column">Print</button>
+        <button id="undo-btn" class="button is-danger column">Rückgängig</button>
+        <button id="print-btn" class="button is-success column">Drucken</button>
       </div>
 
     </div>
@@ -193,8 +199,8 @@
 
       <div class="content-group-a">
         <div class="print-blurb">
-          <h2>AMAZING WORK!</h2>
-          <p>'Woah, your toucanoo looks incredible! Nice one! Pop your name in the box below and it will appear on your design. Click <a id="print-advice">here</a> for advice on printing.'
+          <h2>Toll gemacht!</h2>
+          <p>'Boaaah, dein Toucanoo sieht genial aus! Grandios! Füge einen Namen hinzu, der in deinem Bild erscheint. Klicke <a id="print-advice">hier</a> um Hilfe fürs Ausdrucken zu erhalten.'
 </p>
         </div>
       </div>
@@ -202,7 +208,7 @@
       <div class="content-group-b">
         <div class="preview">
           <img src="" id="preview-output">
-          <div id="img-indicator" class="hidden"><span>Try saving this image</span></div>
+          <div id="img-indicator" class="hidden"><span>Versuche das Bild zu speichern</span></div>
         </div>
       </div>
 
@@ -210,19 +216,19 @@
 
     <div class="modal-menu">
       <div class="name-input-wrap">
-        <label for="text_field">My toucanoo is called:</label>
-        <input type="text" placeholder="toucanoo's name" id="text-field">
+        <label for="text_field">Mein Toucanoo heißt:</label>
+        <input type="text" placeholder="name des toucanoo" id="text-field">
       </div>
 
       <div class="options-wrap-desktop">
-        <button class="button is-warning print-do">Print</button>
-        <button class="button is-info save-do">Save</button>
+        <button class="button is-warning print-do de">Drucken</button>
+        <button class="button is-info save-do de">Speichern</button>
       </div>
 
       <div class="options-wrap-mobile columns is-gapless is-mobile">
-        <button class="button is-danger column back-do">Back</button>
-        <button class="button is-success column print-do">Print</button>
-        <button class="button is-info column save-do">Save</button>
+        <button class="button is-danger column back-do">Zurück</button>
+        <button class="button is-success column print-do">Drucken</button>
+        <button class="button is-info column save-do">Speichern</button>
       </div>
 
     </div>
@@ -231,22 +237,22 @@
   <div id="advice-modal" class="modal hidden">
     <div class="modal-contents">
       <div class="print-blurb">
-        <h2>Printing advice</h2>
-        <p>'We know it’s not always easy to get printing working on your phone, tablet or even your desktop! Here’s some advice to give you a helping hand:'
+        <h2>Hilfestellung Drucken</h2>
+        <p>'Manchmal ist es schwierig, den Drucker übers Smartphone, Tablet oder sogar den Laptop zur Arbeit zu bewegen. Hier ein paar Tipps, wie es funktionieren kann:'
 </p>
         <ul class="bulleted">
-          <li>'Try saving for printing later, either choose to print as a PDF or use our save button.'
+          <li>'Versuche das Bild zu speichern, um es später zu drucken. Entweder als PDF oder benutze den “Speichern” Button..'
 </li>
-          <li>'Some printers allow you to email attachments to them for printing, you just need the address.'
+          <li>'Manche Drucker erlauben, ihnen E-Mails mit Anhängen zu senden. Du brauchst nur die Adresse deines Druckers.'
 </li>
-          <li>'As a last resort you can save the preview image in the previous menu (right click or touch-hold to save). It may look small but it's actually full size.'
+          <li>'Als letzte Möglichkeit bleibt, die Vorschau in der vorherigen Ansicht zu speichern. Einfach rechts-klicken oder auf das Bild drücken und halten, um es zu speichern. Es sieht klein aus, ist aber tatsächlich die volle Größe.'
 </li>
-          <li>'Any questions please email <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>'
+          <li>'Bei Fragen schreibe bitte <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>'
 </li>
         </ul>
       </div>
     </div>
-    <button id="advice-back-do" class="button is-info">Back</button>
+    <button id="advice-back-do" class="button is-info">Zurück</button>
   </div>
 
 </div>

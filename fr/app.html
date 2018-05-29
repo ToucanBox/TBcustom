@@ -20,11 +20,14 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
   <meta name="msapplication-tap-highlight" content="no" />
 
-  <title>Personalised colouring page by toucanBox</title>
-  <meta name="description" content="Personalise your very own toucanoo! Choose clothes, hair and accessories to invent a completely unique character. Finally give them a name, then print it off...">
+  <title>Ton propre coloriage toucanBox</title>
+  <meta name="description" content="">
 
   <style>
     .zEWidget-launcher {
+      display: none !important;
+    }
+    .optanon-show-settings-popup-wrapper {
       display: none !important;
     }
   </style>
@@ -32,10 +35,11 @@
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="canonical" href="http://create.toucanbox.com/fr/app.html">
 
-  <meta property="og:title" content="Personalised colouring page by toucanBox"/>
+  <meta property="og:title" content="Ton propre coloriage toucanBox"/>
   <meta property="og:image" content="/assets/img/web/tbtouch.jpg"/>
-  <meta property="og:site_name" content="Personalised colouring page by toucanBox"/>
-  <meta property="og:description" content="Personalise your very own toucanoo! Choose clothes, hair and accessories to invent a completely unique character. Finally give them a name, then print it off and get colouring!"/>
+  <meta property="og:site_name" content="Ton propre coloriage toucanBox"/>
+  <meta property="og:description" content="'Personnalise ton propre toucanoo ! Choisis des vêtements, une coupe de cheveux et des accessoires et invente un personnage unique. Donne lui un prénom, imprime le et commence à colorier !'
+"/>
 
   <!-- Google Analytics -->
   <script>
@@ -59,10 +63,12 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <div class="body-volume"></div>
+
     <nav class="navbar" role="navigation" aria-label="main navigation">
 
   <div class="navbar-brand">
-    <a class="navbar-item" href="/">
+    <a class="navbar-item" href="/fr">
       <img src="/assets/img/web/logo.svg" alt="toucanBox">
     </a>
 
@@ -77,10 +83,10 @@
 
   <div class="nav-menu-active">
 
-    <a class="goto-toucan" href="http://www.toucanbox.com">Got to toucanBox.com</a>
+    <a class="goto-toucan" href="http://www.toucanbox.fr">Aller sur toucanbox.fr</a>
 
     <div class="social-container">
-      <h4>Share the experience</h4>
+      <h4>Partager</h4>
 
       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//create.toucanbox.com/" target="_blank" class="social-btns" id="facebook">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 51.2 51.2">
@@ -101,7 +107,7 @@
                   fill="#fff"/>
             </svg>
           </a>
-      <a href="http://instagram.com/toucanbox" target="_blank" class="social-btns" id="instagram">
+      <a href="http://instagram.com/toucanboxfr" target="_blank" class="social-btns" id="instagram">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 51.2 51.2">
               <path
                   d="M41.45,22.43H37.86a12.68,12.68,0,1,1-24.52,0H9.75V39.86a1.58,1.58,0,0,0,1.59,1.58H39.86a1.58,1.58,0,0,0,1.59-1.58V22.43Zm0-11.09a1.59,1.59,0,0,0-1.59-1.58H35.11a1.58,1.58,0,0,0-1.58,1.58v4.75a1.58,1.58,0,0,0,1.58,1.58h4.75a1.59,1.59,0,0,0,1.59-1.58ZM25.6,17.68a7.92,7.92,0,1,0,7.92,7.92,7.92,7.92,0,0,0-7.92-7.92M41.45,46.2H9.75A4.75,4.75,0,0,1,5,41.44V9.75A4.75,4.75,0,0,1,9.75,5H41.45A4.75,4.75,0,0,1,46.2,9.75V41.44a4.75,4.75,0,0,1-4.75,4.76"
@@ -166,8 +172,8 @@
       </div>
 
       <div class="menu columns is-gapless is-mobile">
-        <button id="undo-btn" class="button is-danger column">Undo</button>
-        <button id="print-btn" class="button is-success column">Print</button>
+        <button id="undo-btn" class="button is-danger column">Annuler</button>
+        <button id="print-btn" class="button is-success column">Imprimer</button>
       </div>
 
     </div>
@@ -193,8 +199,8 @@
 
       <div class="content-group-a">
         <div class="print-blurb">
-          <h2>AMAZING WORK!</h2>
-          <p>'Woah, your toucanoo looks incredible! Nice one! Pop your name in the box below and it will appear on your design. Click <a id="print-advice">here</a> for advice on printing.'
+          <h2>Super travail !</h2>
+          <p>'Hourra ! Ton toucanoo est magnifique ! Super ! Donne lui prénom, il apparaîtra sur ton dessin. Clique <a id="print-advice">ici</a> pour voir nos conseils pour imprimer ton dessin'
 </p>
         </div>
       </div>
@@ -202,7 +208,7 @@
       <div class="content-group-b">
         <div class="preview">
           <img src="" id="preview-output">
-          <div id="img-indicator" class="hidden"><span>Try saving this image</span></div>
+          <div id="img-indicator" class="hidden"><span>Essayer d’enregistrer cette image</span></div>
         </div>
       </div>
 
@@ -210,19 +216,19 @@
 
     <div class="modal-menu">
       <div class="name-input-wrap">
-        <label for="text_field">My toucanoo is called:</label>
-        <input type="text" placeholder="toucanoo's name" id="text-field">
+        <label for="text_field">Mon toucanoo s’appelle :</label>
+        <input type="text" placeholder="Nom de ton toucanoo" id="text-field">
       </div>
 
       <div class="options-wrap-desktop">
-        <button class="button is-warning print-do">Print</button>
-        <button class="button is-info save-do">Save</button>
+        <button class="button is-warning print-do fr">Imprimer</button>
+        <button class="button is-info save-do fr">Enregistrer</button>
       </div>
 
       <div class="options-wrap-mobile columns is-gapless is-mobile">
-        <button class="button is-danger column back-do">Back</button>
-        <button class="button is-success column print-do">Print</button>
-        <button class="button is-info column save-do">Save</button>
+        <button class="button is-danger column back-do">Retour</button>
+        <button class="button is-success column print-do">Imprimer</button>
+        <button class="button is-info column save-do">Enregistrer</button>
       </div>
 
     </div>
@@ -231,22 +237,22 @@
   <div id="advice-modal" class="modal hidden">
     <div class="modal-contents">
       <div class="print-blurb">
-        <h2>Printing advice</h2>
-        <p>'We know it’s not always easy to get printing working on your phone, tablet or even your desktop! Here’s some advice to give you a helping hand:'
+        <h2>Nos Conseils D’Impression</h2>
+        <p>'Nous savons que ce n’est pas toujours facile de faire fonctionner les imprimantes à partir d’un téléphone, d’une tablette ou même d’un ordinateur ! Voici quelques pistes pour vous aider :'
 </p>
         <ul class="bulleted">
-          <li>'Try saving for printing later, either choose to print as a PDF or use our save button.'
+          <li>'Essayez d’enregistrer votre dessin pour l’imprimer plus tard en cliquant sur enregistrer en tant que PDF ou en utilisant le bouton enregistrer.'
 </li>
-          <li>'Some printers allow you to email attachments to them for printing, you just need the address.'
+          <li>'Certaines imprimantes vous permettent de leur envoyer un email en ajoutant votre dessin en pièce jointe. Vous aurez simplement besoin de l’adresse email de votre imprimante.'
 </li>
-          <li>'As a last resort you can save the preview image in the previous menu (right click or touch-hold to save). It may look small but it's actually full size.'
+          <li>'En dernier recours, vous pouvez enregistrer l'aperçu de votre image à partir du menu précédant. Faîtes un clic droit ou maintenez votre doigt sur l’écran pour enregistrer l’image. Celle-ci peut paraître petite mais sera en fait en taille réelle.'
 </li>
-          <li>'Any questions please email <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>'
+          <li>'Si vous avez des questions, n’hésitez pas à nous contacter : <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>'
 </li>
         </ul>
       </div>
     </div>
-    <button id="advice-back-do" class="button is-info">Back</button>
+    <button id="advice-back-do" class="button is-info">Retour</button>
   </div>
 
 </div>
