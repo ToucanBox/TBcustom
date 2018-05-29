@@ -128,7 +128,7 @@ var init = function () {
   this.currentId = 0;
 
   // name
-  this.name = 'toucanoo\'s name';
+  this.name = '';
 
   // mouse/touch event direction tracking
   this.startX = 0;

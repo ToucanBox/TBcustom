@@ -2,6 +2,7 @@
   border-top: 9px solid $blue-light;
   pointer-events: none;
   position: absolute;
+  top: 0;
   width: 100%;
   transition: border-top 0.2s ease-in-out;
 }

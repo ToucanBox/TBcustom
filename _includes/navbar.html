@@ -1,7 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
 
   <div class="navbar-brand">
-    <a class="navbar-item" href="/">
+    <a class="navbar-item" href="/{{ site.lang }}">
       <img src="{{ "/assets/img/web/logo.svg" | prepend: site.baseurl_root }}" alt="toucanBox">
     </a>
 
@@ -16,7 +16,7 @@
 
   <div class="nav-menu-active">
 
-    <a class="goto-toucan" href="http://www.toucanbox.com">{% t nav.goto %}</a>
+    <a class="goto-toucan" href="{% t nav.url %}">{% t nav.goto %}</a>
 
     <div class="social-container">
       <h4>{% t nav.share %}</h4>
@@ -40,7 +40,7 @@
                   fill="#fff"/>
             </svg>
           </a>
-      <a href="http://instagram.com/toucanbox" target="_blank" class="social-btns" id="instagram">
+      <a href="{% t social.instagram %}" target="_blank" class="social-btns" id="instagram">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 51.2 51.2">
               <path
                   d="M41.45,22.43H37.86a12.68,12.68,0,1,1-24.52,0H9.75V39.86a1.58,1.58,0,0,0,1.59,1.58H39.86a1.58,1.58,0,0,0,1.59-1.58V22.43Zm0-11.09a1.59,1.59,0,0,0-1.59-1.58H35.11a1.58,1.58,0,0,0-1.58,1.58v4.75a1.58,1.58,0,0,0,1.58,1.58h4.75a1.59,1.59,0,0,0,1.59-1.58ZM25.6,17.68a7.92,7.92,0,1,0,7.92,7.92,7.92,7.92,0,0,0-7.92-7.92M41.45,46.2H9.75A4.75,4.75,0,0,1,5,41.44V9.75A4.75,4.75,0,0,1,9.75,5H41.45A4.75,4.75,0,0,1,46.2,9.75V41.44a4.75,4.75,0,0,1-4.75,4.76"

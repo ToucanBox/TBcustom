@@ -7,6 +7,11 @@ html, body {
   -ms-scroll-chaining: none;
   overflow-y: hidden;
   overflow-x: hidden;
+  height: 100%;
+}
+
+.body-volume {
+  height: 100%;
 }
 
 // Helper classes

@@ -1,5 +1,6 @@
 nav:
-  goto: Got to toucanBox.com
+  goto: Go to toucanBox.com
+  url: 'http://www.toucanbox.com'
   share: Share the experience
 index:
   maintitle: Toucanoo Yourself
@@ -10,7 +11,7 @@ index:
     hair and accessories to invent a completely unique character.
     Finally give them a name, then print it off and get colouring!'
   introa: Create a design
-  introb: Print at home or save PDF
+  introb: Print at home or save a PDF
   imgtext: Go from screen to paper
   ctatext: Get started
   cta: '/app?pjs'
@@ -48,3 +49,10 @@ printadvice:
   li4: >
     'Any questions please email
     <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>'
+social:
+  title: Personalised colouring page by toucanBox
+  twitter: >
+    '#mytoucanoo http://create.toucanbox.com make your own
+    personalised colouring sheet with toucanBox!'
+  instagram: 'http://instagram.com/toucanbox'
+  facebook: 'https://www.facebook.com/toucanbox'

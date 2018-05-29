@@ -1,50 +1,56 @@
 nav:
-  goto: 'Got to toucanBox.com'
-  share: 'Share the experience'
+  goto: 'Aller sur toucanbox.fr'
+  url: 'http://www.toucanbox.fr'
+  share: 'Partager'
 index:
-  maintitle: 'Toucanoo Yourself'
-  subtitle: 'FR what is it?'
-  alt: 'Make a colouring sheet'
+  maintitle: 'Crée ton propre toucanoo'
+  subtitle: 'De quoi s’agit-il ?'
+  alt: 'Crée ton coloriage'
   blurb: >
-    'Personalise your very own toucanoo! Choose clothes,
-    hair and accessories to invent a completely unique character.
-    Finally give them a name, then print it off and get colouring!'
-  introa: 'Create a design'
-  introb: 'Print at home or save PDF'
-  imgtext: 'Go from screen to paper'
-  ctatext: 'Get started'
+    'Personnalise ton propre toucanoo ! Choisis des vêtements, une coupe de
+    cheveux et des accessoires et invente un personnage unique. Donne lui un
+    prénom, imprime le et commence à colorier !'
+  introa: 'Créer mon toucanoo'
+  introb: 'Imprimer ou enregistrer en format PDF'
+  imgtext: 'De ton écran... à tes crayons !'
+  ctatext: 'C’est parti'
   cta: '/fr/app?pjs'
 app:
-  undo: Undo
-  print: Print
-  save: Save
-  back: Back
-  modaltitle: 'AMAZING WORK!'
+  undo: Annuler
+  print: Imprimer
+  save: Enregistrer
+  back: Retour
+  modaltitle: 'Super travail !'
   modalblurb: >
-    'Woah, your toucanoo looks incredible!
-    Nice one! Pop your name in the box below and it will
-    appear on your design. Click <a id="print-advice">here</a>
-    for advice on printing.'
-  saveimage: Try saving this image
-  namefield: 'My toucanoo is called:'
-  nameplaceholder: "toucanoo's name"
+    'Hourra ! Ton toucanoo est magnifique ! Super ! Donne lui prénom, il
+    apparaîtra sur ton dessin. Clique <a id="print-advice">ici</a> pour voir nos
+    conseils pour imprimer ton dessin'
+  saveimage: Essayer d’enregistrer cette image
+  namefield: 'Mon toucanoo s’appelle :'
+  nameplaceholder: Nom de ton toucanoo
 printadvice:
-  maintitle: Printing advice
+  maintitle: Nos Conseils D’Impression
   adviceblurb: >
-    'We know it’s not always easy to get
-    printing working on your phone, tablet or even your
-    desktop! Here’s some advice to give you a helping
-    hand:'
+    'Nous savons que ce n’est pas toujours facile de faire fonctionner les
+    imprimantes à partir d’un téléphone, d’une tablette ou même d’un ordinateur !
+    Voici quelques pistes pour vous aider :'
   li1: >
-    'Try saving for printing later, either choose to
-    print as a PDF or use our save button.'
+    'Essayez d’enregistrer votre dessin pour l’imprimer plus tard en cliquant sur
+    enregistrer en tant que PDF ou en utilisant le bouton enregistrer.'
   li2: >
-    'Some printers allow you to email attachments to them
-    for printing, you just need the address.'
+    'Certaines imprimantes vous permettent de leur envoyer un email en ajoutant votre
+    dessin en pièce jointe. Vous aurez simplement besoin de l’adresse email de votre imprimante.'
   li3: >
-    'As a last resort you can save the preview image in
-    the previous menu (right click or touch-hold to save).
-    It may look small but it's actually full size.'
+    'En dernier recours, vous pouvez enregistrer l'aperçu de votre image à partir du menu précédant.
+    Faîtes un clic droit ou maintenez votre doigt sur l’écran pour enregistrer l’image. Celle-ci peut
+    paraître petite mais sera en fait en taille réelle.'
   li4: >
-    'Any questions please email
+    'Si vous avez des questions, n’hésitez pas à nous contacter :
     <a href="mailto:amoles@toucanbox.com?Subject=Ive%20just%20toucanooed%20myself">amoles@toucanbox.com</a>'
+social:
+  title: Ton propre coloriage toucanBox
+  twitter: >
+    '#mytoucanoo http://create.toucanbox.com make your own
+    personalised colouring sheet with toucanBox!'
+  instagram: 'http://instagram.com/toucanboxfr'
+  facebook: 'https://www.facebook.com/toucanboxfr'
