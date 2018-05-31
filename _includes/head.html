@@ -33,9 +33,11 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
   <meta property="og:title" content="{% t social.title %}"/>
-  <meta property="og:image" content="/assets/img/web/tbtouch.jpg"/>
+  <meta property="og:image" content="https://create.toucanbox.com/assets/img/web/tbtouch.jpg"/>
   <meta property="og:site_name" content="{% t social.title %}"/>
   <meta property="og:description" content="{% t index.blurb %}"/>
+  <meta property="og:url" content="{{ page.url | replace:'index.html','' | absolute_url }}"/>
+  <meta property="og:type" content="website"/>
 
   <!-- Google Analytics -->
   <script>
