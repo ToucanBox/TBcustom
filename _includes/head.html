@@ -39,6 +39,14 @@
   <meta property="og:url" content="{{ page.url | replace:'index.html','' | absolute_url }}"/>
   <meta property="og:type" content="website"/>
 
+  <meta name="twitter:card" content="{% t social.title %}">
+  <meta name="twitter:site" content="@toucanbox">
+  <meta name="twitter:url" content="{{ page.url | replace:'index.html','' | absolute_url }}">
+  <meta name="twitter:creator" content="@toucanbox">
+  <meta name="twitter:title" content="toucanBox">
+  <meta name="twitter:description" content="{% t index.blurb %}">
+  <meta name="twitter:image:src" content="https://create.toucanbox.com/assets/img/web/tbtouch.jpg">
+
   <!-- Google Analytics -->
   <script>
   window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
