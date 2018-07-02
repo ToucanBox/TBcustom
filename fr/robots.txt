@@ -1,1 +1,1 @@
-Sitemap: http://create.toucanbox.com/fr/sitemap.xml
+Sitemap: http://localhost:4000/fr/sitemap.xml
