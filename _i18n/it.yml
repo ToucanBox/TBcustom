@@ -1,5 +1,6 @@
 nav:
   goto: 'Vai su toucanbox.it'
+  homeurl: '/it'
   url: 'http://www.toucanbox.it'
   share: 'Condividi'
 index:

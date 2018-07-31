@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 1);
       window.setTimeout(function(){
         nav[0].classList.toggle('is-active');
-      }, 400);
+      }, 300);
     } else {
       // Active state
       nav[0].classList.toggle('is-active');

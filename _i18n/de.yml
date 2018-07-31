@@ -1,5 +1,6 @@
 nav:
   goto: 'Gehe zu toucanbox.de'
+  homeurl: '/de'
   url: 'http://www.toucanbox.de'
   share: 'Teile den Spaß mit Freunden'
 index:

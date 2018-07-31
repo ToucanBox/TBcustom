@@ -1,5 +1,6 @@
 nav:
   goto: Go to toucanBox.com
+  homeurl: '/'
   url: 'http://www.toucanbox.com'
   share: Share the experience
 index:
