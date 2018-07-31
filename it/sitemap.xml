@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/it/app.html</loc>
+<loc>http://create.toucanbox.com/it/app.html</loc>
 </url>
 <url>
-<loc>http://localhost:4000/it/</loc>
+<loc>http://create.toucanbox.com/it/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/it/temp.html</loc>
+<loc>http://create.toucanbox.com/it/temp.html</loc>
 <lastmod>2018-05-21T17:15:03+01:00</lastmod>
 </url>
 </urlset>
