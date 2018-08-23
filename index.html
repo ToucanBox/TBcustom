@@ -33,28 +33,28 @@ layout: default
         <div class="tile is-child box">
           <div class="steps columns is-mobile">
             <div class="column touch">
-              <div class="home-panel">
+              <a href="{% t index.cta %}" class="home-panel">
                 <div class="image-sizer">
                     <img class="intro-gifs" src="{{ "/assets/img/web/touch.gif" | prepend: site.baseurl_root }}">
                 </div>
                 <p>{% t index.introa %}</p>
-              </div>
+              </a>
             </div>
             <div class="column mouse">
-              <div class="home-panel">
+              <a href="{% t index.cta %}" class="home-panel">
                 <div class="image-sizer">
                     <img class="intro-gifs" src="{{ "/assets/img/web/mouse.gif" | prepend: site.baseurl_root }}">
                 </div>
                 <p>{% t index.introa %}</p>
-              </div>
+              </a>
             </div>
             <div class="column print">
-              <div class="home-panel">
+              <a href="{% t index.cta %}" class="home-panel">
                 <div class="image-sizer">
                     <img class="intro-gifs" src="{{ "/assets/img/web/print.gif" | prepend: site.baseurl_root }}">
                 </div>
                 <p>{% t index.introb %}</p>
-              </div>
+              </a>
             </div>
           </div>
         </div>
