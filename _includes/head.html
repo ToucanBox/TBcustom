@@ -32,6 +32,13 @@
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
+  <link rel="alternate" hreflang="en-GB" href="{{ page.url | replace:'index.html','' | absolute_url }}" />
+  <link rel="alternate" hreflang="en-IE" href="{{ page.url | replace:'index.html','' | absolute_url }}" />
+  <link rel="alternate" hreflang="en-US" href="{{ page.url | replace:'index.html','' | absolute_url }}" />
+  <link rel="alternate" hreflang="it-IT" href="{{ page.url | replace:'index.html','' | absolute_url }}it" />
+  <link rel="alternate" hreflang="fr-FR" href="{{ page.url | replace:'index.html','' | absolute_url }}fr" />
+  <link rel="alternate" hreflang="de-DE" href="{{ page.url | replace:'index.html','' | absolute_url }}de" />
+
   <meta property="og:title" content="{% t social.title %}"/>
   <meta property="og:image" content="https://create.toucanbox.com/assets/img/web/tbtouch.jpg"/>
   <meta property="og:site_name" content="{% t social.title %}"/>
